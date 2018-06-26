@@ -24,7 +24,6 @@ describe('Clinics create', function () {
                 longitude: 0,
                 confirmed: true
             })
-            //.set('Accept', 'application/json')
             .expect(200,done)
     });
 
@@ -37,7 +36,6 @@ describe('Clinics create', function () {
                 longitude: 0,
                 confirmed: true
             })
-            //.set('Accept', 'application/json')
             .expect(200,done)
     });
 
@@ -50,7 +48,6 @@ describe('Clinics create', function () {
                 longitude: 0,
                 confirmed: true
             })
-            //.set('Accept', 'application/json')
             .expect(200,done)
     });
 
@@ -63,7 +60,6 @@ describe('Clinics create', function () {
                 longitude: 0,
                 confirmed: true
             })
-            //.set('Accept', 'application/json')
             .expect(200)
             .end(function(err, res) {
                 if (err) return done(err);
@@ -85,7 +81,6 @@ describe('Clinics create', function () {
                 longitude: 0,
                 confirmed: true
             })
-            //.set('Accept', 'application/json')
             .expect(200)
             .end(function(err, res) {
                 if (err) return done(err);
