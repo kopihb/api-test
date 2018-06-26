@@ -12,7 +12,7 @@ describe('Clinics GET request', function () {
     });
 })
 
-
+//fdsfsdf
 
 describe('Clinics create', function () {
     it('Create new clinic/Successfull case', function(done) {
