@@ -7,7 +7,7 @@ var should = require('chai').should(),
 *
 * Change the settings for a new pass test
 *
-* */
+*/
 var clinic = {
     name: 'Final',
     latitude: 0,
