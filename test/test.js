@@ -128,9 +128,5 @@ describe('TEST POST CLINIC', function () {
                 confirmed: true
             })
             .expect(200,done)
-        //.end(function(err, res) {
-        //     if (err) return done(err);
-        //     done();
-        // });
     });
 })
