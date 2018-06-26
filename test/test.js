@@ -4,7 +4,7 @@ var should = require('chai').should(),
     api = supertest('http://159.100.241.121:5002');
 
 
-describe('Clinics GET', function () {
+describe('Clinics GET request', function () {
     it('Should return 200 responce', function (done) {
         api.get('/clinics')
             .set('Accept', 'aplication/json')
@@ -16,10 +16,10 @@ describe('Clinics GET', function () {
 
 describe('Clinics create', function () {
     it('Create new clinic/Successfull case', function(done) {
-        api.get('/clinics')
+        api.post('/clinics')
             .set('Accept', 'aplication/json')
             .send({
-                name: 'myClinic',
+                name: 'myClinic2',
                 latitude: 0,
                 longitude: 0,
                 confirmed: true
@@ -28,10 +28,10 @@ describe('Clinics create', function () {
     });
 
     it('Create new clinic/with several words', function(done) {
-        api.get('/clinics')
+        api.post('/clinics')
             .set('Accept', 'aplication/json')
             .send({
-                name: 'my Clinic several words',
+                name: 'my Clinic several words 2',
                 latitude: 0,
                 longitude: 0,
                 confirmed: true
@@ -40,10 +40,10 @@ describe('Clinics create', function () {
     });
 
     it('Create new clinic/name parameter with numbers', function(done) {
-        api.get('/clinics')
+        api.post('/clinics')
             .set('Accept', 'aplication/json')
             .send({
-                name: 'myClinic 12345',
+                name: 'myClinic 12345 2',
                 latitude: 0,
                 longitude: 0,
                 confirmed: true
@@ -52,7 +52,7 @@ describe('Clinics create', function () {
     });
 
     it('Create new clinic/with the same title', function(done) {
-        api.get('/clinics')
+        api.post('/clinics')
             .set('Accept', 'aplication/json')
             .send({
                 name: 'myClinic !#$%#$',
@@ -60,14 +60,14 @@ describe('Clinics create', function () {
                 longitude: 0,
                 confirmed: true
             })
-            .expect(200)
-            .end(function(err, res) {
-                if (err) return done(err);
-                done();
-            });
+            .expect(200,done)
+        // .end(function(err, res) {
+        //     if (err) return done(err);
+        //     done();
+        // });
     });
     it('Create new clinic/with  dublicate ', function(done) {
-        api.get('/clinics')
+        api.post('/clinics')
             .set('Accept', 'aplication/json')
             .send({
                 name: 'myClinic !#$%#$',
@@ -75,23 +75,17 @@ describe('Clinics create', function () {
                 longitude: 0,
                 confirmed: true
             })
-            .send({
-                name: 'myClinic !#$%#$',
-                latitude: 0,
-                longitude: 0,
-                confirmed: true
-            })
-            .expect(200)
-            .end(function(err, res) {
-                if (err) return done(err);
-                done();
-            });
+            .expect(200,done)
+        // .end(function(err, res) {
+        //     if (err) return done(err);
+        //     done();
+        // });
     });
 })
 
 describe('Consumer create', function () {
     it('Create new consumer', function(done) {
-        api.get('/consumers')
+        api.post('/consumers')
             .set('Accept', 'aplication/json')
             .send({
                 email: "string",
@@ -121,4 +115,26 @@ describe('Consumer check', function () {
             });
     });
 
+})
+
+
+
+describe('TEST POST CLINIC', function () {
+
+
+    it('Create new clinic/with the same title', function(done) {
+        api.post('/clinics')
+        //.set('Accept', 'aplication/json')
+            .send({
+                name: 'myClinics !#$%#$',
+                latitude: 0,
+                longitude: 0,
+                confirmed: true
+            })
+            .expect(200,done)
+        //.end(function(err, res) {
+        //     if (err) return done(err);
+        //     done();
+        // });
+    });
 })
