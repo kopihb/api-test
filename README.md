@@ -5,7 +5,9 @@
 
 2 - To run the test you need to type in the console : npm test
 
-**new  - mocha test --reporter mochawesome
+3 - For view HTML report, you need to type in the console :
+    new  - mocha test --reporter mochawesome --reporter-options autoOpen=true
+
 
 
 !!! For complete testing of files /test/test.js  change global variables
