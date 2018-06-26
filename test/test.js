@@ -115,7 +115,7 @@ describe('Consumer create', function () {
 
 
 
-describe('Consumer create', function () {
+describe('Consumer check', function () {
     it('Check the name of the clinic for the ID number', function(done) {
         api.get('/clinics/5b23cbb99df54e58680a71a9')
             .set('Accept', 'application/json')
