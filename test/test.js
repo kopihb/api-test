@@ -12,7 +12,7 @@ describe('Clinics GET request', function () {
     });
 })
 
-//jhgyjghkj
+
 describe('Clinics create', function () {
     it('Create new clinic/Successfull case', function(done) {
         api.post('/clinics')
@@ -60,11 +60,8 @@ describe('Clinics create', function () {
                 confirmed: true
             })
             .expect(200,done)
-        // .end(function(err, res) {
-        //     if (err) return done(err);
-        //     done();
-        // });
     });
+
     it('Create new clinic/with  dublicate ', function(done) {
         api.post('/clinics')
             .set('Accept', 'aplication/json')
