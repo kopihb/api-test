@@ -8,10 +8,10 @@ var should = require('chai').should(),
 * Change the settings for a new pass test
 *
 */
-var IdForClinic = '5b30f353de19bd000f1241ef'
+var IdForClinic = '5b39fbdd9c62b00010dd639c'
 
 var clinic = {
-    name: 'fr_day_end',
+    name: 'newFor',
     latitude: 0,
     longitude: 0,
     confirmed: true
@@ -350,11 +350,11 @@ describe('GET Clinic object - ', function () {
         it('GET clinic object/successful case', function(done) {
             api.get('/clinics/5b23cbb99df54e58680a71a9')
                 .set('Accept', 'application/json')
-                .expect(200)
-                .end(function(err, res) {
-                    expect(res.body.name).to.equal("new clinic");
-                    done();
-                });
+                .expect(200,done)
+                // .end(function(err, res) {
+                //     expect(res.body.name).to.equal("new clinic");
+                //     done();
+                // });
         });
 
     })
@@ -410,7 +410,7 @@ describe('GET Consumer object - ', function () {
     describe('HTTP responce code - 200 ', function () {
 
         it('GET consumer object/successful case', function(done) {
-            api.get('/consumers/5b2a4c7748617044de23f651')
+            api.get('/consumers/' + IdForClinic)
                 .set('Accept', 'application/json')
                 .expect(200,done)
 
