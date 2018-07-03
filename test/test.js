@@ -9,24 +9,24 @@ var should = require('chai').should(),
 *
 */
 var IdForClinic = '5b39fbdd9c62b00010dd639c';
-var IdConsumer = ''
+var IdConsumer = '5b3a354e9c62b00010dd63bf'
 
 var clinic = {
-    name: 'fix2',
+    name: 'test-7',
     latitude: 0,
     longitude: 0,
     confirmed: true
 }
 
-var consumer = {
-    email: "www@mail.com",
-    name: "my@www.test",
-    phone: "34534534",
+var consumerObj = {
+    email: 'Oteststststst@mail.com',
+    name: 'tessss',
+    phone: 34534534,
     receiveNotification: true,
     dontSentAdv: true,
     signedUp: true,
-    entityStart: "2018-01-01T00:00:00.000Z",
-    entityEnd: "2018-01-01T00:00:00.000Z"
+    entityStart: "2018-01-0",
+    entityEnd: "2018-02-02"
 }
 
 
@@ -39,7 +39,52 @@ var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 
 
+describe('Create consumer', function () {
 
+
+    describe('HTTP responce code - 200 ', function () {
+
+        it('Create new clinic/Successfull case', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    email: 'Oteststststst@mail.com',
+                    name: 'tessss',
+                    phone:'',
+                    receiveNotification: true,
+                    dontSentAdv: true,
+                    signedUp: true,
+                    entityStart: '',
+                    entityEnd: ''
+                })
+                .expect(200, done)
+
+        });
+
+        // it('Create new clinic/Successfull case', function(done) {
+        //                  api.post('/clinics')
+        //                 .set('Accept', 'aplication/json')
+        //                 .send(clinic)
+        //                 .expect(200,done)
+        //
+        // });
+    })
+
+    describe('HTTP responce code - 400 ', function () {
+
+        it('Create new Consumer with the same email parameter', function(done) {
+            api.post('/clinics')
+                .set('Accept', 'aplication/json')
+                .send(consumerObj)
+                .expect(400,done)
+        });
+
+    })
+
+
+})
+
+//
 // describe('Create clinic', function () {
 //
 //
@@ -301,49 +346,49 @@ var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 //         });
 //     })
 // })
-
-describe('GET list - ', function () {
-
-    describe('HTTP responce code - 200 ', function () {
-
-        it('Should return 200 responce - /clinics', function (done) {
-            api.get('/clinics')
-                .set('Accept', 'aplication/json')
-                .end(function(err, res) {
-                    expect(res.statusCode).to.equal(200);
-                    expect(res.body).to.be.an('array');
-                    done();
-                });
-
-        });
-        it('Should return 200 responce - /consumers', function (done) {
-            api.get('/consumers')
-                .set('Accept', 'aplication/json')
-                .end(function(err, res) {
-                    expect(res.statusCode).to.equal(200);
-                    expect(res.body).to.be.an('array');
-                    done();
-                });
-        });
-
-        it('Should return 200 responce - /providers', function (done) {
-            api.get('/providers')
-                .set('Accept', 'aplication/json')
-                .end(function(err, res) {
-                    expect(res.statusCode).to.equal(200);
-                    expect(res.body).to.be.an('array');
-                    done();
-                });
-        });
-
-    })
-
-    describe('HTTP responce code - 400 ', function () {
-
-
-    })
-
-})
+//
+// describe('GET list - ', function () {
+//
+//     describe('HTTP responce code - 200 ', function () {
+//
+//         it('Should return 200 responce - /clinics', function (done) {
+//             api.get('/clinics')
+//                 .set('Accept', 'aplication/json')
+//                 .end(function(err, res) {
+//                     expect(res.statusCode).to.equal(200);
+//                     expect(res.body).to.be.an('array');
+//                     done();
+//                 });
+//
+//         });
+//         it('Should return 200 responce - /consumers', function (done) {
+//             api.get('/consumers')
+//                 .set('Accept', 'aplication/json')
+//                 .end(function(err, res) {
+//                     expect(res.statusCode).to.equal(200);
+//                     expect(res.body).to.be.an('array');
+//                     done();
+//                 });
+//         });
+//
+//         it('Should return 200 responce - /providers', function (done) {
+//             api.get('/providers')
+//                 .set('Accept', 'aplication/json')
+//                 .end(function(err, res) {
+//                     expect(res.statusCode).to.equal(200);
+//                     expect(res.body).to.be.an('array');
+//                     done();
+//                 });
+//         });
+//
+//     })
+//
+//     describe('HTTP responce code - 400 ', function () {
+//
+//
+//     })
+//
+// })
 //
 // describe('GET Clinic object - ', function () {
 //
@@ -413,7 +458,7 @@ describe('GET list - ', function () {
 //     describe('HTTP responce code - 200 ', function () {
 //
 //         it('GET consumer object/successful case', function(done) {
-//             api.get('/consumers/' + IdForClinic)
+//             api.get('/consumers/' + IdConsumer)
 //                 .set('Accept', 'application/json')
 //                 .expect(200,done)
 //
@@ -422,7 +467,7 @@ describe('GET list - ', function () {
 //     describe('HTTP responce code - 400 ', function () {
 //
 //         it('GET consumer object/Invalid clinic ID', function(done) {
-//             api.get('/consumers/5b23cbb99dfe58680a71a9')
+//             api.get('/consumers/5b3a354e9c62b00010dd63bf-f')
 //                 .set('Accept', 'application/json')
 //                 .expect(400,done)
 //         });
