@@ -9,7 +9,7 @@ var should = require('chai').should(),
 *
 */
 var IdForClinic = '5b39fbdd9c62b00010dd639c';
-var IdConsumer = '5b3a354e9c62b00010dd63bf'
+var IdConsumer = '5b3a35819c62b00010dd63c2';
 
 var clinic = {
     name: 'test-7',
@@ -19,14 +19,14 @@ var clinic = {
 }
 
 var consumerObj = {
-    email: 'Oteststststst@mail.com',
-    name: 'tessss',
-    phone: 34534534,
+    email: 'nnn@mail.com',
+    name: 'namess',
+    phone: 'phone patch all',
     receiveNotification: true,
     dontSentAdv: true,
     signedUp: true,
-    entityStart: "2018-01-0",
-    entityEnd: "2018-02-02"
+    entityStart: '2020-03-03',
+    entityEnd: '2021-04-04'
 }
 
 
@@ -39,35 +39,284 @@ var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 
 
+describe('Delete Consumer object',  function ()  {
+
+    // describe('HTTP responce code - 200 ', function () {
+    //
+    // })
+
+    describe('HTTP responce code - 400 ', function () {
+
+        it('Delete Consumer / Invalid Consumer ID', function (done) {
+            api.del('/consumers/consumersdfsd345')
+                .set('Accept', 'application/json')
+                .expect(400,done)
+        });
+    })
+
+    describe('HTTP responce code - 404 ', function () {
+
+        it('Delete Consumer/not found', function (done) {
+            api.del('/consumers/5b30f037de19bd000f1241ea')
+                .set('Accept', 'application/json')
+                .expect(404,done)
+        });
+    })
+
+})
+
+
+describe('Patch Consumer object',  function ()  {
+
+    describe('HTTP responce code - 200 ', function () {
+
+        it('Patch Consumer object / change name param', function(done) {
+            api.patch('/consumers/' + IdConsumer)
+                .set('Accept', 'aplication/json')
+                .send(
+                    {
+                        "name": "change name patch",
+                        "phone": "phone patch",
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityStart": "2018-01-01",
+                        "entityEnd": "2018-01-01"
+                    })
+                .expect(200,done)
+        });
+
+        it('Patch Consumer object / change phone param', function(done) {
+            api.patch('/consumers/' + IdConsumer)
+                .set('Accept', 'aplication/json')
+                .send(
+                    {
+                        "name": "name patch",
+                        "phone": "phone patch",
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityStart": "2018-01-01",
+                        "entityEnd": "2018-01-01"
+                    })
+                .expect(200,done)
+            });
+
+        it('Patch Consumer object / change "receiveNotification" param', function(done) {
+            api.patch('/consumers/' + IdConsumer)
+                .set('Accept', 'aplication/json')
+                .send(
+                    {
+                        "name": "name patch",
+                        "phone": "phone patch",
+                        "receiveNotification": false,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityStart": "2018-01-01",
+                        "entityEnd": "2018-01-01"
+                    })
+                .expect(200,done)
+        });
+
+        it('Patch Consumer object / change "dontSentAdv" param', function(done) {
+            api.patch('/consumers/' + IdConsumer)
+                .set('Accept', 'aplication/json')
+                .send(
+                    {
+                        "name": "name patch",
+                        "phone": "phone patch",
+                        "receiveNotification": false,
+                        "dontSentAdv": false,
+                        "signedUp": true,
+                        "entityStart": "2018-01-01",
+                        "entityEnd": "2018-01-01"
+                    })
+                .expect(200,done)
+        });
+
+        it('Patch Consumer object / change "signedUp" param', function(done) {
+            api.patch('/consumers/' + IdConsumer)
+                .set('Accept', 'aplication/json')
+                .send(
+                    {
+                        "name": "name patch",
+                        "phone": "phone patch",
+                        "receiveNotification": false,
+                        "dontSentAdv": false,
+                        "signedUp": false,
+                        "entityStart": "2018-01-01",
+                        "entityEnd": "2018-01-01"
+                    })
+                .expect(200,done)
+        });
+
+        it('Patch Consumer object / change Start date param', function(done) {
+            api.patch('/consumers/' + IdConsumer)
+                .set('Accept', 'aplication/json')
+                .send(
+                    {
+                        "name": "name patch",
+                        "phone": "phone patch",
+                        "receiveNotification": false,
+                        "dontSentAdv": false,
+                        "signedUp": false,
+                        "entityStart": "2017-01-01",
+                        "entityEnd": "2018-01-01"
+                    })
+                .expect(200,done)
+        });
+
+        it('Patch Consumer object / change End date param', function(done) {
+            api.patch('/consumers/' + IdConsumer)
+                .set('Accept', 'aplication/json')
+                .send(
+                    {
+                        "name": "name patch",
+                        "phone": "phone patch",
+                        "receiveNotification": false,
+                        "dontSentAdv": false,
+                        "signedUp": false,
+                        "entityStart": "2017-01-01",
+                        "entityEnd": "2019-02-02"
+                    })
+                .expect(200,done)
+        });
+
+
+        it('Patch Consumer object / change all parameters', function(done) {
+            api.patch('/consumers/' + IdConsumer)
+                .set('Accept', 'aplication/json')
+                .send(
+                    {
+                        "name": "name patch all",
+                        "phone": "phone patch all",
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityStart": "2020-03-03",
+                        "entityEnd": "2021-04-04"
+                    })
+                .expect(200,done)
+        });
+    })
+
+
+    describe('HTTP responce code - 400 ', function () {
+
+        it('Patch Consumer object / Invalid clinic ID', function(done) {
+            api.patch('/consumers/IdConsumer' )
+                .set('Accept', 'aplication/json')
+                .send(
+                    {
+                        "name": "name patch all",
+                        "phone": "phone patch all",
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityStart": "2020-03-03",
+                        "entityEnd": "2021-04-04"
+                    })
+                .expect(400,done)
+        });
+    })
+
+    describe('HTTP responce code - 404 ', function () {
+
+        it('Patch Consumer object / Not found', function(done) {
+            api.patch('/consumers/' + IdForClinic)
+                .set('Accept', 'aplication/json')
+                .send(
+                    {
+                        "name": "name patch all",
+                        "phone": "phone patch all",
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityStart": "2020-03-03",
+                        "entityEnd": "2021-04-04"
+                    })
+                .expect(404,done)
+        });
+
+    })
+})
+
+
+
+
+
 describe('Create consumer', function () {
 
 
     describe('HTTP responce code - 200 ', function () {
 
-        it('Create new clinic/Successfull case', function (done) {
+        it('Create new consumer/Successfull case', function (done) {
             api.post('/consumers')
                 .set('Accept', 'aplication/json')
                 .send({
-                    email: 'Oteststststst@mail.com',
-                    name: 'tessss',
-                    phone:'',
-                    receiveNotification: true,
-                    dontSentAdv: true,
-                    signedUp: true,
-                    entityStart: '',
-                    entityEnd: ''
+                    "email": consumerObj.email,
+                    "name": "name ",
+                    "phone": "phone ",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2020-03-03",
+                    "entityEnd": "2021-04-04"
                 })
                 .expect(200, done)
-
         });
 
-        // it('Create new clinic/Successfull case', function(done) {
-        //                  api.post('/clinics')
-        //                 .set('Accept', 'aplication/json')
-        //                 .send(clinic)
-        //                 .expect(200,done)
-        //
-        // });
+
+        it('Create new Consumer/Successfull case/Several words for "name"', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "new" + consumerObj.email,
+                    "name": consumerObj.name +" " + "sever words",
+                    "phone": "phone ",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2020-03-03",
+                    "entityEnd": "2021-04-04"
+                })
+                .expect(200, done)
+        });
+
+
+        it('Create new Consumer/Successfull case/cyrillic name parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "qaz" + consumerObj.email,
+                    "name":  "кирилиця",
+                    "phone": "phone ",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2020-03-03",
+                    "entityEnd": "2021-04-04"
+                })
+                .expect(200, done)
+        });
+
+
+        it('Create new Consumer/Successfull case/name parameter with numbers', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "n" + consumerObj.email,
+                    "name": "4546456",
+                    "phone": "phone ",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2020-03-03",
+                    "entityEnd": "2021-04-04"
+                })
+                .expect(200, done)
+        });
+
     })
 
     describe('HTTP responce code - 400 ', function () {
