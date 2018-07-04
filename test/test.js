@@ -12,15 +12,15 @@ var IdForClinic = '5b39fbdd9c62b00010dd639c';
 var IdConsumer = '5b3a35819c62b00010dd63c2';
 
 var clinic = {
-    name: 'wrwerwerw',
+    name: 'cxvxcvdf',
     latitude: 0,
     longitude: 0,
     confirmed: true
 }
 
 var consumerObj = {
-    email: 'ertertert@mail.com',
-    name: 'namess',
+    email: 'cdsvds@mail.com',
+    name: 'dfg',
     phone: 'phone patch all',
     receiveNotification: true,
     dontSentAdv: true,
@@ -352,6 +352,38 @@ describe('Create consumer', function () {
         });
 
 
+        it('Create new Consumer/ missed Start date parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "fvfbgb" + consumerObj.email,
+                    "name": "name" +consumerObj.name,
+                    "phone": "phone ",
+                    "receiveNotification": false,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityEnd": "2021-04-04"
+                })
+                .expect(200, done)
+        });
+
+
+
+        it('Create new Consumer/ missed End date parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "vgbi" + consumerObj.email,
+                    "name": "name" +consumerObj.name,
+                    "phone": "phone ",
+                    "receiveNotification": false,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2020-03-03",
+                })
+                .expect(200, done)
+        });
+
         it('Create new Consumer/ "dontSentAdv" false', function (done) {
             api.post('/consumers')
                 .set('Accept', 'aplication/json')
@@ -378,6 +410,87 @@ describe('Create consumer', function () {
                     "phone": "phone ",
                     "receiveNotification": false,
                     "dontSentAdv": false,
+                    "signedUp": false,
+                    "entityStart": "2020-03-03",
+                    "entityEnd": "2021-04-04"
+                })
+                .expect(200, done)
+        });
+
+
+        it('Create new Consumer/ spaces for name parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "sdsgh" + consumerObj.email,
+                    "name": "    ",
+                    "phone": "phone ",
+                    "receiveNotification": false,
+                    "dontSentAdv": false,
+                    "signedUp": false,
+                    "entityStart": "2020-03-03",
+                    "entityEnd": "2021-04-04"
+                })
+                .expect(200, done)
+        });
+
+
+        it('Create new Consumer/ empty for name parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "sdfsdf345" + consumerObj.email,
+                    "name": "",
+                    "phone": "phone",
+                    "receiveNotification": false,
+                    "dontSentAdv": false,
+                    "signedUp": false,
+                    "entityStart": "2020-03-03",
+                    "entityEnd": "2021-04-04"
+                })
+                .expect(200, done)
+        });
+
+
+        it('Create new Consumer/ empty phone parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "sszz" + consumerObj.email,
+                    "name": "name" +consumerObj.name,
+                    "phone": "",
+                    "receiveNotification": false,
+                    "dontSentAdv": false,
+                    "signedUp": false,
+                    "entityStart": "2020-03-03",
+                    "entityEnd": "2021-04-04"
+                })
+                .expect(200, done)
+        });
+
+        it('Create new Consumer/ missed "signedUp" parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "xxsse" + consumerObj.email,
+                    "name": "name" +consumerObj.name,
+                    "phone": "456456",
+                    "receiveNotification": false,
+                    "dontSentAdv": false,
+                    "entityStart": "2020-03-03",
+                    "entityEnd": "2021-04-04"
+                })
+                .expect(200, done)
+        });
+
+        it('Create new Consumer/ missed "dontSentAdv" parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "ertert" + consumerObj.email,
+                    "name": "name" +consumerObj.name,
+                    "phone": "456456456",
+                    "receiveNotification": false,
                     "signedUp": false,
                     "entityStart": "2020-03-03",
                     "entityEnd": "2021-04-04"
@@ -649,6 +762,338 @@ describe('Create consumer', function () {
                 })
                 .expect(400, done)
         });
+
+
+        it('Create new Consumer/ boolean for email parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email":true,
+                    "name": "name mm",
+                    "phone": "phone ",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2022-04-04",
+                    "entityEnd": "2023-03-03"
+                })
+                .expect(400, done)
+        });
+
+
+        it('Create new Consumer/ boolean for name parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "cvb" + consumerObj.email,
+                    "name": true,
+                    "phone": "phone ",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2022-04-04",
+                    "entityEnd": "2023-03-03"
+                })
+                .expect(400, done)
+        });
+
+
+        it('Create new Consumer/ boolean for Start date parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "dddd" + consumerObj.email,
+                    "name": "dcdvv",
+                    "phone": "phone ",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": true,
+                    "entityEnd": "2023-03-03"
+                })
+                .expect(400, done)
+        });
+
+        it('Create new Consumer/ boolean for phone parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "vvvv4" + consumerObj.email,
+                    "name": "dcdvv",
+                    "phone": true,
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2021-03-03",
+                    "entityEnd": "2023-03-03"
+                })
+                .expect(400, done)
+        });
+
+        it('Create new Consumer/ boolean for end date parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "vcvcv" + consumerObj.email,
+                    "name": "dcdvv",
+                    "phone": "phone ",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2018-03-03",
+                    "entityEnd": true
+                })
+                .expect(400, done)
+        });
+
+        it('Create new Consumer/ number for email parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": 0,
+                    "name": "dcdvv",
+                    "phone": "phone ",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2018-03-03",
+                    "entityEnd":  "2019-05-05"
+                })
+                .expect(400, done)
+        });
+
+        it('Create new Consumer/ number for name parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "mkla" + consumerObj.email,
+                    "name": 0,
+                    "phone": "phone ",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2018-03-03",
+                    "entityEnd": "2019-05-05"
+                })
+                .expect(400, done)
+        });
+
+        it('Create new Consumer/ number for phone parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "mklxvvvs" + consumerObj.email,
+                    "name": " fvcvc",
+                    "phone": 0,
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2018-03-03",
+                    "entityEnd": "2019-05-05"
+                })
+                .expect(400, done)
+        });
+
+
+        it('Create new Consumer/ number for "receiveNotification" parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "mkl" + consumerObj.email,
+                    "name": " fvcvc",
+                    "phone": "2151515",
+                    "receiveNotification": 0,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2018-03-03",
+                    "entityEnd": "2019-05-05"
+                })
+                .expect(400, done)
+        });
+
+
+        it('Create new Consumer/ number for "dontSentAdv" parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "mklxx" + consumerObj.email,
+                    "name": " fvcvc",
+                    "phone": "2151515",
+                    "receiveNotification": true,
+                    "dontSentAdv": 0,
+                    "signedUp": true,
+                    "entityStart": "2018-03-03",
+                    "entityEnd": "2019-05-05"
+                })
+                .expect(400, done)
+        });
+
+
+        it('Create new Consumer/ number for "signedUp" parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "cvvv" + consumerObj.email,
+                    "name": " fvcvc",
+                    "phone": "2151515",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": 0,
+                    "entityStart": "2018-03-03",
+                    "entityEnd": "2019-05-05"
+                })
+                .expect(400, done)
+        });
+
+
+        it('Create new Consumer/ number for Start date parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "vfvfd" + consumerObj.email,
+                    "name": " fvcvc",
+                    "phone": "2151515",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": 0,
+                    "entityEnd": "2019-05-05"
+                })
+                .expect(400, done)
+        });
+
+
+        it('Create new Consumer/ number for End date parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "vvwwq" + consumerObj.email,
+                    "name": " fvcvc",
+                    "phone": "2151515",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2019-05-05",
+                    "entityEnd": 0
+                })
+                .expect(400, done)
+        });
+
+        it('Create new Consumer/ string for "receiveNotification" parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "xdoo" + consumerObj.email,
+                    "name": " fvcvc",
+                    "phone": "2151515",
+                    "receiveNotification": "dfgdfgdfgd",
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2019-05-05",
+                    "entityEnd": "2019-04-03"
+                })
+                .expect(400, done)
+        });
+
+        it('Create new Consumer/ string for "dontSentAdv" parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "dfdfb" + consumerObj.email,
+                    "name": " fvcvc",
+                    "phone": "2151515",
+                    "receiveNotification": true,
+                    "dontSentAdv": "dfgdfgdfgd",
+                    "signedUp": true,
+                    "entityStart": "2019-05-05",
+                    "entityEnd": "2019-04-03"
+                })
+                .expect(400, done)
+        });
+
+
+        it('Create new Consumer/ string for "dontSentAdv" parameter', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "iop" + consumerObj.email,
+                    "name": " fvcvc",
+                    "phone": "2151515",
+                    "receiveNotification": true,
+                    "dontSentAdv": "dfgdfgdfgd",
+                    "signedUp": true,
+                    "entityStart": "2019-05-05",
+                    "entityEnd": "2019-04-03"
+                })
+                .expect(400, done)
+        });
+
+
+        it('Create new Consumer/ string for "signedUp" parameter ', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "vbnn" + consumerObj.email,
+                    "name": " fvcvc",
+                    "phone": "2151515",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": "dfgdfgdfgd",
+                    "entityStart": "2019-05-05",
+                    "entityEnd": "2019-04-03"
+                })
+                .expect(400, done)
+        });
+
+
+        it('Create new Consumer/ string for "signedUp" parameter ', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "vbnnsdf" + ".com",
+                    "name": " fvcvc",
+                    "phone": "2151515",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2019-05-05",
+                    "entityEnd": "2019-04-03"
+                })
+                .expect(400, done)
+        });
+
+        it('Create new Consumer/ incorrect format for Start date param ', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "rbp" + consumerObj.email,
+                    "name": " fvcvc",
+                    "phone": "2151515",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2019-05-0",
+                    "entityEnd": "2019-04-03"
+                })
+                .expect(400, done)
+        });
+
+        it('Create new Consumer/ incorrect format for End date param ', function (done) {
+            api.post('/consumers')
+                .set('Accept', 'aplication/json')
+                .send({
+                    "email": "cc" + consumerObj.email,
+                    "name": " fvcvc",
+                    "phone": "2151515",
+                    "receiveNotification": true,
+                    "dontSentAdv": true,
+                    "signedUp": true,
+                    "entityStart": "2019-05-01",
+                    "entityEnd": "2019-04-0"
+                })
+                .expect(400, done)
+        });
+
     })
 
 
