@@ -3,24 +3,35 @@ var should = require('chai').should(),
     supertest = require('supertest'),
     api = supertest('http://159.100.241.121:5002');
 
-/*Global variable
-*
-* Change the settings for a new pass test
-*
-*/
-var IdForClinic = '5b39fbdd9c62b00010dd639c';
-var IdConsumer = '5b3a35819c62b00010dd63c2';
 
+
+/*Start create random value*/
+function randomString(len, charSet) {
+    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var randomString = '';
+    for (var i = 0; i < len; i++) {
+        var randomPoz = Math.floor(Math.random() * charSet.length);
+        randomString += charSet.substring(randomPoz,randomPoz+1);
+    }
+    return randomString;
+}
+
+var randomValueName = randomString(5);
+var randomValueMail = randomString(7);
+/*End create random value*/
+
+
+/*Test data - clinic and consumer*/
 var clinic = {
-    name: 'cxvxcvdf',
+    name: randomValueName,
     latitude: 0,
     longitude: 0,
     confirmed: true
 }
 
 var consumerObj = {
-    email: 'cdsvds@mail.com',
-    name: 'dfg',
+    email: randomValueMail + '@mail.com',
+    name: randomValueName,
     phone: 'phone patch all',
     receiveNotification: true,
     dontSentAdv: true,
@@ -28,14 +39,27 @@ var consumerObj = {
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
 }
+/*End test data - clinic and consumer*/
 
 
-var clinicId = '';
-var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    clinicId = possible.charAt(Math.floor(Math.random() * possible.length));
 
+
+/*Global variable
+*
+* Change the settings for a new pass test
+*
+*/
+
+var IdForClinic = '5b39fbdd9c62b00010dd639c';
+var IdConsumer = '5b3a35819c62b00010dd63c2';
 
 /*end global variable*/
+
+
+describe('Version test -  1.0.0', function () {
+    
+})
+
 
 
 
