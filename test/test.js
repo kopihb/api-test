@@ -143,8 +143,6 @@ describe('CLINIC', function () {
 
             });
 
-
-
             it('Create new clinic/cyrillic name parameter', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
@@ -378,6 +376,19 @@ describe('CLINIC', function () {
                         })
                     .expect(400,done)
             });
+
+            it('Create new clinic/ spaces for name parameter', function(done) {
+                api.post('/clinics')
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            name : " ",
+                            latitude : 0,
+                            longitude: 0,
+                            confirmed: true
+                        })
+                    .expect(400,done)
+            });
         })
     })
 
@@ -389,10 +400,6 @@ describe('CLINIC', function () {
                 api.get('/clinics/' + ClinicID)
                     .set('Accept', 'application/json')
                     .expect(200,done)
-                // .end(function(err, res) {
-                //     expect(res.body.name).to.equal("new clinic");
-                //     done();
-                // });
             });
 
         })
@@ -423,31 +430,34 @@ describe('CLINIC', function () {
 
         describe('HTTP responce code - 200 ', function () {
 
-            it('Patch clinic object/change name', function(done) {
-                api.patch('/clinics/' + ClinicID )
+            it('Patch clinic object/without any changes', function (done) {
+                api.patch('/clinics/' + ClinicID  )
                     .set('Accept', 'aplication/json')
-                    .send(
-                        {
-                            name : "45rgfh"
-                        })
+                    .send({
+
+                        name : clinic.name + 'several',
+                        latitude : clinic.latitude,
+                        longitude: clinic.longitude,
+                        confirmed: clinic.confirmed
+
+                    })
                     .expect(200,done)
             });
 
-
-
-            it('Patch clinic object/name - empty', function(done) {
-                api.patch('/clinics/' + ClinicID )
+            it('Patch clinic object / change all parameters', function (done) {
+                api.patch('/clinics/' + ClinicID  )
                     .set('Accept', 'aplication/json')
-                    .send(
-                        {
-                            name : null,
-                            latitude: 0,
-                            longitude: 0,
-                            confirmed: true
-                        })
-                    .expect(200,done)
+                    .send({
 
+                        name : clinic.name + 'changed',
+                        latitude : 5,
+                        longitude: 5,
+                        confirmed: false
+
+                    })
+                    .expect(200,done)
             });
+
 
             it('Patch clinic object/change latitude', function(done) {
                 api.patch('/clinics/' + ClinicID )
@@ -515,9 +525,59 @@ describe('CLINIC', function () {
                         })
                     .expect(200,done)
             });
+
+
+
         })
 
         describe('HTTP responce code - 400 ', function () {
+
+            it('Patch clinic object/name - empty', function(done) {
+                api.patch('/clinics/' + ClinicID )
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            name : null,
+                            latitude: 0,
+                            longitude: 0,
+                            confirmed: true
+                        })
+                    .expect(400,done)
+
+            });
+
+            it('Patch clinic object/change name', function(done) {
+                api.patch('/clinics/' + ClinicID )
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            name : "patch"
+                        })
+                    .expect(400,done)
+            });
+            it('Patch clinic object/ spaces for "name" parameter', function(done) {
+                api.patch('/clinics/' + ClinicID )
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            name : " ",
+                            latitude: 0,
+                            longitude: 0,
+                            confirmed: true
+                        })
+                    .expect(400,done)
+
+            });
+
+            it('Patch clinic object/name - check for duplicated clinics', function(done) {
+                api.patch('/clinics/' + ClinicID )
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            name : "patch"
+                        })
+                    .expect(400,done)
+            });
 
             it('Patch clinic object/name - validation for param type: boolean', function (done) {
                 api.patch('/clinics/' + ClinicID)
@@ -681,21 +741,7 @@ describe('CLINIC', function () {
                     .set('Accept', 'aplication/json')
                     .expect(400, done)
             });
-
-
         })
-
-        describe('HTTP responce code - 404 ', function () {
-
-            it('Patch clinic object/Not found', function (done) {
-                api.patch('/clinics/5b30f32ede19bd000f1241ee')
-                    .set('Accept', 'aplication/json')
-                    .expect(404, done)
-            });
-
-        })
-
-
     })
 
     describe('Delete clinic ', function () {
@@ -729,6 +775,19 @@ describe('CLINIC', function () {
 
     })
 
+    describe('Patch clinic object/Not found', function () {
+
+        describe('HTTP responce code - 404 ', function () {
+
+            it('Patch clinic object/Not found', function (done) {
+                api.patch('/clinics/5b30f32ede19bd000f1241ee')
+                    .set('Accept', 'aplication/json')
+                    .expect(404, done)
+            });
+
+        })
+
+    })
 
 })
 
@@ -990,6 +1049,23 @@ describe('CONSUMER', function () {
                         "receiveNotification": false,
                         "signedUp": false,
                         "entityStart": "2020-03-03",
+                        "entityEnd": "2021-04-04"
+                    })
+                    .expect(200, done)
+            });
+
+
+            it('Create new Consumer/ end date before start date', function (done) {
+                api.post('/consumers')
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        "email": "efertt1" + consumerObj.email,
+                        "name": consumerObj.name,
+                        "phone": "phone ",
+                        "receiveNotification": false,
+                        "dontSentAdv": false,
+                        "signedUp": false,
+                        "entityStart": "2010-03-03",
                         "entityEnd": "2021-04-04"
                     })
                     .expect(200, done)
@@ -1634,6 +1710,22 @@ describe('CONSUMER', function () {
 
         describe('HTTP responce code - 200 ', function () {
 
+
+            it('Patch Consumer object / without any changes', function (done) {
+                api.patch('/consumers/' + ConsumerID )
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        "name": "name_auto",
+                        "phone": "phone",
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityStart": "2020-03-03",
+                        "entityEnd": "2021-04-04"
+                    })
+                    .expect(200,done)
+            });
+
             it('Patch Consumer object / change name param', function(done) {
                 api.patch('/consumers/' + ConsumerID)
                     .set('Accept', 'aplication/json')
@@ -1762,6 +1854,137 @@ describe('CONSUMER', function () {
                         })
                     .expect(200,done)
             });
+
+            it('Patch consumer object / Name param - empty', function (done) {
+                api.patch('/consumers/' + ConsumerID )
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        "name": "",
+                        "phone": "phone",
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityStart": "2020-03-03",
+                        "entityEnd": "2021-04-04"
+                    })
+                    .expect(200,done)
+            });
+
+            it('Patch consumer object / Phone param - empty', function (done) {
+                api.patch('/consumers/' + ConsumerID )
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        "name": consumerObj.name,
+                        "phone": "",
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityStart": "2020-03-03",
+                        "entityEnd": "2021-04-04"
+                    })
+                    .expect(200,done)
+            });
+
+
+            it('Patch consumer object / Name param - missed', function (done) {
+                api.patch('/consumers/' + ConsumerID )
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        "phone": "cvxcv",
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityStart": "2020-03-03",
+                        "entityEnd": "2021-04-04"
+                    })
+                    .expect(200,done)
+            });
+
+            it('Patch consumer object / Phone param - missed', function (done) {
+                api.patch('/consumers/' + ConsumerID )
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        "name": consumerObj.name,
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityStart": "2020-03-03",
+                        "entityEnd": "2021-04-04"
+                    })
+                    .expect(200,done)
+            });
+
+            it('Patch consumer object / Phone param - missed', function (done) {
+                api.patch('/consumers/' + ConsumerID )
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        "name": consumerObj.name,
+                        "phone": "sdfsdfsd",
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityStart": "2020-03-03",
+                        "entityEnd": "2021-04-04"
+                    })
+                    .expect(200,done)
+            });
+
+            it('Patch consumer object / "dontSentAdv" -> missed', function (done) {
+                api.patch('/consumers/' + ConsumerID )
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        "name": consumerObj.name,
+                        "phone": "cvxcv",
+                        "receiveNotification": true,
+                        "signedUp": true,
+                        "entityStart": "2020-03-03",
+                        "entityEnd": "2021-04-04"
+                    })
+                    .expect(200,done)
+            });
+
+
+            it('Patch consumer object / "signedUp" -> missed', function (done) {
+                api.patch('/consumers/' + ConsumerID )
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        "name": consumerObj.name,
+                        "phone": "cvxcv",
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "entityStart": "2020-03-03",
+                        "entityEnd": "2021-04-04"
+                    })
+                    .expect(200,done)
+            });
+
+
+            it('Patch consumer object / Start date -> missed', function (done) {
+                api.patch('/consumers/' + ConsumerID )
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        "name": consumerObj.name,
+                        "phone": "cvxcv",
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityEnd": "2021-04-04"
+                    })
+                    .expect(200,done)
+            });
+
+            it('Patch consumer object / End date -> missed', function (done) {
+                api.patch('/consumers/' + ConsumerID )
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        "name": consumerObj.name,
+                        "phone": "cvxcv",
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityStart": "2020-03-03",
+                    })
+                    .expect(200,done)
+            });
         })
 
 
@@ -1779,6 +2002,497 @@ describe('CONSUMER', function () {
                             "signedUp": true,
                             "entityStart": "2020-03-03",
                             "entityEnd": "2021-04-04"
+                        })
+                    .expect(400,done)
+            });
+
+            it('Patch consumer object / validation for parameter type / Name -> Number', function(done) {
+                api.patch('/consumers/'  + ConsumerID )
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": 0,
+                            "phone": "phone patch all",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-03-03",
+                            "entityEnd": "2021-04-04"
+                        })
+                    .expect(400,done)
+            });
+
+            it('Patch consumer object / validation for parameter type / Phone -> Number', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": 0,
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-03-03",
+                            "entityEnd": "2021-04-04"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / "receiveNotification" -> Number', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdf",
+                            "receiveNotification": 0,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-03-03",
+                            "entityEnd": "2021-04-04"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / "dontSentAdv" -> Number', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": 0,
+                            "signedUp": true,
+                            "entityStart": "2020-03-03",
+                            "entityEnd": "2021-04-04"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / "signedUp" -> Number', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": 0,
+                            "entityStart": "2020-03-03",
+                            "entityEnd": "2021-04-04"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / Start date -> Number', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": 0,
+                            "entityEnd": "2021-04-04"
+                        })
+                    .expect(400,done)
+            });
+
+            it('Patch consumer object / validation for parameter type / End date -> Number', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2021-04-04",
+                            "entityEnd": 0
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / "receiveNotification" -> string', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdf",
+                            "receiveNotification": "string",
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2021-04-04",
+                            "entityEnd": "2023-04-04"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / "dontSentAdv" -> string', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": "string",
+                            "signedUp": true,
+                            "entityStart": "2021-04-04",
+                            "entityEnd": "2023-04-04"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / "signedUp" -> string', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": "string",
+                            "entityStart": "2021-04-04",
+                            "entityEnd": "2023-04-04"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter format / Start date - incorrect format', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "string",
+                            "entityEnd": "2023-04-04"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter format / End date - incorrect format', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-04-04",
+                            "entityEnd": "string"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter format / Start date - incorrect format 2', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-04-0",
+                            "entityEnd": "2020-04-04"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter format / End date - incorrect format 2', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-04-04",
+                            "entityEnd": "2020-04-0"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / Name -> boolean (true)', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": true,
+                            "phone": "dfgdfgdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-04-04",
+                            "entityEnd": "2020-04-04"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / Name -> boolean (false)', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": false,
+                            "phone": "dfgdfgdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-04-04",
+                            "entityEnd": "2020-04-04"
+                        })
+                    .expect(400,done)
+            });
+
+            it('Patch consumer object / validation for parameter type / Phone -> boolean (true)', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": true,
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-04-04",
+                            "entityEnd": "2020-04-03"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / Phone -> boolean (false)', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": false,
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-04-04",
+                            "entityEnd": "2020-04-03"
+                        })
+                    .expect(400,done)
+            });
+
+
+
+            it('Patch consumer object / validation for parameter type / Start date -> boolean (true)', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdfg",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": true,
+                            "entityEnd": "2020-04-03"
+                        })
+                    .expect(400,done)
+            });
+
+            it('Patch consumer object / validation for parameter type / Start date -> boolean (false)', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdfg",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": false,
+                            "entityEnd": "2020-04-03"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / End date -> boolean (true)', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdfg",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-04-03",
+                            "entityEnd": true
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / End date -> boolean (false)', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "name patch all",
+                            "phone": "dfgdfgdfg",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-04-03",
+                            "entityEnd": false
+                        })
+                    .expect(400,done)
+            });
+
+            it('Patch consumer object / validation for parameter type / Name -> null', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": null,
+                            "phone": "dfgdfgdfg",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-04-03",
+                            "entityEnd": "2020-05-03"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / Phone -> null', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "sdfdf",
+                            "phone": null,
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-04-03",
+                            "entityEnd": "2020-05-03"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / receiveNotification -> null', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "sdfdf",
+                            "phone": "dsdfsdfsdf",
+                            "receiveNotification": null,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-04-03",
+                            "entityEnd": "2020-05-03"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / dontSentAdv -> null', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "sdfdf",
+                            "phone": "dsdfsdfsdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": null,
+                            "signedUp": true,
+                            "entityStart": "2020-04-03",
+                            "entityEnd": "2020-05-03"
+                        })
+                    .expect(400,done)
+            });
+
+
+            it('Patch consumer object / validation for parameter type / signedUp -> null', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "sdfdf",
+                            "phone": "dsdfsdfsdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": null,
+                            "entityStart": "2020-04-03",
+                            "entityEnd": "2020-05-03"
+                        })
+                    .expect(400,done)
+            });
+
+
+
+            it('Patch consumer object / validation for parameter type / Start date  -> null', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "sdfdf",
+                            "phone": "dsdfsdfsdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": null,
+                            "entityEnd": "2020-05-03"
+                        })
+                    .expect(400,done)
+            });
+
+
+
+
+            it('Patch consumer object / validation for parameter type / End date  -> null', function(done) {
+                api.patch('/consumers/'  + ConsumerID)
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "name": "sdfdf",
+                            "phone": "dsdfsdfsdf",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "entityStart": "2020-05-03",
+                            "entityEnd": null
                         })
                     .expect(400,done)
             });
