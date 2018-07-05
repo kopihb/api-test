@@ -424,11 +424,11 @@ describe('CLINIC', function () {
         describe('HTTP responce code - 200 ', function () {
 
             it('Patch clinic object/change name', function(done) {
-                api.patch('/clinics/' + ClinicID)
+                api.patch('/clinics/' + ClinicID )
                     .set('Accept', 'aplication/json')
                     .send(
                         {
-                            name : 'patch'
+                            name : "45rgfh"
                         })
                     .expect(200,done)
             });
@@ -436,18 +436,21 @@ describe('CLINIC', function () {
 
 
             it('Patch clinic object/name - empty', function(done) {
-                api.patch('/clinics/' + ClinicID)
+                api.patch('/clinics/' + ClinicID )
                     .set('Accept', 'aplication/json')
                     .send(
                         {
-                            name : ' '
+                            name : null,
+                            latitude: 0,
+                            longitude: 0,
+                            confirmed: true
                         })
                     .expect(200,done)
 
             });
 
             it('Patch clinic object/change latitude', function(done) {
-                api.patch('/clinics/' + ClinicID)
+                api.patch('/clinics/' + ClinicID )
                     .set('Accept', 'aplication/json')
                     .send(
                         {
@@ -494,7 +497,7 @@ describe('CLINIC', function () {
                     .set('Accept', 'aplication/json')
                     .send(
                         {
-                            name: 'patch',
+                            name: "gghgjg",
                             longitude: 0,
                             confirmed: true
                         })
@@ -506,7 +509,7 @@ describe('CLINIC', function () {
                     .set('Accept', 'aplication/json')
                     .send(
                         {
-                            name: 'patch',
+                            name: "patchsdsd",
                             latitude: 0,
                             confirmed: true
                         })
@@ -534,7 +537,7 @@ describe('CLINIC', function () {
                     .set('Accept', 'aplication/json')
                     .send(
                         {
-                            name: 'patch',
+                            name: 'gjghjghjghjttu',
                             latitude: true,
                             longitude: 0,
                             confirmed: true
@@ -701,7 +704,7 @@ describe('CLINIC', function () {
             it('Delete clinic/Successfull', function (done) {
                 api.del('/clinics/' + ClinicID)
                     .set('Accept', 'application/json')
-                    .expect(400,done)
+                    .expect(200,done)
             });
 
         })
