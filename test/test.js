@@ -7,7 +7,7 @@ const addContext = require('mochawesome/addContext');
 
 
 
-/*Start create random value*/
+/*Start create random value ащк */
 function randomString(len, charSet) {
     charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var randomString = '';
@@ -18,8 +18,9 @@ function randomString(len, charSet) {
     return randomString;
 }
 
-var randomValueName = randomString(5);
-var randomValueMail = randomString(7);
+
+var randomValueName = randomString(5); /*use for name*/
+var randomValueMail = randomString(7); /*use for mail*/
 /*End create random value*/
 
 
@@ -52,7 +53,9 @@ var ClinicID = "";
 
 
 
-describe('Version - 1.0.0 . Auto create and get  ID for test', function () {
+describe('Version - 1.0.0 ' +
+          'Consumers and Clinics ' +
+          ' Auto create and get  ID for test ', function () {
 
     it('Create new consumer/Successfull case + get ID', function (done) {
         api.post('/consumers')
@@ -135,18 +138,6 @@ describe('CLINIC', function () {
 
         describe('HTTP responce code - 200 ', function () {
 
-            it('Create new clinic/Successfull case', function(done) {
-                api.post('/clinics')
-                    .set('Accept', 'aplication/json')
-                    .send({
-                        name : clinic.name,
-                        latitude : clinic.latitude,
-                        longitude: clinic.longitude,
-                        confirmed: clinic.confirmed
-                    })
-                    .expect(200,done)
-
-            });
 
             it('Create new clinic/ several name parameter', function(done) {
                 api.post('/clinics')
@@ -214,29 +205,14 @@ describe('CLINIC', function () {
                     .expect(200,done)
             });
 
-            it('Create new clinic/with empty title', function(done) {
-                api.post('/clinics')
-                    .set('Accept', 'aplication/json')
-                    .send(
-                        {
-                            name : '',
-                            latitude : clinic.latitude,
-                            longitude: clinic.longitude,
-                            confirmed: clinic.confirmed
-                        })
-                    .expect(200,done)
-            });
 
-            it('Create new clinic/with the same title', function(done) {
-                api.post('/clinics')
-                    .set('Accept', 'aplication/json')
-                    .send({
-                        name : clinic.name,
-                        latitude : clinic.latitude,
-                        longitude: clinic.longitude,
-                        confirmed: clinic.confirmed                    })
-                    .expect(200,done)
-            });
+
+
+        })
+
+
+
+        describe('HTTP responce code - 400', function () {
 
             it('Create new clinic/ spaces for name parameter', function(done) {
                 api.post('/clinics')
@@ -248,15 +224,33 @@ describe('CLINIC', function () {
                             longitude: 0,
                             confirmed: true
                         })
-                    .expect(200,done)
+                    .expect(400,done)
             });
 
-        })
 
+            it('Create new clinic/with empty title', function(done) {
+                api.post('/clinics')
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            name : '',
+                            latitude : clinic.latitude,
+                            longitude: clinic.longitude,
+                            confirmed: clinic.confirmed
+                        })
+                    .expect(400,done)
+            });
 
-
-        describe('HTTP responce code - 400', function () {
-
+            it('Create new clinic/with the same title', function(done) {
+                api.post('/clinics')
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        name : clinic.name,
+                        latitude : clinic.latitude,
+                        longitude: clinic.longitude,
+                        confirmed: clinic.confirmed                    })
+                    .expect(400,done)
+            });
 
             it('Create new clinic/with missed name parameter', function(done) {
                 api.post('/clinics')
@@ -461,7 +455,7 @@ describe('CLINIC', function () {
                     .set('Accept', 'aplication/json')
                     .send({
 
-                        name : clinic.name + 'several',
+                        name : clinic.name,
                         latitude : clinic.latitude,
                         longitude: clinic.longitude,
                         confirmed: clinic.confirmed
@@ -564,6 +558,23 @@ describe('CLINIC', function () {
             });
 
 
+
+            it('Patch clinic object/name - check for duplicated clinics', function(done) {
+                api.patch('/clinics/' + ClinicID )
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            name : "patch"
+                        })
+                    .expect(200,done)
+            });
+
+        })
+
+        describe('HTTP responce code - 400 ', function () {
+
+
+
             it('Patch clinic object/ spaces for "name" parameter', function(done) {
                 api.patch('/clinics/' + ClinicID )
                     .set('Accept', 'aplication/json')
@@ -574,18 +585,8 @@ describe('CLINIC', function () {
                             longitude: 0,
                             confirmed: true
                         })
-                    .expect(200,done)
+                    .expect(400,done)
 
-            });
-
-            it('Patch clinic object/name - check for duplicated clinics', function(done) {
-                api.patch('/clinics/' + ClinicID )
-                    .set('Accept', 'aplication/json')
-                    .send(
-                        {
-                            name : "patch"
-                        })
-                    .expect(200,done)
             });
 
             it('Patch clinic object/name - empty', function(done) {
@@ -598,15 +599,9 @@ describe('CLINIC', function () {
                             longitude: 0,
                             confirmed: true
                         })
-                    .expect(200,done)
+                    .expect(400,done)
 
             });
-
-        })
-
-        describe('HTTP responce code - 400 ', function () {
-
-
 
 
 
@@ -1102,6 +1097,13 @@ describe('CONSUMER', function () {
                     .expect(200, done)
             });
 
+
+
+
+        })
+
+        describe('HTTP responce code - 400 ', function () {
+
             it('Create new Consumer with the same email parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
@@ -1115,15 +1117,8 @@ describe('CONSUMER', function () {
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
-                    .expect(200, done)
+                    .expect(400, done)
             });
-
-
-        })
-
-        describe('HTTP responce code - 400 ', function () {
-
-
 
             it('Create new Consumer/ incorrect format for EMAIL parameter/ spaces ', function (done) {
                 api.post('/consumers')
