@@ -730,37 +730,37 @@ describe('CLINIC', function () {
             });
         })
     })
-
-    describe('Delete clinic ', function () {
-
-        describe('HTTP responce code - 200 ', function () {
-            it('Delete clinic/Successfull', function (done) {
-                api.del('/clinics/' + ClinicID)
-                    .set('Accept', 'application/json')
-                    .expect(200,done)
-            });
-
-        })
-        describe('HTTP responce code - 400 ', function () {
-
-            it('Delete clinic/not found', function (done) {
-                api.del('/clinics/clinicId')
-                    .set('Accept', 'application/json')
-                    .expect(400,done)
-            });
-
-        })
-        describe('HTTP responce code - 404 ', function () {
-
-            it('Delete clinic/not found', function (done) {
-                api.del('/clinics/' + ClinicID)
-                    .set('Accept', 'application/json')
-                    .expect(404,done)
-            });
-
-        })
-
-    })
+    //
+    // describe('Delete clinic ', function () {
+    //
+    //     describe('HTTP responce code - 200 ', function () {
+    //         it('Delete clinic/Successfull', function (done) {
+    //             api.del('/clinics/' + ClinicID)
+    //                 .set('Accept', 'application/json')
+    //                 .expect(200,done)
+    //         });
+    //
+    //     })
+    //     describe('HTTP responce code - 400 ', function () {
+    //
+    //         it('Delete clinic/not found', function (done) {
+    //             api.del('/clinics/clinicId')
+    //                 .set('Accept', 'application/json')
+    //                 .expect(400,done)
+    //         });
+    //
+    //     })
+    //     describe('HTTP responce code - 404 ', function () {
+    //
+    //         it('Delete clinic/not found', function (done) {
+    //             api.del('/clinics/' + ClinicID)
+    //                 .set('Accept', 'application/json')
+    //                 .expect(404,done)
+    //         });
+    //
+    //     })
+    //
+    // })
 
     describe('Patch clinic object/Not found', function () {
 

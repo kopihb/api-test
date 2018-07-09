@@ -9,3 +9,4 @@
 
 
 
+*mocha --compilers js:babel-core/register
