@@ -22,11 +22,11 @@ function randomString(len, charSet) {
 
 
 var randomValueName = randomString(5); /*use for name*/
-var randomValueMail = randomString(7); /*use for mail*/
+//var randomValueMail = randomString(7); /*use for mail*/
 /*End create random value*/
 
 
-/*Test data - clinic and consumer*/
+/*Test data - clinic*/
 var clinic = {
     name: randomValueName,
     latitude: 0,
@@ -34,19 +34,8 @@ var clinic = {
     confirmed: true
 }
 
-var consumerObj = {
-    email: randomValueMail + '@mail.com',
-    name: randomValueName,
-    phone: 'phone patch all',
-    receiveNotification: true,
-    dontSentAdv: true,
-    signedUp: true,
-    entityStart: '2020-03-03',
-    entityEnd: '2021-04-04'
-}
 /*End test data - clinic and consumer*/
 
-var ConsumerID = "";
 var ClinicID = "";
 
 

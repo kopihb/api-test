@@ -6,8 +6,6 @@ var should = require('chai').should(),
 const addContext = require('mochawesome/addContext');
 
 
-
-
 /*Start create random value ащк */
 function randomString(len, charSet) {
     charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -25,14 +23,7 @@ var randomValueMail = randomString(7); /*use for mail*/
 /*End create random value*/
 
 
-/*Test data - clinic and consumer*/
-var clinic = {
-    name: randomValueName,
-    latitude: 0,
-    longitude: 0,
-    confirmed: true
-}
-
+/*Test data - consumer*/
 var consumerObj = {
     email: randomValueMail + '@mail.com',
     name: randomValueName,
@@ -46,7 +37,7 @@ var consumerObj = {
 /*End test data - clinic and consumer*/
 
 var ConsumerID = "";
-var ClinicID = "";
+
 
 
 
