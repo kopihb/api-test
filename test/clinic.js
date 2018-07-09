@@ -488,7 +488,7 @@ describe('CLINIC', function () {
                     .set('Accept', 'aplication/json')
                     .send(
                         {
-                            name: "gghgjg",
+                            name: clinic.name + 'changed',
                             longitude: 0,
                             confirmed: true
                         })
@@ -500,7 +500,7 @@ describe('CLINIC', function () {
                     .set('Accept', 'aplication/json')
                     .send(
                         {
-                            name: "patchsdsd",
+                            name: clinic.name + 'chafgfgnged',
                             latitude: 0,
                             confirmed: true
                         })
@@ -513,11 +513,12 @@ describe('CLINIC', function () {
                     .set('Accept', 'aplication/json')
                     .send(
                         {
-                            name : "patch"
+
+                            name : clinic.name
+
                         })
                     .expect(200,done)
             });
-
 
 
             it('Patch clinic object/name - check for duplicated clinics', function(done) {
@@ -525,9 +526,24 @@ describe('CLINIC', function () {
                     .set('Accept', 'aplication/json')
                     .send(
                         {
-                            name : "patch"
+                            name : clinic.name,
+                            latitude : clinic.latitude,
+                            longitude: clinic.longitude,
+                            confirmed: clinic.confirmed
                         })
                     .expect(200,done)
+            });
+            it('Patch clinic object/name - check for duplicated clinics', function(done) {
+                api.patch('/clinics/' + ClinicID )
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            name : clinic.name,
+                            latitude : clinic.latitude,
+                            longitude: clinic.longitude,
+                            confirmed: clinic.confirmed
+                        })
+                    .expect(400,done)
             });
 
         })
@@ -730,37 +746,37 @@ describe('CLINIC', function () {
             });
         })
     })
-    //
-    // describe('Delete clinic ', function () {
-    //
-    //     describe('HTTP responce code - 200 ', function () {
-    //         it('Delete clinic/Successfull', function (done) {
-    //             api.del('/clinics/' + ClinicID)
-    //                 .set('Accept', 'application/json')
-    //                 .expect(200,done)
-    //         });
-    //
-    //     })
-    //     describe('HTTP responce code - 400 ', function () {
-    //
-    //         it('Delete clinic/not found', function (done) {
-    //             api.del('/clinics/clinicId')
-    //                 .set('Accept', 'application/json')
-    //                 .expect(400,done)
-    //         });
-    //
-    //     })
-    //     describe('HTTP responce code - 404 ', function () {
-    //
-    //         it('Delete clinic/not found', function (done) {
-    //             api.del('/clinics/' + ClinicID)
-    //                 .set('Accept', 'application/json')
-    //                 .expect(404,done)
-    //         });
-    //
-    //     })
-    //
-    // })
+
+    describe('Delete clinic ', function () {
+
+        describe('HTTP responce code - 200 ', function () {
+            it('Delete clinic/Successfull', function (done) {
+                api.del('/clinics/' + ClinicID)
+                    .set('Accept', 'application/json')
+                    .expect(200,done)
+            });
+
+        })
+        describe('HTTP responce code - 400 ', function () {
+
+            it('Delete clinic/not found', function (done) {
+                api.del('/clinics/clinicId')
+                    .set('Accept', 'application/json')
+                    .expect(400,done)
+            });
+
+        })
+        describe('HTTP responce code - 404 ', function () {
+
+            it('Delete clinic/not found', function (done) {
+                api.del('/clinics/' + ClinicID)
+                    .set('Accept', 'application/json')
+                    .expect(404,done)
+            });
+
+        })
+
+    })
 
     describe('Patch clinic object/Not found', function () {
 
