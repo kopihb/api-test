@@ -22,6 +22,7 @@ function randomString(len, charSet) {
 
 
 var randomValueName = randomString(5); /*use for name*/
+var randomNameForDublicate = randomString(8);
 //var randomValueMail = randomString(7); /*use for mail*/
 /*End create random value*/
 
@@ -37,6 +38,7 @@ var clinic = {
 /*End test data - clinic and consumer*/
 
 var ClinicID = "";
+var ClinicName = "";
 
 
 
@@ -63,6 +65,28 @@ describe('Version - 1.0.0 ' +
                 //expect(res.body).to.equal({});
                 //expect(res.body.res.name).to.equal("namex");
                 ClinicID = res.body.res.id;
+                done();
+            })
+    });
+
+    it('Create new clinic/Successfull case + get name for check duplicate', function (done) {
+        api.post('/clinics')
+            .set('Accept', 'aplication/json')
+            .send({
+
+                name : randomNameForDublicate,
+                latitude : clinic.latitude,
+                longitude: clinic.longitude,
+                confirmed: clinic.confirmed
+
+            })
+            .end(function (err, res) {
+                console.log(res.body);
+                expect(res.statusCode).to.equal(200);
+                expect(res.body).to.exist;
+                //expect(res.body).to.equal({});
+                //expect(res.body.res.name).to.equal("namex");
+                ClinicName = res.body.res.name;
                 done();
             })
     });
@@ -488,7 +512,7 @@ describe('CLINIC', function () {
                     .set('Accept', 'aplication/json')
                     .send(
                         {
-                            name: "gghgjg",
+                            name: clinic.name + 'changed',
                             longitude: 0,
                             confirmed: true
                         })
@@ -500,7 +524,7 @@ describe('CLINIC', function () {
                     .set('Accept', 'aplication/json')
                     .send(
                         {
-                            name: "patchsdsd",
+                            name: clinic.name + 'chafgfgnged',
                             latitude: 0,
                             confirmed: true
                         })
@@ -513,11 +537,12 @@ describe('CLINIC', function () {
                     .set('Accept', 'aplication/json')
                     .send(
                         {
-                            name : "patch"
+
+                            name : clinic.name
+
                         })
                     .expect(200,done)
             });
-
 
 
             it('Patch clinic object/name - check for duplicated clinics', function(done) {
@@ -525,15 +550,32 @@ describe('CLINIC', function () {
                     .set('Accept', 'aplication/json')
                     .send(
                         {
-                            name : "patch"
+                            name : clinic.name,
+                            latitude : clinic.latitude,
+                            longitude: clinic.longitude,
+                            confirmed: clinic.confirmed
                         })
                     .expect(200,done)
             });
+
 
         })
 
         describe('HTTP responce code - 400 ', function () {
 
+
+            it('Patch clinic object/name - check for duplicated clinics', function(done) {
+                api.patch('/clinics/' + ClinicID )
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            name : ClinicName,
+                            latitude : clinic.latitude,
+                            longitude: clinic.longitude,
+                            confirmed: clinic.confirmed
+                        })
+                    .expect(400,done)
+            });
 
 
             it('Patch clinic object/ spaces for "name" parameter', function(done) {
