@@ -36,4 +36,42 @@ describe('PROVIDER', function () {
         })
     })
 
+
+    describe('Create provider', function () {
+
+    })
+
+
+
+
+    describe('GET  provider', function () {
+
+    })
+
+
+
+
+
+
+    describe('Patch  provider', function () {
+
+    })
+
+
+
+
+
+
+    describe('Delete  provider', function () {
+
+    })
+
+
+
+
+    describe('Patch  provider/Not Found', function () {
+
+    })
+
 })
+
