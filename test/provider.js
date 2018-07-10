@@ -38,14 +38,18 @@ describe('PROVIDER', function () {
 
 
     describe('Create provider', function () {
-
+        describe('HTTP responce code - 200', function () { })
+        describe('HTTP responce code - 400', function () { })
+        describe('HTTP responce code - 401', function () { })
     })
 
 
 
 
     describe('GET  provider', function () {
-
+        describe('HTTP responce code - 200', function () { })
+        describe('HTTP responce code - 400', function () { })
+        describe('HTTP responce code - 401', function () { })
     })
 
 
@@ -54,7 +58,9 @@ describe('PROVIDER', function () {
 
 
     describe('Patch  provider', function () {
-
+        describe('HTTP responce code - 200', function () { })
+        describe('HTTP responce code - 400', function () { })
+        describe('HTTP responce code - 401', function () { })
     })
 
 
@@ -63,14 +69,18 @@ describe('PROVIDER', function () {
 
 
     describe('Delete  provider', function () {
-
+        describe('HTTP responce code - 200', function () { })
+        describe('HTTP responce code - 400', function () { })
+        describe('HTTP responce code - 401', function () { })
     })
 
 
 
 
     describe('Patch  provider/Not Found', function () {
-
+        describe('HTTP responce code - 200', function () { })
+        describe('HTTP responce code - 400', function () { })
+        describe('HTTP responce code - 401', function () { })
     })
 
 })
