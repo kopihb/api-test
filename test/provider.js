@@ -5,10 +5,10 @@ var should = require('chai').should(),
     api = supertest('http://159.100.241.121:5002');
 const addContext = require('mochawesome/addContext');
 
-let token={ 'test' : 'test' };
+var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzA3ODA5NTEsImV4cCI6MTUzMzQyNzIwMCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoidGVzdEB0ZXN0Iiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJTVVBFUl9BRE1JTiJdfQ.6DspCe-Ds23yxhSql-9gZCrTGCaCjZH1FAwT1NSCQfo';
 
 
-    describe('Version - 1.0.0 ' +
+describe('Version - 1.0.0 ' +
     'Provider ' +
     ' Auto create and get  ID for test ', function () {
 
@@ -26,6 +26,7 @@ describe('PROVIDER', function () {
                 api.get('/providers')
                     .set('Content-Type', 'application/json')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .end(function(err, res) {
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.be.an('array');

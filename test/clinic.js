@@ -6,10 +6,8 @@ var should = require('chai').should(),
     api = supertest('http://159.100.241.121:5002');
 const addContext = require('mochawesome/addContext');
 
-
-
-
-/*Start create random value ащк */
+var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzA3ODA5NTEsImV4cCI6MTUzMzQyNzIwMCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoidGVzdEB0ZXN0Iiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJTVVBFUl9BRE1JTiJdfQ.6DspCe-Ds23yxhSql-9gZCrTGCaCjZH1FAwT1NSCQfo';
+/*Start create random value*/
 function randomString(len, charSet) {
     charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var randomString = '';
@@ -50,8 +48,8 @@ describe('Version - 1.0.0 ' +
     it('Create new clinic/Successfull case + get ID', function (done) {
         api.post('/clinics')
             .set('Accept', 'aplication/json')
+            .set('Authorization', 'Bearer ' + token)
             .send({
-
                 name : clinic.name,
                 latitude : clinic.latitude,
                 longitude: clinic.longitude,
@@ -60,6 +58,7 @@ describe('Version - 1.0.0 ' +
             })
             .end(function (err, res) {
                 console.log(res.body);
+                console.log(res.error);
                 expect(res.statusCode).to.equal(200);
                 expect(res.body).to.exist;
                 //expect(res.body).to.equal({});
@@ -72,6 +71,7 @@ describe('Version - 1.0.0 ' +
     it('Create new clinic/Successfull case + get name for check duplicate', function (done) {
         api.post('/clinics')
             .set('Accept', 'aplication/json')
+            .set('Authorization', 'Bearer ' + token)
             .send({
 
                 name : randomNameForDublicate,
@@ -106,6 +106,7 @@ describe('CLINIC', function () {
             it('Should return 200 responce - /clinics', function (done) {
                 api.get('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .end(function(err, res) {
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.be.an('array');
@@ -127,6 +128,7 @@ describe('CLINIC', function () {
             it('Create new clinic/ several name parameter', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : clinic.name + 'several',
@@ -141,6 +143,7 @@ describe('CLINIC', function () {
             it('Create new clinic/cyrillic name parameter', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : 'кирилиця' + clinic.name,
@@ -154,6 +157,7 @@ describe('CLINIC', function () {
             it('Create new clinic/name parameter with numbers', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : clinic.name + 123658,
@@ -167,6 +171,7 @@ describe('CLINIC', function () {
             it('Create new clinic/name parameter with symbols', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : clinic.name + '!%$_^',
@@ -180,6 +185,7 @@ describe('CLINIC', function () {
             it('Create new clinic/confirmed "false', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : clinic.name + 'word',
@@ -202,6 +208,7 @@ describe('CLINIC', function () {
             it('Create new clinic/ spaces for name parameter', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : " ",
@@ -216,6 +223,7 @@ describe('CLINIC', function () {
             it('Create new clinic/with empty title', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : '',
@@ -229,6 +237,7 @@ describe('CLINIC', function () {
             it('Create new clinic/with the same title', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         name : clinic.name,
                         latitude : clinic.latitude,
@@ -240,6 +249,7 @@ describe('CLINIC', function () {
             it('Create new clinic/with missed name parameter', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             latitude : clinic.latitude,
@@ -252,6 +262,7 @@ describe('CLINIC', function () {
             it('Create new clinic/incorrect format for latitude', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : clinic.name + 'word',
@@ -264,6 +275,7 @@ describe('CLINIC', function () {
             it('Create new clinic/with missed longitude', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : clinic.name + 'word',
@@ -276,6 +288,7 @@ describe('CLINIC', function () {
             it('Create new clinic/incorrect format for title/number instead of string', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : 0,
@@ -289,6 +302,7 @@ describe('CLINIC', function () {
             it('Create new clinic/incorrect format for name parameter/null', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : null,
@@ -304,6 +318,7 @@ describe('CLINIC', function () {
             it('Create new clinic/confirmed - validation for parameter type number', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : clinic.name + 'word',
@@ -318,6 +333,7 @@ describe('CLINIC', function () {
             it('Create new clinic/confirmed - validation for parameter type text', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : clinic.name + 'word',
@@ -331,6 +347,7 @@ describe('CLINIC', function () {
             it('Create new clinic/latitude - null instead of num', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : clinic.name + 'word',
@@ -344,6 +361,7 @@ describe('CLINIC', function () {
             it('Create new clinic/longitude - null instead of num', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : clinic.name + 'word',
@@ -357,6 +375,7 @@ describe('CLINIC', function () {
             it('Create new clinic/"confirmed" - null instead of boolean', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : clinic.name + 'word',
@@ -370,6 +389,7 @@ describe('CLINIC', function () {
             it('Create new clinic/incorrect format for latitude', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : clinic.name + 'word',
@@ -383,6 +403,7 @@ describe('CLINIC', function () {
             it('Create new clinic/incorrect format for longitude', function(done) {
                 api.post('/clinics')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : clinic.name + 'word',
@@ -404,6 +425,7 @@ describe('CLINIC', function () {
             it('GET clinic object/successful case', function(done) {
                 api.get('/clinics/' + ClinicID)
                     .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .expect(200,done)
             });
 
@@ -414,6 +436,7 @@ describe('CLINIC', function () {
             it('GET clinic object/Invalid clinic ID', function(done) {
                 api.get('/clinics/' + ClinicID + ClinicID)
                     .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .expect(400,done)
             });
 
@@ -424,6 +447,7 @@ describe('CLINIC', function () {
             it('Delete clinic/not found', function (done) {
                 api.get('/clinics/5b30f037de19bd000f1241ea'  )
                     .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .expect(404,done)
             });
 
@@ -438,6 +462,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/without any changes', function (done) {
                 api.patch('/clinics/' + ClinicID  )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
 
                         name : clinic.name,
@@ -452,6 +477,7 @@ describe('CLINIC', function () {
             it('Patch clinic object / change all parameters', function (done) {
                 api.patch('/clinics/' + ClinicID  )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
 
                         name : clinic.name + 'changed',
@@ -467,6 +493,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/change latitude', function(done) {
                 api.patch('/clinics/' + ClinicID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             latitude : 1
@@ -477,6 +504,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/change longitude', function(done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             longitude: 1
@@ -487,6 +515,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/change longitude', function(done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             confirmed: false
@@ -498,6 +527,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/name - missed parameter', function(done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             latitude: 0,
@@ -510,6 +540,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/latitude - missed parameter', function(done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name: clinic.name + 'changed',
@@ -522,6 +553,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/longitude - missed parameter', function(done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name: clinic.name + 'chafgfgnged',
@@ -535,6 +567,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/change name', function(done) {
                 api.patch('/clinics/' + ClinicID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
 
@@ -548,6 +581,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/name - check for duplicated clinics', function(done) {
                 api.patch('/clinics/' + ClinicID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : clinic.name,
@@ -567,6 +601,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/name - check for duplicated clinics', function(done) {
                 api.patch('/clinics/' + ClinicID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : ClinicName,
@@ -581,6 +616,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/ spaces for "name" parameter', function(done) {
                 api.patch('/clinics/' + ClinicID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : " ",
@@ -595,6 +631,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/name - empty', function(done) {
                 api.patch('/clinics/' + ClinicID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name : "",
@@ -611,6 +648,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/name - validation for param type: boolean', function (done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name: true,
@@ -624,6 +662,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/latitude - validation for param type: boolean', function (done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name: 'gjghjghjghjttu',
@@ -637,6 +676,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/longitude - validation for param type: boolean', function (done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name: 'patch',
@@ -651,6 +691,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/"confirmed" - validation for parameter type - "string"', function (done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name: 'patch',
@@ -664,6 +705,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/"confirmed" - validation for parameter type - null', function (done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name: 'patch',
@@ -677,6 +719,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/longitude - validation for parameter type - null', function (done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name: 'patch',
@@ -690,6 +733,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/latitude - validation for parameter type - null', function (done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name: 'patch',
@@ -703,6 +747,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/name - validation for parameter type - null', function (done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name: null,
@@ -716,6 +761,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/"confirmed" - validation for parameter type', function (done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name: 'patch',
@@ -729,6 +775,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/longitude - validation for parameter type', function (done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name: 'patch',
@@ -742,6 +789,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/latitude - validation for parameter type', function (done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name: 'patch',
@@ -755,6 +803,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/Name - validation for parameter type', function (done) {
                 api.patch('/clinics/' + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             name: 0,
@@ -768,6 +817,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/Invalid clinic ID', function (done) {
                 api.patch('/clinics/' + ClinicID + ClinicID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .expect(400, done)
             });
         })
@@ -779,6 +829,7 @@ describe('CLINIC', function () {
             it('Delete clinic/Successfull', function (done) {
                 api.del('/clinics/' + ClinicID)
                     .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .expect(200,done)
             });
 
@@ -788,6 +839,7 @@ describe('CLINIC', function () {
             it('Delete clinic/not found', function (done) {
                 api.del('/clinics/clinicId')
                     .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .expect(400,done)
             });
 
@@ -797,6 +849,7 @@ describe('CLINIC', function () {
             it('Delete clinic/not found', function (done) {
                 api.del('/clinics/' + ClinicID)
                     .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .expect(404,done)
             });
 
@@ -811,6 +864,7 @@ describe('CLINIC', function () {
             it('Patch clinic object/Not found', function (done) {
                 api.patch('/clinics/5b30f32ede19bd000f1241ee')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .expect(404, done)
             });
 
