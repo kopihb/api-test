@@ -6,7 +6,11 @@ var should = require('chai').should(),
 const addContext = require('mochawesome/addContext');
 
 
-/*Start create random value ащк */
+var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzA3ODA5NTEsImV4cCI6MTUzMzQyNzIwMCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoidGVzdEB0ZXN0Iiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJTVVBFUl9BRE1JTiJdfQ.6DspCe-Ds23yxhSql-9gZCrTGCaCjZH1FAwT1NSCQfo';
+
+
+
+/*Start create random value*/
 function randomString(len, charSet) {
     charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var randomString = '';
@@ -49,6 +53,7 @@ describe('Version - 1.0.0 ' +
     it('Create new consumer/Successfull case + get ID', function (done) {
         api.post('/consumers')
             .set('Accept', 'aplication/json')
+            .set('Authorization', 'Bearer ' + token)
             .send({
                 "email": consumerObj.email,
                 "name": "name_auto",
@@ -88,6 +93,7 @@ describe('CONSUMER', function () {
             it('Should return 200 responce - /consumers', function (done) {
                 api.get('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .end(function(err, res) {
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.be.an('array');
@@ -111,6 +117,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/Successfull case/Several words for "name"', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "new" + consumerObj.email,
                         "name": consumerObj.name +" " + "sever words",
@@ -128,6 +135,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/Successfull case/cyrillic name parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "qaz" + consumerObj.email,
                         "name":  "кирилиця",
@@ -145,6 +153,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/Successfull case/name parameter with numbers', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "n" + consumerObj.email,
                         "name": "4546456",
@@ -162,6 +171,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/Successfull case/name parameter with symbols', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "s" + consumerObj.email,
                         "name": "!&^%$$#",
@@ -179,6 +189,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ "receiveNotification" false', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "fa" + consumerObj.email,
                         "name": "name" +consumerObj.name,
@@ -196,6 +207,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ missed Start date parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "fvfbgb" + consumerObj.email,
                         "name": "name" +consumerObj.name,
@@ -213,6 +225,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ missed End date parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "vgbi" + consumerObj.email,
                         "name": "name" +consumerObj.name,
@@ -228,6 +241,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ "dontSentAdv" false', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "dd" + consumerObj.email,
                         "name": "name" +consumerObj.name,
@@ -245,6 +259,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ "signedUp" false', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "sds" + consumerObj.email,
                         "name": "name" +consumerObj.name,
@@ -262,6 +277,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ spaces for name parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "sdsgh" + consumerObj.email,
                         "name": "    ",
@@ -279,6 +295,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ empty for name parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "sdfsdf345" + consumerObj.email,
                         "name": "",
@@ -296,6 +313,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ empty phone parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "sszz" + consumerObj.email,
                         "name": "name" +consumerObj.name,
@@ -312,6 +330,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ missed "signedUp" parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "xxsse" + consumerObj.email,
                         "name": "name" +consumerObj.name,
@@ -327,6 +346,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ missed "dontSentAdv" parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "ertert" + consumerObj.email,
                         "name": "name" +consumerObj.name,
@@ -343,6 +363,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ end date before start date', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "efertt1" + consumerObj.email,
                         "name": consumerObj.name,
@@ -366,6 +387,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer with the same email parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": consumerObj.email,
                         "name": "name ",
@@ -382,6 +404,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ incorrect format for EMAIL parameter/ spaces ', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "dsdfsdfsdf ",
                         "name": "name ",
@@ -398,6 +421,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ empty for EMAIL parameter/ spaces ', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": " ",
                         "name": "name ",
@@ -414,6 +438,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ empty start date parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "fp" + consumerObj.email,
                         "name": "name ",
@@ -430,6 +455,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ empty end date parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "cvb" + consumerObj.email,
                         "name": "name ",
@@ -447,6 +473,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ missed email parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": "name ",
                         "phone": "phone ",
@@ -463,6 +490,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ missed name parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"naa" + consumerObj.email,
                         "phone": "phone ",
@@ -479,6 +507,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ missed phone parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"phn" + consumerObj.email,
                         "name": "name ",
@@ -494,6 +523,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ NULL for email param', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": null,
                         "name": "name ",
@@ -510,6 +540,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ NULL for name param', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"nnnamm" + consumerObj.email,
                         "name": null,
@@ -526,6 +557,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ NULL for Phone param', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"dvc" + consumerObj.email,
                         "name": "name ",
@@ -542,6 +574,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ NULL "receiveNotification" parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"ccc" + consumerObj.email,
                         "name": "name ",
@@ -559,6 +592,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ NULL "dontSentAdv" parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"xcbbb" + consumerObj.email,
                         "name": "name ",
@@ -576,6 +610,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ NULL "signedUp" parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"dcvbc" + consumerObj.email,
                         "name": "name ",
@@ -593,6 +628,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ NULL Start date parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"rffg" + consumerObj.email,
                         "name": "name ",
@@ -610,6 +646,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ NULL End date parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"xcb" + consumerObj.email,
                         "name": "name ",
@@ -627,6 +664,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ boolean for email parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":true,
                         "name": "name mm",
@@ -644,6 +682,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ boolean for name parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "cvb" + consumerObj.email,
                         "name": true,
@@ -661,6 +700,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ boolean for Start date parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "dddd" + consumerObj.email,
                         "name": "dcdvv",
@@ -677,6 +717,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ boolean for phone parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "vvvv4" + consumerObj.email,
                         "name": "dcdvv",
@@ -693,6 +734,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ boolean for end date parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "vcvcv" + consumerObj.email,
                         "name": "dcdvv",
@@ -709,6 +751,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ number for email parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": 0,
                         "name": "dcdvv",
@@ -725,6 +768,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ number for name parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "mkla" + consumerObj.email,
                         "name": 0,
@@ -741,6 +785,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ number for phone parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "mklxvvvs" + consumerObj.email,
                         "name": " fvcvc",
@@ -758,6 +803,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ number for "receiveNotification" parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "mkl" + consumerObj.email,
                         "name": " fvcvc",
@@ -775,6 +821,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ number for "dontSentAdv" parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "mklxx" + consumerObj.email,
                         "name": " fvcvc",
@@ -792,6 +839,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ number for "signedUp" parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "cvvv" + consumerObj.email,
                         "name": " fvcvc",
@@ -809,6 +857,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ number for Start date parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "vfvfd" + consumerObj.email,
                         "name": " fvcvc",
@@ -826,6 +875,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ number for End date parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "vvwwq" + consumerObj.email,
                         "name": " fvcvc",
@@ -842,6 +892,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ string for "receiveNotification" parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "xdoo" + consumerObj.email,
                         "name": " fvcvc",
@@ -858,6 +909,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ string for "dontSentAdv" parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "dfdfb" + consumerObj.email,
                         "name": " fvcvc",
@@ -875,6 +927,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ string for "dontSentAdv" parameter', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "iop" + consumerObj.email,
                         "name": " fvcvc",
@@ -892,6 +945,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ string for "signedUp" parameter ', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "vbnn" + consumerObj.email,
                         "name": " fvcvc",
@@ -909,6 +963,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ string for "signedUp" parameter ', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "vbnnsdf" + ".com",
                         "name": " fvcvc",
@@ -925,6 +980,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ incorrect format for Start date param ', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "rbp" + consumerObj.email,
                         "name": " fvcvc",
@@ -941,6 +997,7 @@ describe('CONSUMER', function () {
             it('Create new Consumer/ incorrect format for End date param ', function (done) {
                 api.post('/consumers')
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "cc" + consumerObj.email,
                         "name": " fvcvc",
@@ -966,6 +1023,7 @@ describe('CONSUMER', function () {
             it('GET consumer object/successful case', function(done) {
                 api.get('/consumers/' + ConsumerID)
                     .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .expect(200,done)
 
             })
@@ -975,6 +1033,7 @@ describe('CONSUMER', function () {
                 it('GET consumer object/Invalid clinic ID', function(done) {
                     api.get('/consumers/5b3a354e9c62b00010dd63bf-f')
                         .set('Accept', 'application/json')
+                        .set('Authorization', 'Bearer ' + token)
                         .expect(400,done)
                 });
 
@@ -985,6 +1044,7 @@ describe('CONSUMER', function () {
                 it('Get consumer/not found', function (done) {
                     api.get('/consumers/5b30f037de19bd000f1241ea')
                         .set('Accept', 'application/json')
+                        .set('Authorization', 'Bearer ' + token)
                         .expect(404,done)
                 });
 
@@ -1001,6 +1061,7 @@ describe('CONSUMER', function () {
             it('Patch Consumer object / without any changes', function (done) {
                 api.patch('/consumers/' + ConsumerID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": "name_auto",
                         "phone": "phone",
@@ -1016,6 +1077,7 @@ describe('CONSUMER', function () {
             it('Patch Consumer object / change name param', function(done) {
                 api.patch('/consumers/' + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "change name patch",
@@ -1032,6 +1094,7 @@ describe('CONSUMER', function () {
             it('Patch Consumer object / change phone param', function(done) {
                 api.patch('/consumers/' + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch",
@@ -1048,6 +1111,7 @@ describe('CONSUMER', function () {
             it('Patch Consumer object / change "receiveNotification" param', function(done) {
                 api.patch('/consumers/' + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch",
@@ -1064,6 +1128,7 @@ describe('CONSUMER', function () {
             it('Patch Consumer object / change "dontSentAdv" param', function(done) {
                 api.patch('/consumers/' + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch",
@@ -1080,6 +1145,7 @@ describe('CONSUMER', function () {
             it('Patch Consumer object / change "signedUp" param', function(done) {
                 api.patch('/consumers/' + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch",
@@ -1096,6 +1162,7 @@ describe('CONSUMER', function () {
             it('Patch Consumer object / change Start date param', function(done) {
                 api.patch('/consumers/' + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch",
@@ -1112,6 +1179,7 @@ describe('CONSUMER', function () {
             it('Patch Consumer object / change End date param', function(done) {
                 api.patch('/consumers/' + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch",
@@ -1129,6 +1197,7 @@ describe('CONSUMER', function () {
             it('Patch Consumer object / change all parameters', function(done) {
                 api.patch('/consumers/' + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1145,6 +1214,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / Name param - empty', function (done) {
                 api.patch('/consumers/' + ConsumerID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": "",
                         "phone": "phone",
@@ -1160,6 +1230,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / Phone param - empty', function (done) {
                 api.patch('/consumers/' + ConsumerID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": consumerObj.name,
                         "phone": "",
@@ -1176,6 +1247,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / Name param - missed', function (done) {
                 api.patch('/consumers/' + ConsumerID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "phone": "cvxcv",
                         "receiveNotification": true,
@@ -1190,6 +1262,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / Phone param - missed', function (done) {
                 api.patch('/consumers/' + ConsumerID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": consumerObj.name,
                         "receiveNotification": true,
@@ -1204,6 +1277,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / Phone param - missed', function (done) {
                 api.patch('/consumers/' + ConsumerID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": consumerObj.name,
                         "phone": "sdfsdfsd",
@@ -1218,6 +1292,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / "dontSentAdv" -> missed', function (done) {
                 api.patch('/consumers/' + ConsumerID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": consumerObj.name,
                         "phone": "cvxcv",
@@ -1233,6 +1308,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / "signedUp" -> missed', function (done) {
                 api.patch('/consumers/' + ConsumerID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": consumerObj.name,
                         "phone": "cvxcv",
@@ -1248,6 +1324,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / Start date -> missed', function (done) {
                 api.patch('/consumers/' + ConsumerID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": consumerObj.name,
                         "phone": "cvxcv",
@@ -1262,6 +1339,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / End date -> missed', function (done) {
                 api.patch('/consumers/' + ConsumerID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": consumerObj.name,
                         "phone": "cvxcv",
@@ -1280,6 +1358,7 @@ describe('CONSUMER', function () {
             it('Patch Consumer object / Invalid clinic ID', function(done) {
                 api.patch('/consumers/IdConsumer' )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1296,6 +1375,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / Name -> Number', function(done) {
                 api.patch('/consumers/'  + ConsumerID )
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": 0,
@@ -1312,6 +1392,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / Phone -> Number', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1329,6 +1410,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / "receiveNotification" -> Number', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1346,6 +1428,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / "dontSentAdv" -> Number', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1363,6 +1446,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / "signedUp" -> Number', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1380,6 +1464,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / Start date -> Number', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1396,6 +1481,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / End date -> Number', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1413,6 +1499,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / "receiveNotification" -> string', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1430,6 +1517,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / "dontSentAdv" -> string', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1447,6 +1535,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / "signedUp" -> string', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1464,6 +1553,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter format / Start date - incorrect format', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1481,6 +1571,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter format / End date - incorrect format', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1498,6 +1589,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter format / Start date - incorrect format 2', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1515,6 +1607,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter format / End date - incorrect format 2', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1532,6 +1625,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / Name -> boolean (true)', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": true,
@@ -1549,6 +1643,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / Name -> boolean (false)', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": false,
@@ -1565,6 +1660,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / Phone -> boolean (true)', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1582,6 +1678,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / Phone -> boolean (false)', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1600,6 +1697,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / Start date -> boolean (true)', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1616,6 +1714,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / Start date -> boolean (false)', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1633,6 +1732,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / End date -> boolean (true)', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1650,6 +1750,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / End date -> boolean (false)', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
@@ -1666,6 +1767,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / Name -> null', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": null,
@@ -1683,6 +1785,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / Phone -> null', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "sdfdf",
@@ -1700,6 +1803,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / receiveNotification -> null', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "sdfdf",
@@ -1717,6 +1821,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / dontSentAdv -> null', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "sdfdf",
@@ -1734,6 +1839,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / signedUp -> null', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "sdfdf",
@@ -1752,6 +1858,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / Start date  -> null', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "sdfdf",
@@ -1771,6 +1878,7 @@ describe('CONSUMER', function () {
             it('Patch consumer object / validation for parameter type / End date  -> null', function(done) {
                 api.patch('/consumers/'  + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "sdfdf",
@@ -1793,6 +1901,7 @@ describe('CONSUMER', function () {
             it('Delete Consumer ID/ Successfull case', function (done) {
                 api.del('/consumers/' + ConsumerID)
                     .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .expect(200,done)
             });
         })
@@ -1802,6 +1911,7 @@ describe('CONSUMER', function () {
             it('Delete Consumer / Invalid Consumer ID', function (done) {
                 api.del('/consumers/consumersdfsd345')
                     .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .expect(400,done)
             });
         })
@@ -1811,6 +1921,7 @@ describe('CONSUMER', function () {
             it('Delete Consumer/not found', function (done) {
                 api.del('/consumers/' + ConsumerID)
                     .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .expect(404,done)
             });
         })
@@ -1825,6 +1936,7 @@ describe('CONSUMER', function () {
             it('Patch Consumer object / Not found', function(done) {
                 api.patch('/consumers/' + ConsumerID)
                     .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
                             "name": "name patch all",
