@@ -2,3 +2,4 @@
 /node_modules
 /mochawesome-report
 .idea/
+.test/temp
