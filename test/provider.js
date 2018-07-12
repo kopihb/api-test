@@ -514,6 +514,85 @@ describe('PROVIDER', function () {
                         done();
                     });
             });
+            it('Create new Provider / missed "instantBookingConsumerIds"', function (done) {
+                api.post('/providers')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "email": "x99xxeed" + emailForProviders,
+                        "waitingSlots": 1,
+                        "instantBooking": false,
+                        "bookingConfirmation": false,
+                        "sponsored": true,
+                        "minScheduleStep": 8,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "entityStart": "2018-01-01",
+                        "entityEnd": "2018-01-01"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+            it('Create new Provider / missed "instantBookingConsumerIds"', function (done) {
+                api.post('/providers')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "email": "try67876" + emailForProviders,
+                        "waitingSlots": 1,
+                        "instantBooking": false,
+                        "bookingConfirmation": false,
+                        "sponsored": true,
+                        "minScheduleStep": 8,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityEnd": "2018-01-01"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+            it('Create new Provider / missed "entityStart"', function (done) {
+                api.post('/providers')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "email": "erytruy697" +  emailForProviders,
+                        "waitingSlots": 1,
+                        "instantBooking": false,
+                        "bookingConfirmation": false,
+                        "sponsored": true,
+                        "minScheduleStep": 8,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityEnd": "2018-01-01"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
 
 
 
@@ -549,6 +628,31 @@ describe('PROVIDER', function () {
                         done();
                     });
             });
+            it('Create new Provider / missed Clinic Ids', function (done) {
+                api.post('/providers')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "email": "69dsfjksfffhf" + emailForProviders,
+                        "waitingSlots": 1,
+                        "instantBooking": false,
+                        "bookingConfirmation": false,
+                        "sponsored": true,
+                        "minScheduleStep": 8,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2018-01-01",
+                        "entityEnd": "2018-01-01"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+            });
 
             it('Create new Provider / missed Clinic Ids', function (done) {
                 api.post('/providers')
@@ -556,7 +660,7 @@ describe('PROVIDER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
 
-                        "email": "69dsfjkshf" + emailForProviders,
+                        "email": "69dsfjksfffhf" + emailForProviders,
                         "waitingSlots": 1,
                         "instantBooking": false,
                         "bookingConfirmation": false,
