@@ -58,6 +58,7 @@ var consumerObj = {
 
 var ClinicIDForProvider = "";
 var ConsumerIDForProvider = "";
+var ProviderIdForPatch = "";
 
 
 
@@ -136,9 +137,22 @@ describe('PROVIDER', function () {
                     addContext(this, 'we do it');
                 });
 
-
         })
 
+
+    })
+
+    describe('GET object -', function () {
+        it('Should return 200 responce - /provider', function (done) {
+            api.get('/providers/')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .end(function(err, res) {
+                    expect(res.statusCode).to.equal(200);
+                    done();
+                });
+
+        });
 
     })
 
@@ -170,6 +184,7 @@ describe('PROVIDER', function () {
                     })
                     .end(function(err, res) {
                         expect(res.statusCode).to.equal(200);
+                        ProviderIdForPatch = res.body.res.id;
                         done();
                     });
             });
@@ -1957,8 +1972,34 @@ describe('PROVIDER', function () {
 
 
     describe('GET  provider', function () {
-        describe('HTTP responce code - 200', function () { })
-        describe('HTTP responce code - 400', function () { })
+
+        describe('HTTP responce code - 200', function () {
+
+                it('GET Provider object/successful case', function (done) {
+                    api.get('/providers/'+ ProviderIdForPatch )
+                        .set('Accept', 'aplication/json')
+                        .set('Authorization', 'Bearer ' + token)
+                        .end(function(err, res) {
+                            expect(res.statusCode).to.equal(200);
+                            done();
+                        });
+
+                });
+
+
+        })
+        describe('HTTP responce code - 400', function () {
+            it('GET Provider object/successful case', function (done) {
+                api.get('/providers/'+ ProviderIdForPatch + 1)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+
+            });
+        })
         describe('HTTP responce code - 401', function () { })
     })
 
@@ -1979,9 +2020,40 @@ describe('PROVIDER', function () {
 
 
     describe('Delete  provider', function () {
-        describe('HTTP responce code - 200', function () { })
-        describe('HTTP responce code - 400', function () { })
-        describe('HTTP responce code - 401', function () { })
+        describe('HTTP responce code - 200', function () {
+            it('Delete Provider / successful case', function (done) {
+                api.del('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .expect(200,done)
+            });
+
+        })
+        describe('HTTP responce code - 400', function () {
+            it('Delete Provider / Invalid provider ID', function (done) {
+                api.del('/providers/' + ProviderIdForPatch + 1)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .expect(400,done)
+            });
+        })
+        describe('HTTP responce code - 401', function () {
+            it('Delete Provider / Invalid provider ID', function (done) {
+                api.del('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'application/json')
+                    .expect(401,done)
+            });
+
+        })
+        describe('HTTP responce code - 404', function () {
+            it('Delete Provider / Not found provider ID', function (done) {
+                api.del('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .expect(404,done)
+            });
+        })
+
     })
 
 
