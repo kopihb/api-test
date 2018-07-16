@@ -6,7 +6,7 @@ var should = require('chai').should(),
 const addContext = require('mochawesome/addContext');
 
 
-var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzA3ODA5NTEsImV4cCI6MTUzMzQyNzIwMCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoidGVzdEB0ZXN0Iiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJTVVBFUl9BRE1JTiJdfQ.6DspCe-Ds23yxhSql-9gZCrTGCaCjZH1FAwT1NSCQfo';
+var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzEzODc2MTEsImV4cCI6MTU2MjkyMzYxMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AbWFpbC5jb20iLCJyb2xlcyI6WyJQUk9WSURFUiIsIlNVUEVSX0FETUlOIl19.RfeB6N6kRFVCGR_mvsXbtqcuWa2KdpFhHPN9DgnHsmU';
 
 
 
@@ -38,7 +38,7 @@ var consumerObj = {
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
 }
-/*End test data - clinic and consumer*/
+/*End test data - centre and consumer*/
 
 var ConsumerID = "";
 
@@ -1030,7 +1030,7 @@ describe('CONSUMER', function () {
 
             describe('HTTP responce code - 400 ', function () {
 
-                it('GET consumer object/Invalid clinic ID', function(done) {
+                it('GET consumer object/Invalid centre ID', function(done) {
                     api.get('/consumers/5b3a354e9c62b00010dd63bf-f')
                         .set('Accept', 'application/json')
                         .set('Authorization', 'Bearer ' + token)
@@ -1355,7 +1355,7 @@ describe('CONSUMER', function () {
 
         describe('HTTP responce code - 400 ', function () {
 
-            it('Patch Consumer object / Invalid clinic ID', function(done) {
+            it('Patch Consumer object / Invalid centre ID', function(done) {
                 api.patch('/consumers/IdConsumer' )
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
