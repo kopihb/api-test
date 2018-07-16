@@ -59,6 +59,8 @@ var consumerObj = {
 var ClinicIDForProvider = "";
 var ConsumerIDForProvider = "";
 var ProviderIdForPatch = "";
+var ClinicIDForProviderPatch = "";
+var ConsumerIDForProviderPatch = "";
 
 
 
@@ -111,6 +113,28 @@ describe('PROVIDER', function () {
                         })
                 });
 
+            it('Create new clinic/Successfull case + get ID for patch to provider', function (done) {
+                api.post('/clinics')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        name : 'patch' + clinic.name,
+                        latitude : clinic.latitude,
+                        longitude: clinic.longitude,
+                        confirmed: clinic.confirmed
+
+                    })
+                    .end(function (err, res) {
+                        console.log(res.body);
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.exist;
+                        //expect(res.body).to.equal({});
+                        //expect(res.body.res.name).to.equal("namex");
+                        ClinicIDForProviderPatch= res.body.res.id;
+                        done();
+                    })
+            });
+
                 it('Create new consumer/Successfull case + get ID for attachment to provider', function (done) {
                     api.post('/consumers')
                         .set('Accept', 'aplication/json')
@@ -136,7 +160,31 @@ describe('PROVIDER', function () {
                         })
                     addContext(this, 'we do it');
                 });
-
+            it('Create new consumer/Successfull case + get ID for patch to provider', function (done) {
+                api.post('/consumers')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "email": 'patch' + consumerObj.email,
+                        "name": consumerObj.name,
+                        "phone": "phone ",
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "entityStart": "2016-03-03",
+                        "entityEnd": "2021-04-04"
+                    })
+                    .end(function (err, res) {
+                        console.log(res.body);
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.exist;
+                        //expect(res.body).to.equal({});
+                        //expect(res.body.res.name).to.equal("namex");
+                        ConsumerIDForProviderPatch = res.body.res.id;
+                        done();
+                    })
+                addContext(this, 'we do it');
+            });
         })
 
 
@@ -2009,9 +2057,448 @@ describe('PROVIDER', function () {
 
 
     describe('Patch  provider', function () {
-        describe('HTTP responce code - 200', function () { })
-        describe('HTTP responce code - 400', function () { })
-        describe('HTTP responce code - 401', function () { })
+        describe('HTTP responce code - 200', function () {
+
+
+            it('Patch provider/ all parameters changed', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 1,
+                        "instantBooking": false,
+                        "bookingConfirmation": false,
+                        "sponsored": false,
+                        "minScheduleStep": 8,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-01-01",
+                        "entityEnd": "2019-01-01"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+
+            it('Patch provider/ change "waitingSlots"', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": false,
+                        "bookingConfirmation": false,
+                        "sponsored": false,
+                        "minScheduleStep": 8,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-01-01",
+                        "entityEnd": "2019-01-01"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+
+            it('Patch provider/ change "instantBooking', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": false,
+                        "sponsored": false,
+                        "minScheduleStep": 8,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-01-01",
+                        "entityEnd": "2019-01-01"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+
+            it('Patch provider/ change "bookingConfirmation"', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": false,
+                        "minScheduleStep": 8,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-01-01",
+                        "entityEnd": "2019-01-01"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+
+            it('Patch provider/ change "sponsored"', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 8,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-01-01",
+                        "entityEnd": "2019-01-01"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+            it('Patch provider/ change "minScheduleStep"', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-01-01",
+                        "entityEnd": "2019-01-01"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+            it('Patch provider/ change "entityStart"', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-04-05",
+                        "entityEnd": "2019-01-01"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+            it('Patch provider/ change "entityEnd"', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-04-05",
+                        "entityEnd": "2020-05-08"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+            it('Patch provider/ change "defaultClinicId" and "clinicIds"', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ClinicIDForProviderPatch,
+                        "clinicIds": [
+                            ClinicIDForProviderPatch
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-04-05",
+                        "entityEnd": "2020-05-08"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+            it('Patch provider/ change "instantBookingConsumerIds"', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ClinicIDForProviderPatch,
+                        "clinicIds": [
+                            ClinicIDForProviderPatch
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProviderPatch
+                        ],
+                        "entityStart": "2019-04-05",
+                        "entityEnd": "2020-05-08"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+
+        })
+        describe('HTTP responce code - 400', function () {
+
+            it('Patch Provider object / Invalid Provider ID', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + "dfgdg")
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-04-05",
+                        "entityEnd": "2020-05-08"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+            });
+            it('Patch provider object / validation for parameter type / "instantBooking" Number', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": 456456,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ClinicIDForProviderPatch,
+                        "clinicIds": [
+                            ClinicIDForProviderPatch
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-04-05",
+                        "entityEnd": "2020-05-08"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+            });
+            it('Patch provider object / validation for parameter type / "bookingConfirmation" Number', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": 456456,
+                        "sponsored": true,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ClinicIDForProviderPatch,
+                        "clinicIds": [
+                            ClinicIDForProviderPatch
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-04-05",
+                        "entityEnd": "2020-05-08"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+            });
+            it('Patch provider object / validation for parameter type / "sponsored" Number', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": 456456332,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ClinicIDForProviderPatch,
+                        "clinicIds": [
+                            ClinicIDForProviderPatch
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-04-05",
+                        "entityEnd": "2020-05-08"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+            });
+
+
+        })
+        describe('HTTP responce code - 401', function () {
+
+            it('Patch Provider / Unauthenticated', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-04-05",
+                        "entityEnd": "2020-05-08"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(401);
+                        done();
+                    });
+            });
+        })
+
+        describe('HTTP responce code - 404', function () {
+            it('Patch Provider object / Not found provider ID', function (done) {
+                api.patch('/providers/' + ClinicIDForProvider)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2019-04-05",
+                        "entityEnd": "2020-05-08"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(404);
+                        done();
+                    });
+            });
+
+        })
+
+
+
+
+
+
     })
 
 
