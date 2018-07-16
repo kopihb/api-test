@@ -61,6 +61,7 @@ var ConsumerIDForProvider = "";
 var ProviderIdForPatch = "";
 var ClinicIDForProviderPatch = "";
 var ConsumerIDForProviderPatch = "";
+var ProviderIdForPatchAnyChanges = "";
 
 
 
@@ -150,7 +151,7 @@ describe('PROVIDER', function () {
                             "entityEnd": "2021-04-04"
                         })
                         .end(function (err, res) {
-                            //console.log(res.body);
+                           // console.log(res.body);
                             expect(res.statusCode).to.equal(200);
                             expect(res.body).to.exist;
                             //expect(res.body).to.equal({});
@@ -158,7 +159,7 @@ describe('PROVIDER', function () {
                             ConsumerIDForProvider = res.body.res.id;
                             done();
                         })
-                    addContext(this, 'text');
+
                 });
             it('Create new consumer/Successfull case + get ID for patch to provider', function (done) {
                 api.post('/consumers')
@@ -236,6 +237,36 @@ describe('PROVIDER', function () {
                         done();
                     });
             });
+
+                it('Create new Provider/ Successful case for patch any changes', function (done) {
+                    api.post('/providers')
+                        .set('Accept', 'aplication/json')
+                        .set('Authorization', 'Bearer ' + token)
+                        .send({
+
+                            "email": "anyPatch" + emailForProviders,
+                            "waitingSlots": 0,
+                            "instantBooking": true,
+                            "bookingConfirmation": true,
+                            "sponsored": true,
+                            "minScheduleStep": 7,
+                            "defaultClinicId": ClinicIDForProvider,
+                            "clinicIds": [
+                                ClinicIDForProvider
+                            ],
+                            "instantBookingConsumerIds": [
+                                ConsumerIDForProvider
+                            ],
+                            "entityStart": "2018-01-01",
+                            "entityEnd": "2018-01-01"
+
+                        })
+                        .end(function(err, res) {
+                            expect(res.statusCode).to.equal(200);
+                            ProviderIdForPatchAnyChanges = res.body.res.id;
+                            done();
+                        });
+                });
 
             it('Create new Provider/ Successful case/ Schedule step=6', function (done) {
                 api.post('/providers')
@@ -2058,6 +2089,35 @@ describe('PROVIDER', function () {
 
     describe('Patch  provider', function () {
         describe('HTTP responce code - 200', function () {
+
+
+            it('Create new Provider/ Successful case', function (done) {
+                api.patch('/providers/' + ProviderIdForPatchAnyChanges)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 0,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 7,
+                        "defaultClinicId": ClinicIDForProvider,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2018-01-01",
+                        "entityEnd": "2018-01-01"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+                addContext(this, 'test is well');
+            });
 
 
             it('Patch provider/ all parameters changed', function (done) {
