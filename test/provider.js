@@ -220,8 +220,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -251,8 +251,8 @@ describe('PROVIDER', function () {
                             "bookingConfirmation": true,
                             "sponsored": true,
                             "minScheduleStep": 7,
-                            "defaultClinicId": ClinicIDForProvider,
-                            "clinicIds": [
+                            "defaultCentreId": ClinicIDForProvider,
+                            "centreIds": [
                                 ClinicIDForProvider
                             ],
                             "instantBookingConsumerIds": [
@@ -281,8 +281,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -310,8 +310,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -339,8 +339,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -369,8 +369,8 @@ describe('PROVIDER', function () {
                 "bookingConfirmation": false,
                 "sponsored": false,
                 "minScheduleStep": 8,
-                "defaultClinicId": ClinicIDForProvider,
-                "clinicIds": [
+                "defaultCentreId": ClinicIDForProvider,
+                "centreIds": [
                     ClinicIDForProvider
                 ],
                 "instantBookingConsumerIds": [
@@ -400,8 +400,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -429,8 +429,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -456,8 +456,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -484,8 +484,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -511,8 +511,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -538,8 +538,8 @@ describe('PROVIDER', function () {
                         "instantBooking": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -565,8 +565,8 @@ describe('PROVIDER', function () {
                         "instantBooking": false,
                         "bookingConfirmation": false,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -594,7 +594,7 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "clinicIds": [
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -621,8 +621,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "entityStart": "2018-01-01",
@@ -646,8 +646,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -673,8 +673,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -707,8 +707,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -735,7 +735,7 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
+                        "defaultCentreId": ClinicIDForProvider,
                         "instantBookingConsumerIds": [
                             ConsumerIDForProvider
                         ],
@@ -761,7 +761,7 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
+                        "defaultCentreId": ClinicIDForProvider,
                         "instantBookingConsumerIds": [
                             ConsumerIDForProvider
                         ],
@@ -787,8 +787,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": 1 + ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": 1 + ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -815,8 +815,8 @@ describe('PROVIDER', function () {
                         "instantBooking": false,
                         "bookingConfirmation": false,
                         "sponsored": true,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -845,8 +845,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -862,7 +862,7 @@ describe('PROVIDER', function () {
                     });
             });
 
-            it('Create new Provider with different centre id and clinicIds', function (done) {
+            it('Create new Provider with different centre id and centreIds', function (done) {
                 api.post('/providers')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -874,8 +874,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": 1 + ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": 1 + ClinicIDForProvider,
+                        "centreIds": [
                             2 + ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -903,8 +903,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -932,8 +932,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -961,8 +961,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": null,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -990,8 +990,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": null,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1019,8 +1019,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": null,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1048,8 +1048,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": null,
                         "minScheduleStep": 8,
-                        "defaultClinicId": null,
-                        "clinicIds": [
+                        "defaultCentreId": null,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1077,8 +1077,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": null,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             null
                         ],
                         "instantBookingConsumerIds": [
@@ -1106,8 +1106,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": null,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1135,8 +1135,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": null,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1164,8 +1164,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": null,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1193,8 +1193,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": null,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1222,8 +1222,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": null,
                         "minScheduleStep": 4,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1251,8 +1251,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": null,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1280,8 +1280,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": null,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1309,8 +1309,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": 33,
                         "sponsored": null,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1338,8 +1338,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": 433,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1355,7 +1355,7 @@ describe('PROVIDER', function () {
                     });
             });
 
-            it('Create new Provider / validation for parameter type / "defaultClinicId" -> number', function (done) {
+            it('Create new Provider / validation for parameter type / "defaultCentreId" -> number', function (done) {
                 api.post('/providers')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -1367,8 +1367,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 7,
-                        "defaultClinicId": 1234567890,
-                        "clinicIds": [
+                        "defaultCentreId": 1234567890,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1384,7 +1384,7 @@ describe('PROVIDER', function () {
                     });
             });
 
-            it('Create new Provider / validation for parameter type / "clinicIds" -> number', function (done) {
+            it('Create new Provider / validation for parameter type / "centreIds" -> number', function (done) {
                 api.post('/providers')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -1396,8 +1396,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             1234567890
                         ],
                         "instantBookingConsumerIds": [
@@ -1413,7 +1413,7 @@ describe('PROVIDER', function () {
                     });
             });
 
-            it('Create new Provider / validation for parameter type / "clinicIds" -> number', function (done) {
+            it('Create new Provider / validation for parameter type / "centreIds" -> number', function (done) {
                 api.post('/providers')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -1425,8 +1425,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1454,8 +1454,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1483,8 +1483,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1512,8 +1512,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1541,8 +1541,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": true,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1558,7 +1558,7 @@ describe('PROVIDER', function () {
                     });
             });
 
-            it('Create new Provider / validation for parameter type / "defaultClinicId" -> boolean', function (done) {
+            it('Create new Provider / validation for parameter type / "defaultCentreId" -> boolean', function (done) {
                 api.post('/providers')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -1570,8 +1570,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 8,
-                        "defaultClinicId": false,
-                        "clinicIds": [
+                        "defaultCentreId": false,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1587,7 +1587,7 @@ describe('PROVIDER', function () {
                     });
             });
 
-            it('Create new Provider / validation for parameter type / "clinicIds" -> boolean', function (done) {
+            it('Create new Provider / validation for parameter type / "centreIds" -> boolean', function (done) {
                 api.post('/providers')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -1599,8 +1599,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             false
                         ],
                         "instantBookingConsumerIds": [
@@ -1628,8 +1628,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1657,8 +1657,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1686,8 +1686,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1715,8 +1715,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1744,8 +1744,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": "dfgdfgdfgvvv",
                         "sponsored": false,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1772,8 +1772,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": "dfgdfgdfgvvv",
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1800,8 +1800,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": "dfgdfgdfgvvv",
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1828,8 +1828,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1856,8 +1856,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1884,8 +1884,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1912,8 +1912,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1940,8 +1940,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1968,8 +1968,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -1996,8 +1996,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2028,8 +2028,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2102,8 +2102,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2131,8 +2131,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2158,8 +2158,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2185,8 +2185,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": false,
                         "sponsored": false,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2212,8 +2212,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": false,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2239,8 +2239,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2265,8 +2265,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2291,8 +2291,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2317,8 +2317,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2333,7 +2333,7 @@ describe('PROVIDER', function () {
                         done();
                     });
             });
-            it('Patch provider/ change "defaultClinicId" and "clinicIds"', function (done) {
+            it('Patch provider/ change "defaultCentreId" and "centreIds"', function (done) {
                 api.patch('/providers/' + ProviderIdForPatch)
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -2343,8 +2343,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProviderPatch,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProviderPatch,
+                        "centreIds": [
                             ClinicIDForProviderPatch
                         ],
                         "instantBookingConsumerIds": [
@@ -2369,8 +2369,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2399,8 +2399,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2425,8 +2425,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2451,8 +2451,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": 456456,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2477,8 +2477,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": 456456332,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2503,8 +2503,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2529,8 +2529,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2555,8 +2555,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2581,8 +2581,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2597,7 +2597,7 @@ describe('PROVIDER', function () {
                         done();
                     });
             });
-            it('Patch provider / invalid "defaultClinicId"', function (done) {
+            it('Patch provider / invalid "defaultCentreId"', function (done) {
                 api.patch('/providers/' + ProviderIdForPatch)
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -2607,8 +2607,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider + "!!!!____!",
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider + "!!!!____!",
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2623,7 +2623,7 @@ describe('PROVIDER', function () {
                         done();
                     });
             });
-            it('Patch provider / invalid "clinicIds"', function (done) {
+            it('Patch provider / invalid "centreIds"', function (done) {
                 api.patch('/providers/' + ProviderIdForPatch)
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -2633,8 +2633,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider + "!!!!____!"
                         ],
                         "instantBookingConsumerIds": [
@@ -2659,8 +2659,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2676,7 +2676,7 @@ describe('PROVIDER', function () {
                     });
             });
 
-            it('Patch provider / "defaultClinicId" do not exist"', function (done) {
+            it('Patch provider / "defaultCentreId" do not exist"', function (done) {
                 api.patch('/providers/' + ProviderIdForPatch)
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -2686,8 +2686,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ConsumerIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ConsumerIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2702,7 +2702,7 @@ describe('PROVIDER', function () {
                         done();
                     });
             });
-            it('Patch provider / different ID in "defaultClinicId" and "clinicIds" parameters', function (done) {
+            it('Patch provider / different ID in "defaultCentreId" and "centreIds" parameters', function (done) {
                 api.patch('/providers/' + ProviderIdForPatch)
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -2712,8 +2712,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ConsumerIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ConsumerIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2729,7 +2729,7 @@ describe('PROVIDER', function () {
                         done();
                     });
             });
-            it('Patch provider / "clinicIds" do not exist"', function (done) {
+            it('Patch provider / "centreIds" do not exist"', function (done) {
                 api.patch('/providers/' + ProviderIdForPatch)
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -2739,8 +2739,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ConsumerIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2765,8 +2765,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2791,8 +2791,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2817,8 +2817,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2843,8 +2843,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": "dfgfdg",
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2869,8 +2869,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": "dfgfdg",
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2895,8 +2895,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": "sdfsdfs",
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2921,8 +2921,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 4,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2947,8 +2947,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2973,8 +2973,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": true,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -2999,8 +2999,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -3025,8 +3025,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -3051,8 +3051,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 7,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -3077,8 +3077,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": null,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -3103,8 +3103,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -3129,8 +3129,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -3155,8 +3155,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -3181,8 +3181,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": null,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -3207,8 +3207,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": null,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -3223,7 +3223,7 @@ describe('PROVIDER', function () {
                         done();
                     });
             });
-            it('Patch provider object / validation for parameter type / "defaultClinicId" -> null', function (done) {
+            it('Patch provider object / validation for parameter type / "defaultCentreId" -> null', function (done) {
                 api.patch('/providers/' + ProviderIdForPatch)
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -3233,8 +3233,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": null ,
-                        "clinicIds": [
+                        "defaultCentreId": null ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -3249,7 +3249,7 @@ describe('PROVIDER', function () {
                         done();
                     });
             });
-            it('Patch provider object / validation for parameter type / "clinicIds" -> null', function (done) {
+            it('Patch provider object / validation for parameter type / "centreIds" -> null', function (done) {
                 api.patch('/providers/' + ProviderIdForPatch)
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -3259,8 +3259,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             null
                         ],
                         "instantBookingConsumerIds": [
@@ -3285,8 +3285,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 8,
-                        "defaultClinicId": ClinicIDForProvider ,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider ,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -3320,8 +3320,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
@@ -3349,8 +3349,8 @@ describe('PROVIDER', function () {
                         "bookingConfirmation": true,
                         "sponsored": true,
                         "minScheduleStep": 9,
-                        "defaultClinicId": ClinicIDForProvider,
-                        "clinicIds": [
+                        "defaultCentreId": ClinicIDForProvider,
+                        "centreIds": [
                             ClinicIDForProvider
                         ],
                         "instantBookingConsumerIds": [
