@@ -5,7 +5,7 @@ var should = require('chai').should(),
     api = supertest('http://159.100.241.121:5002');
 const addContext = require('mochawesome/addContext');
 
-var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzA3ODA5NTEsImV4cCI6MTUzMzQyNzIwMCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoidGVzdEB0ZXN0Iiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJTVVBFUl9BRE1JTiJdfQ.6DspCe-Ds23yxhSql-9gZCrTGCaCjZH1FAwT1NSCQfo';
+var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzEzODc2MTEsImV4cCI6MTU2MjkyMzYxMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AbWFpbC5jb20iLCJyb2xlcyI6WyJQUk9WSURFUiIsIlNVUEVSX0FETUlOIl19.RfeB6N6kRFVCGR_mvsXbtqcuWa2KdpFhHPN9DgnHsmU';
 
 /*Start create random value*/
 function randomString(len, charSet) {
@@ -34,7 +34,7 @@ var   emailForProviders = randomValueProviderMail + '@mail.com';
 
 
 /*Test data - */
-var clinic = {
+var centre = {
     name: randomValueName,
     latitude: 0,
     longitude: 0,
@@ -51,7 +51,7 @@ var consumerObj = {
     entityEnd: '2021-04-04'
 }
 
-/*End test data - clinic and consumer*/
+/*End test data - centre and consumer*/
 
 // var ClinicIDForProvider = "5b44a799eddc6b000f68134e";
 // var ConsumerIDForProvider = "5b436953eddc6b000f6811be";
@@ -92,19 +92,19 @@ describe('PROVIDER', function () {
             });
 
 
-                it('Create new clinic/Successfull case + get ID for attachment to provider', function (done) {
-                    api.post('/clinics')
+                it('Create new centre/Successfull case + get ID for attachment to provider', function (done) {
+                    api.post('/centres')
                         .set('Accept', 'aplication/json')
                         .set('Authorization', 'Bearer ' + token)
                         .send({
-                            name : clinic.name,
-                            latitude : clinic.latitude,
-                            longitude: clinic.longitude,
-                            confirmed: clinic.confirmed
+                            name : centre.name,
+                            latitude : centre.latitude,
+                            longitude: centre.longitude,
+                            confirmed: centre.confirmed
 
                         })
                         .end(function (err, res) {
-                            //console.log(res.body);
+                            console.log(res.body);
                             expect(res.statusCode).to.equal(200);
                             expect(res.body).to.exist;
                             //expect(res.body).to.equal({});
@@ -114,19 +114,19 @@ describe('PROVIDER', function () {
                         })
                 });
 
-            it('Create new clinic/Successfull case + get ID for patch to provider', function (done) {
-                api.post('/clinics')
+            it('Create new centre/Successfull case + get ID for patch to provider', function (done) {
+                api.post('/centres')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        name : 'patch' + clinic.name,
-                        latitude : clinic.latitude,
-                        longitude: clinic.longitude,
-                        confirmed: clinic.confirmed
+                        name : 'patch' + centre.name,
+                        latitude : centre.latitude,
+                        longitude: centre.longitude,
+                        confirmed: centre.confirmed
 
                     })
                     .end(function (err, res) {
-                        //console.log(res.body);
+                       // console.log(res.body);
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.exist;
                         //expect(res.body).to.equal({});
@@ -151,7 +151,7 @@ describe('PROVIDER', function () {
                             "entityEnd": "2021-04-04"
                         })
                         .end(function (err, res) {
-                           // console.log(res.body);
+                            console.log(res.body);
                             expect(res.statusCode).to.equal(200);
                             expect(res.body).to.exist;
                             //expect(res.body).to.equal({});
@@ -232,6 +232,7 @@ describe('PROVIDER', function () {
 
                     })
                     .end(function(err, res) {
+                        console.log(res.body);
                         expect(res.statusCode).to.equal(200);
                         ProviderIdForPatch = res.body.res.id;
                         done();
@@ -581,7 +582,7 @@ describe('PROVIDER', function () {
                     });
             });
 
-            it('Create new Provider / missed default Clinic ID', function (done) {
+            it('Create new Provider / missed default centre ID', function (done) {
                 api.post('/providers')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -722,7 +723,7 @@ describe('PROVIDER', function () {
                         done();
                     });
             });
-            it('Create new Provider / missed Clinic Ids', function (done) {
+            it('Create new Provider / missed centre Ids', function (done) {
                 api.post('/providers')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -748,7 +749,7 @@ describe('PROVIDER', function () {
                     });
             });
 
-            it('Create new Provider / missed Clinic Ids', function (done) {
+            it('Create new Provider / missed centre Ids', function (done) {
                 api.post('/providers')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -774,7 +775,7 @@ describe('PROVIDER', function () {
                     });
             });
 
-            it('Create new Provider with Invalid default clinic id', function (done) {
+            it('Create new Provider with Invalid default centre id', function (done) {
                 api.post('/providers')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -861,7 +862,7 @@ describe('PROVIDER', function () {
                     });
             });
 
-            it('Create new Provider with different clinic id and clinicIds', function (done) {
+            it('Create new Provider with different centre id and clinicIds', function (done) {
                 api.post('/providers')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -1035,7 +1036,7 @@ describe('PROVIDER', function () {
                     });
             });
 
-            it('Create new Provider / NULL for default Clinic ID', function (done) {
+            it('Create new Provider / NULL for default centre ID', function (done) {
                 api.post('/providers')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -1064,7 +1065,7 @@ describe('PROVIDER', function () {
                     });
             });
 
-            it('Create new Provider / NULL for Clinic Ids', function (done) {
+            it('Create new Provider / NULL for centre Ids', function (done) {
                 api.post('/providers')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
