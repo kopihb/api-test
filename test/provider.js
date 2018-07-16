@@ -103,7 +103,7 @@ describe('PROVIDER', function () {
 
                         })
                         .end(function (err, res) {
-                            console.log(res.body);
+                            //console.log(res.body);
                             expect(res.statusCode).to.equal(200);
                             expect(res.body).to.exist;
                             //expect(res.body).to.equal({});
@@ -125,7 +125,7 @@ describe('PROVIDER', function () {
 
                     })
                     .end(function (err, res) {
-                        console.log(res.body);
+                        //console.log(res.body);
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.exist;
                         //expect(res.body).to.equal({});
@@ -150,7 +150,7 @@ describe('PROVIDER', function () {
                             "entityEnd": "2021-04-04"
                         })
                         .end(function (err, res) {
-                            console.log(res.body);
+                            //console.log(res.body);
                             expect(res.statusCode).to.equal(200);
                             expect(res.body).to.exist;
                             //expect(res.body).to.equal({});
@@ -158,7 +158,7 @@ describe('PROVIDER', function () {
                             ConsumerIDForProvider = res.body.res.id;
                             done();
                         })
-                    addContext(this, 'we do it');
+                    addContext(this, 'text');
                 });
             it('Create new consumer/Successfull case + get ID for patch to provider', function (done) {
                 api.post('/consumers')
@@ -175,7 +175,7 @@ describe('PROVIDER', function () {
                         "entityEnd": "2021-04-04"
                     })
                     .end(function (err, res) {
-                        console.log(res.body);
+                        //console.log(res.body);
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.exist;
                         //expect(res.body).to.equal({});
@@ -2604,6 +2604,112 @@ describe('PROVIDER', function () {
                         ],
                         "instantBookingConsumerIds": [
                             ConsumerIDForProvider + "!!!!____!"
+                        ],
+                        "entityStart": "2020-05-01",
+                        "entityEnd": "2021-05-02"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+            });
+
+            it('Patch provider / "defaultClinicId" do not exist"', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ConsumerIDForProvider ,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2020-05-01",
+                        "entityEnd": "2021-05-02"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+            });
+            it('Patch provider / different ID in "defaultClinicId" and "clinicIds" parameters', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ConsumerIDForProvider ,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2020-05-01",
+                        "entityEnd": "2021-05-02"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        console.log(res.body);
+                        done();
+                    });
+            });
+            it('Patch provider / "clinicIds" do not exist"', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ClinicIDForProvider ,
+                        "clinicIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ConsumerIDForProvider
+                        ],
+                        "entityStart": "2020-05-01",
+                        "entityEnd": "2021-05-02"
+
+                    })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+            });
+            it('Patch provider / "instantBookingConsumerIds" do not exist"', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "waitingSlots": 3,
+                        "instantBooking": true,
+                        "bookingConfirmation": true,
+                        "sponsored": true,
+                        "minScheduleStep": 9,
+                        "defaultClinicId": ClinicIDForProvider ,
+                        "clinicIds": [
+                            ClinicIDForProvider
+                        ],
+                        "instantBookingConsumerIds": [
+                            ClinicIDForProvider
                         ],
                         "entityStart": "2020-05-01",
                         "entityEnd": "2021-05-02"
