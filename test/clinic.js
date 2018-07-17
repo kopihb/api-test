@@ -58,7 +58,6 @@ describe('Version - 1.0.0 ' +
             })
             .end(function (err, res) {
                 console.log(res.body);
-                console.log(res.error);
                 expect(res.statusCode).to.equal(200);
                 expect(res.body).to.exist;
                 //expect(res.body).to.equal({});
@@ -66,6 +65,7 @@ describe('Version - 1.0.0 ' +
                 ClinicID = res.body.res.id;
                 done();
             })
+        addContext(this, 'text' );
     });
 
     it('Create new centre/Successfull case + get name for check duplicate', function (done) {
