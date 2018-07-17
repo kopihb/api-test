@@ -341,6 +341,20 @@ describe('Days-off', function () {
         describe('HTTP responce code - 200', function () {
 
 
+            it('Patch provider day-off / set date', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/days-off/' + DayOffId )
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "date": "2015-02-03"
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+
+            });
             it('Patch provider day-off / without any changes', function (done) {
                 api.patch('/providers/' + ProviderIdForPatch + '/days-off/' + DayOffId )
                     .set('Accept', 'aplication/json')
@@ -356,9 +370,131 @@ describe('Days-off', function () {
 
             });
         })
-        describe('HTTP responce code - 400', function () {})
-        describe('HTTP responce code - 401', function () {})
-        describe('HTTP responce code - 404', function () {})
+        describe('HTTP responce code - 400', function () {
+
+            it('Patch provider day-off / Invalid provider Id', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + "invalid" + '/days-off/' + DayOffId )
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "date": "2015-02-05"
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+
+            });
+            it('Patch provider day-off / Invalid day-off Id', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/days-off/' + DayOffId + "invalid" )
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "date": "2015-02-05"
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+
+            });
+            it('Patch provider day-off / validation for parameter format / date', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/days-off/' + DayOffId )
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "date": "2015-02-0"
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+
+            });
+            it('Patch provider day-off / validation for parameter type / date -> boolean', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/days-off/' + DayOffId )
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "date": true
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+
+            });
+            it('Patch provider day-off / validation for parameter type / date -> null', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/days-off/' + DayOffId )
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "date": null
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+
+            });
+
+
+
+        })
+        describe('HTTP responce code - 401', function () {
+
+            it('Patch provider day-off / Unauthenticated', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/days-off/' + DayOffId )
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "date": "2015-02-03"
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(401);
+                        done();
+                    });
+
+            });
+
+
+        })
+        describe('HTTP responce code - 404', function () {
+            it('Patch provider day-off / Not found provider Id', function (done) {
+                api.patch('/providers/' + DayOffId + '/days-off/' + DayOffId )
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "date": "2015-02-03"
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(404);
+                        done();
+                    });
+
+            });
+
+            it('Patch provider day-off / Not found day-off Id', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/days-off/' + ProviderIdForPatch )
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "date": "2015-02-03"
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(404);
+                        done();
+                    });
+
+            });
+        })
 
     })
 
