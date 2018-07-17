@@ -58,13 +58,11 @@ describe('Version - 1.0.0 ' +
             })
             .end(function (err, res) {
                 console.log(res.body);
-                console.log(answer);
                 expect(res.statusCode).to.equal(200);
                 expect(res.body).to.exist;
                 //expect(res.body).to.equal({});
                 //expect(res.body.res.name).to.equal("namex");
                 ClinicID = res.body.res.id;
-                answer = res.body.res;
                 done();
             })
         addContext(this, 'text' );
