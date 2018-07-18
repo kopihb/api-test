@@ -1,43 +1,24 @@
 
+var global = require('./global-variable');
+var should = global.should;
+var expect = global.expect;
+var supertest =global.supertest ;
+var api = global.api;
+var addContext =  global.addContext;
+var token = global.token;
 
-var should = require('chai').should(),
-    expect = require('chai').expect,
-    supertest = require('supertest'),
-    api = supertest('http://159.100.241.121:5002');
-const addContext = require('mochawesome/addContext');
-
-var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzEzODc2MTEsImV4cCI6MTU2MjkyMzYxMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AbWFpbC5jb20iLCJyb2xlcyI6WyJQUk9WSURFUiIsIlNVUEVSX0FETUlOIl19.RfeB6N6kRFVCGR_mvsXbtqcuWa2KdpFhHPN9DgnHsmU';
 /*Start create random value*/
-function randomString(len, charSet) {
-    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var randomString = '';
-    for (var i = 0; i < len; i++) {
-        var randomPoz = Math.floor(Math.random() * charSet.length);
-        randomString += charSet.substring(randomPoz,randomPoz+1);
-    }
-    return randomString;
-}
+/*use for name*/
+var randomNameForDublicate = global.randomString(8);
 
-
-var randomValueName = randomString(5); /*use for name*/
-var randomNameForDublicate = randomString(8);
-//var randomValueMail = randomString(7); /*use for mail*/
 /*End create random value*/
 
-
 /*Test data - centre*/
-var centre = {
-    name: randomValueName,
-    latitude: 0,
-    longitude: 0,
-    confirmed: true
-}
+var centre = global.centreCLinics;
 
 /*End test data - centre and consumer*/
-
-var ClinicID = "";
-var ClinicName = "";
-
+var ClinicID = global.ClinicID;
+var ClinicName = global.ClinicName;
 
 
 
@@ -60,11 +41,9 @@ describe('Version - 1.0.0 ' +
                 console.log(res.body);
                 expect(res.statusCode).to.equal(200);
                 expect(res.body).to.exist;
-                //expect(res.body).to.equal({});
-                //expect(res.body.res.name).to.equal("namex");
                 ClinicID = res.body.res.id;
                 done();
-            })
+            });
         addContext(this, 'text' );
     });
 

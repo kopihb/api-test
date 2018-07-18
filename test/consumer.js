@@ -1,47 +1,16 @@
-
-var should = require('chai').should(),
-    expect = require('chai').expect,
-    supertest = require('supertest'),
-    api = supertest('http://159.100.241.121:5002');
-const addContext = require('mochawesome/addContext');
-
-
-var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzEzODc2MTEsImV4cCI6MTU2MjkyMzYxMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AbWFpbC5jb20iLCJyb2xlcyI6WyJQUk9WSURFUiIsIlNVUEVSX0FETUlOIl19.RfeB6N6kRFVCGR_mvsXbtqcuWa2KdpFhHPN9DgnHsmU';
+var global = require('./global-variable');
+var should = global.should;
+var expect = global.expect;
+var supertest =global.supertest ;
+var api = global.api;
+var addContext =  global.addContext;
+var token = global.token;
 
 
+var consumerObj = global.consumerObj;
 
-/*Start create random value*/
-function randomString(len, charSet) {
-    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var randomString = '';
-    for (var i = 0; i < len; i++) {
-        var randomPoz = Math.floor(Math.random() * charSet.length);
-        randomString += charSet.substring(randomPoz,randomPoz+1);
-    }
-    return randomString;
-}
-
-
-var randomValueName = randomString(5); /*use for name*/
-var randomValueMail = randomString(7); /*use for mail*/
-/*End create random value*/
-
-
-/*Test data - consumer*/
-var consumerObj = {
-    email: randomValueMail + '@mail.com',
-    name: randomValueName,
-    phone: 'phone patch all',
-    receiveNotification: true,
-    dontSentAdv: true,
-    signedUp: true,
-    entityStart: '2020-03-03',
-    entityEnd: '2021-04-04'
-}
 /*End test data - centre and consumer*/
-
-var ConsumerID = "";
-
+var ConsumerID = global.ConsumerID;
 
 
 

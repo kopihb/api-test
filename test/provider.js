@@ -1,67 +1,20 @@
 
-var should = require('chai').should(),
-    expect = require('chai').expect,
-    supertest = require('supertest'),
-    api = supertest('http://159.100.241.121:5002');
-const addContext = require('mochawesome/addContext');
-
-var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzEzODc2MTEsImV4cCI6MTU2MjkyMzYxMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AbWFpbC5jb20iLCJyb2xlcyI6WyJQUk9WSURFUiIsIlNVUEVSX0FETUlOIl19.RfeB6N6kRFVCGR_mvsXbtqcuWa2KdpFhHPN9DgnHsmU';
-
-/*Start create random value*/
-function randomString(len, charSet) {
-    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var randomString = '';
-    for (var i = 0; i < len; i++) {
-        var randomPoz = Math.floor(Math.random() * charSet.length);
-        randomString += charSet.substring(randomPoz,randomPoz+1);
-    }
-    return randomString;
-}
-
-
-var randomValueName = randomString(5); /*use for name*/
-var randomValueMail = randomString(7); /*use for mail*/
-var randomValueProviderMail = randomString(8); /*use for mail*/
-/*End create random value*/
-
-
-
-
-var   emailForProviders = randomValueProviderMail + '@mail.com';
-
-//var randomValueMail = randomString(7); /*use for mail*/
-/*End create random value*/
-
-
-/*Test data - */
-var centre = {
-    name: randomValueName,
-    latitude: 0,
-    longitude: 0,
-    confirmed: true
-}
-var consumerObj = {
-    email: randomValueMail + '@mail.com',
-    name: randomValueName,
-    phone: 'phone patch all',
-    receiveNotification: true,
-    dontSentAdv: true,
-    signedUp: true,
-    entityStart: '2020-03-03',
-    entityEnd: '2021-04-04'
-}
-
-/*End test data - centre and consumer*/
-
-// var ClinicIDForProvider = "5b44a799eddc6b000f68134e";
-// var ConsumerIDForProvider = "5b436953eddc6b000f6811be";
-
-var ClinicIDForProvider = "";
-var ConsumerIDForProvider = "";
-var ProviderIdForPatch = "";
-var ClinicIDForProviderPatch = "";
-var ConsumerIDForProviderPatch = "";
-var ProviderIdForPatchAnyChanges = "";
+var global = require('./global-variable');
+var should = global.should;
+var expect = global.expect;
+var supertest = global.supertest ;
+var api = global.api;
+var addContext =  global.addContext;
+var token = global.token;
+var   emailForProviders = global.emailForProvidersProvider;
+var centre = global.centreProvider;
+var consumerObj = global.consumerObjProvider;
+var ClinicIDForProvider = global.ClinicIDForProvider;
+var ConsumerIDForProvider = global.ConsumerIDForProvider;
+var ProviderIdForPatch = global.ProviderIdForPatch;
+var ClinicIDForProviderPatch = global.ClinicIDForProviderPatch;
+var ConsumerIDForProviderPatch = global.ConsumerIDForProviderPatch;
+var ProviderIdForPatchAnyChanges = global.ProviderIdForPatchAnyChanges;
 
 
 
