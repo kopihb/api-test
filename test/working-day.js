@@ -54,6 +54,7 @@ var ClinicIDForProvider = "";
 var ConsumerIDForProvider = "";
 var ProviderIdForPatch = "";
 var WorkingDayId = "";
+var ClinicIDForProvider2 = "";
 
 
 describe('Working-day', function () {
@@ -74,6 +75,25 @@ describe('Working-day', function () {
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.exist;
                     ClinicIDForProvider= res.body.res.id;
+                    done();
+                })
+        });
+
+        it('Create new centre/Successfull case + get ID for attachment to provider', function (done) {
+            api.post('/centres')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send({
+                    name : centre.name + centre.name,
+                    latitude : centre.latitude,
+                    longitude: centre.longitude,
+                    confirmed: centre.confirmed
+
+                })
+                .end(function (err, res) {
+                    expect(res.statusCode).to.equal(200);
+                    expect(res.body).to.exist;
+                    ClinicIDForProvider2= res.body.res.id;
                     done();
                 })
         });
@@ -198,27 +218,29 @@ describe('Working-day', function () {
                     });
 
             });
-            it('Create provider working day / validation for parameter type / name -> empty', function (done) {
+
+            it('Create provider working day / end Time before start Time', function (done) {
                 api.post('/providers/' + ProviderIdForPatch + '/working-days')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": randomValueName,
+                            "name": randomValueName + "12cv",
                             "timeSlots": [
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1969-01-01T16:00:00.000Z"
                                 }
                             ]
                         })
                     .end(function(err, res) {
-                        expect(res.statusCode).to.equal(400);
+                        expect(res.statusCode).to.equal(200);
                         done();
                     });
 
             });
+
 
             it('Create provider working day / change date into the day-off date', function (done) {
                 api.post('/providers/' + ProviderIdForPatch + '/working-days')
@@ -243,6 +265,28 @@ describe('Working-day', function () {
             });
         })
         describe('HTTP responce code - 400', function () {
+            it('Create provider working day / The clinic ids is not assigned to provider', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/working-days')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": randomValueName,
+                            "timeSlots": [
+                                {
+                                    "centreId": ClinicIDForProvider2,
+                                    "startTime": "1970-01-01T08:00:00.000Z",
+                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                }
+                            ]
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+
+            });
+
             it('Create provider working day / duplicate name', function (done) {
                 api.post('/providers/' + ProviderIdForPatch + '/working-days')
                     .set('Accept', 'aplication/json')
@@ -433,6 +477,27 @@ describe('Working-day', function () {
                     });
 
             });
+            it('Create provider working day / validation for parameter type / name -> empty', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/working-days')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": randomValueName,
+                            "timeSlots": [
+                                {
+                                    "centreId": ClinicIDForProvider,
+                                    "startTime": "1970-01-01T08:00:00.000Z",
+                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                }
+                            ]
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+
+            });
             it('Create provider working day / validation for parameter type / name -> null', function (done) {
                 api.post('/providers/' + ProviderIdForPatch + '/working-days')
                     .set('Accept', 'aplication/json')
@@ -526,6 +591,73 @@ describe('Working-day', function () {
 
     describe("Patch provider working day", function () {
         describe("HTTP responce code - 200", function () {
+
+            it('Create provider working day / successful case', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/working-days/' + WorkingDayId)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": randomValueName,
+                            "timeSlots": [
+                                {
+                                    "centreId": ClinicIDForProvider,
+                                    "startTime": "1970-01-01T08:00:00.000Z",
+                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                }
+                            ]
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+
+            });
+
+            it('Patch provider working day /end time is before start time', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/working-days/' + WorkingDayId)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": randomValueName,
+                            "timeSlots": [
+                                {
+                                    "centreId": ClinicIDForProvider,
+                                    "startTime": "1970-01-02T08:00:00.000Z",
+                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                }
+                            ]
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+
+            });
+
+            it('Patch provider working day / change date into day-off date', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/working-days/' + WorkingDayId)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": randomValueName,
+                            "timeSlots": [
+                                {
+                                    "centreId": ClinicIDForProvider,
+                                    "startTime": "1970-01-02T08:00:00.000Z",
+                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                }
+                            ]
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+
+            });
+
             it('Patch provider working day / change "name"', function (done) {
                 api.patch('/providers/' + ProviderIdForPatch + '/working-days/' + WorkingDayId)
                     .set('Accept', 'aplication/json')
@@ -550,6 +682,7 @@ describe('Working-day', function () {
 
         });
         describe("HTTP responce code - 400", function () {
+
             it('Patch provider working day / change start Time', function (done) {
                 api.patch('/providers/' + ProviderIdForPatch + '/working-days/' + WorkingDayId)
                     .set('Accept', 'aplication/json')
@@ -726,7 +859,7 @@ describe('Working-day', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": randomValueName + "chg2ss",
+                            "name": randomValueName + "chg2ssqqq",
                             "timeSlots": [
                                 {
                                     "centreId": ClinicIDForProvider,
@@ -746,7 +879,7 @@ describe('Working-day', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": randomValueName + "chssg2",
+                            "name": randomValueName + "chssg2qqq",
                             "timeSlots": [
                                 {
                                     "centreId": ClinicIDForProvider,
@@ -766,12 +899,32 @@ describe('Working-day', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": randomValueName + "chssfsdsg2",
+                            "name": randomValueName + "chssfsdswwg2",
                             "timeSlots": [
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
                                     "endTime": null
+                                }
+                            ]
+                        })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+            });
+            it('Patch provider working day / validation for parameter format / end time', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/working-days/' + WorkingDayId)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": randomValueName + "chssfsdfgdfdsg2",
+                            "timeSlots": [
+                                {
+                                    "centreId": ClinicIDForProvider,
+                                    "startTime": "1970-01-01T08:00:00.000Z",
+                                    "endTime": "1970-01-0T08:00:00.000Z"
                                 }
                             ]
                         })
@@ -890,5 +1043,82 @@ describe('Working-day', function () {
 
     });
 
+    describe("Patch after delete provider working day", function () {
+
+        describe('HTTP responce code - 200', function () {
+            it('Delete centre ID / Successful case', function (done) {
+                api.del('/centres/' + ClinicIDForProvider )
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+        });
+
+        describe('HTTP responce code - 404', function () {
+            it('Patch provider working day / Clinic don t exist', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/working-days/' + WorkingDayId)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": randomValueName + "chansdfsdge22",
+                            "timeSlots": [
+                                {
+                                    "centreId": ClinicIDForProvider,
+                                    "startTime": "1970-01-01T08:00:00.000Z",
+                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                }
+                            ]
+                        })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(404);
+                        done();
+                    });
+
+            });
+
+        })
+        
+        describe('HTTP responce code - 200', function () {
+            it('Delete not assigned centre  / Successful case', function (done) {
+                api.del('/centres/' + ClinicIDForProvider2 )
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+        });
+
+        describe('HTTP responce code - 200', function () {
+            it('Patch provider working day / The clinic ids is not assigned to provider', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/working-days/' + WorkingDayId)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": randomValueName + "chansdfsdge22",
+                            "timeSlots": [
+                                {
+                                    "centreId": ClinicIDForProvider2,
+                                    "startTime": "1970-01-01T08:00:00.000Z",
+                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                }
+                            ]
+                        })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(404);
+                        done();
+                    });
+
+            });
+
+        })
+
+    })
 
 })
