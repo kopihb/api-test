@@ -28,8 +28,14 @@ var dublicateData = "2018-01-01";
 var randomValueNameProvider = randomString(5); /*use for name*/
 var randomValueMailProvider = randomString(7); /*use for mail*/
 var randomValueProviderMailProvider = randomString(8); /*use for mail*/
-var   emailForProvidersProvider = randomValueProviderMailProvider + '@mail.com';
 
+
+var randomValueNameShedule = randomString(5); /*use for name*/
+var randomValueMailShedule = randomString(7); /*use for mail*/
+var randomValueProviderMailShedule = randomString(8); /*use for mail*/
+var   emailForProvidersProvider = randomValueProviderMailProvider + '@mail.com';
+var   emailForProvidersShedule = randomValueProviderMailShedule + '@mail.com';
+var WorkingDayId
 
 function randomString(len, charSet) {
     charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -65,7 +71,12 @@ var centreProvider = {
     confirmed: true
 }
 
-
+var centreShedule = {
+    name: randomValueNameShedule,
+    latitude: 0,
+    longitude: 0,
+    confirmed: true
+}
 var consumerObj = {
     email: randomValueMail + '@mail.com',
     name: randomValueName,
@@ -87,6 +98,20 @@ var consumerObjProvider = {
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
 }
+
+
+var consumerObjShedule = {
+    email: randomValueMailShedule + '@mail.com',
+    name: randomValueNameShedule,
+    phone: 'phone patch all',
+    receiveNotification: true,
+    dontSentAdv: true,
+    signedUp: true,
+    entityStart: '2020-03-03',
+    entityEnd: '2021-04-04'
+}
+
+
 module.exports={
     should,
     expect,
@@ -112,6 +137,10 @@ module.exports={
     ConsumerIDForProviderPatch,
     ProviderIdForPatchAnyChanges,
     emailForProvidersProvider,
-    consumerObjProvider
+    emailForProvidersShedule,
+    consumerObjProvider,
+    consumerObjShedule,
+    centreShedule,
+    randomValueNameShedule
 
 }

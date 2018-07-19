@@ -1,12 +1,12 @@
 
-var global = require('./global-variable');
+var global = require('../global-variable');
 var should = global.should;
 var expect = global.expect;
 var supertest = global.supertest ;
 var api = global.api;
 var addContext =  global.addContext;
 var token = global.token;
-var   emailForProviders = global.emailForProvidersProvider;
+var emailForProviders = global.emailForProvidersProvider;
 var centre = global.centreProvider;
 var consumerObj = global.consumerObjProvider;
 var ClinicIDForProvider = global.ClinicIDForProvider;
@@ -57,7 +57,7 @@ describe('PROVIDER', function () {
 
                         })
                         .end(function (err, res) {
-                            console.log(res.body);
+                               
                             expect(res.statusCode).to.equal(200);
                             expect(res.body).to.exist;
                             //expect(res.body).to.equal({});
@@ -79,7 +79,7 @@ describe('PROVIDER', function () {
 
                     })
                     .end(function (err, res) {
-                       // console.log(res.body);
+                       //    
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.exist;
                         //expect(res.body).to.equal({});
@@ -104,7 +104,7 @@ describe('PROVIDER', function () {
                             "entityEnd": "2021-04-04"
                         })
                         .end(function (err, res) {
-                            console.log(res.body);
+                               
                             expect(res.statusCode).to.equal(200);
                             expect(res.body).to.exist;
                             //expect(res.body).to.equal({});
@@ -129,7 +129,7 @@ describe('PROVIDER', function () {
                         "entityEnd": "2021-04-04"
                     })
                     .end(function (err, res) {
-                        //console.log(res.body);
+                        //   
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.exist;
                         //expect(res.body).to.equal({});
@@ -185,7 +185,7 @@ describe('PROVIDER', function () {
 
                     })
                     .end(function(err, res) {
-                        console.log(res.body);
+                           
                         expect(res.statusCode).to.equal(200);
                         ProviderIdForPatch = res.body.res.id;
                         done();
@@ -2678,7 +2678,7 @@ describe('PROVIDER', function () {
                     })
                     .end(function(err, res) {
                         expect(res.statusCode).to.equal(400);
-                        console.log(res.body);
+                           
                         done();
                     });
             });

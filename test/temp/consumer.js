@@ -1,4 +1,4 @@
-var global = require('./global-variable');
+var global = require('../global-variable');
 var should = global.should;
 var expect = global.expect;
 var supertest =global.supertest ;
@@ -34,7 +34,7 @@ describe('Version - 1.0.0 ' +
                 "entityEnd": "2021-04-04"
             })
             .end(function (err, res) {
-                console.log(res.body);
+                 
                 expect(res.statusCode).to.equal(200);
                 expect(res.body).to.exist;
                 //expect(res.body).to.equal({});
