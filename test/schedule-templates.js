@@ -18,6 +18,7 @@ var randomValueName = global.randomValueNameShedule;
 
 
 describe('Schedule-Templates', function () {
+    /*-------------------      Create auto data       ---------------------------------------------------------------------------------------------------- */
 
     describe('Create provider for auto test', function () {
         it('Create new centre/Successfull case + get ID for attachment to provider', function (done) {
@@ -113,8 +114,9 @@ describe('Schedule-Templates', function () {
         });
     });
 
-    describe('Get list provider schedule-templates', function () {
+    /*-------------------      Get List       ---------------------------------------------------------------------------------------------------- */
 
+    describe('Get list provider schedule-templates', function () {
 
         describe('HTTP responce code - 200', function () {
             it('Get list of provider days-off ', function (done) {
@@ -155,8 +157,6 @@ describe('Schedule-Templates', function () {
 
         });
 
-
-
         describe('HTTP responce code - 401', function () {
             it('Get list of provider days-off  / Unauthenticated', function (done) {
                 api.get('/providers/' + ProviderIdForPatch + '/schedule-templates')
@@ -181,13 +181,11 @@ describe('Schedule-Templates', function () {
                     });
 
             });
-
-
         });
-
-
-
     });
+
+
+    /*-------------------Create      ---------------------------------------------------------------------------------------------------- */
 
     describe('Create provider schedule template', function () {
         describe('HTTP responce code - 200', function () {
@@ -226,7 +224,7 @@ describe('Schedule-Templates', function () {
             });
 
 
-
+/*-------------------      schedule           ---------------------------------------------------------------------------------------------------- */
             it('Provider schedule generation / successful case', function (done) {
                 api.post('/providers/' + ProviderIdForPatch + '/schedule')
                     .set('Accept', 'aplication/json')
@@ -237,6 +235,67 @@ describe('Schedule-Templates', function () {
                     "endDate": "2018-03-01",
                     "anchorDate": "2018-03-01",
                     "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+ /*-------------------      schedule/time-slots           ---------------------------------------------------------------------------------------------------- */
+            it('Post provider schedule time slot / successful case', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "centreId": ClinicIDForProvider,
+                        "startTime": "2018-01-01T00:00:00.000Z",
+                        "endTime": "2018-01-01T01:00:00.000Z"
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+/*-------------------      schedule/discounts          ---------------------------------------------------------------------------------------------------- */
+            it('Create new provider discount /with consumerID', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/discounts')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 5,
+                        "personal": true,
+                        "consumerIds": [
+                            ConsumerIDForProvider
+                        ]
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Create new provider discount / No consumerId', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/discounts')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 7,
+                        "personal": false
 
                     })
                     .end(function (err, res) {
@@ -316,7 +375,7 @@ describe('Schedule-Templates', function () {
                         done();
                     })
             });
-
+            /*-------------------      schedule          ---------------------------------------------------------------------------------------------------- */
              it('Provider schedule generation / time slot conflicts', function (done) {
                  api.post('/providers/' + ProviderIdForPatch + '/schedule')
                     .set('Accept', 'aplication/json')
@@ -585,6 +644,317 @@ describe('Schedule-Templates', function () {
                     })
             });
 
+            /*-------------------      schedule/time-slots           ---------------------------------------------------------------------------------------------------- */
+            it('Post provider schedule time slot / time slot conflicts (the same date/time)', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "centreId": ClinicIDForProvider,
+                        "startTime": "2018-01-01T00:00:00.000Z",
+                        "endTime": "2018-01-01T01:00:00.000Z"
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Post provider schedule time slot / Start date/time must be less than end date/time', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "centreId": ClinicIDForProvider,
+                        "startTime": "2018-01-01T00:00:00.000Z",
+                        "endTime": "2018-01-01T00:00:00.000Z"
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Post provider schedule time slot / Dates are not the same', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "centreId": ClinicIDForProvider,
+                        "startTime": "2018-01-01T00:00:00.000Z",
+                        "endTime": "2018-01-02T00:00:00.000Z"
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Post provider schedule time slot / Invalid centre ID', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "centreId": ClinicIDForProvider+'fsdf',
+                        "startTime": "2018-01-01T00:00:00.000Z",
+                        "endTime": "2018-01-02T00:00:00.000Z"
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+            it('Post provider schedule time slot / must be 5 minutes x', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "centreId": ClinicIDForProvider,
+                        "startTime": "2018-01-03T04:02:00.000Z",
+                        "endTime": "2018-01-03T05:08:00.000Z"
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+            it('Post provider schedule time slot / validation for parameter format / start Time', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "centreId": ClinicIDForProvider,
+                        "startTime": "2018-01-3T04:02:00.000Z",
+                        "endTime": "2018-01-03T05:08:00.000Z"
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+            it('Post provider schedule time slot / validation for parameter format / end Time', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "centreId": ClinicIDForProvider,
+                        "startTime": "2018-01-3T04:02:00.000Z",
+                        "endTime": "2018-01-3T05:08:00.000Z"
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Post provider schedule time slot / validation for parameter type / start Time -> boolean', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "centreId": ClinicIDForProvider,
+                        "startTime": true,
+                        "endTime": "2018-01-3T05:08:00.000Z"
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+            it('Post provider schedule time slot / validation for parameter type / start Time -> number', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "centreId": ClinicIDForProvider,
+                        "startTime": 0,
+                        "endTime": "2018-01-3T05:08:00.000Z"
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+
+            it('Post provider schedule time slot / validation for parameter type / start Time -> null', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "centreId": ClinicIDForProvider,
+                        "startTime": null,
+                        "endTime": "2018-01-3T05:08:00.000Z"
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+            it('Post provider schedule time slot / validation for parameter type / end Time -> null', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "centreId": ClinicIDForProvider,
+                        "startTime": "2018-01-3T04:02:00.000Z",
+                        "endTime": null
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+            it('Post provider schedule time slot / validation for parameter type / end Time -> boolean', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "centreId": ClinicIDForProvider,
+                        "startTime": "2018-01-3T04:02:00.000Z",
+                        "endTime": true
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+            it('Post provider schedule time slot / validation for parameter type / end Time -> number', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "centreId": ClinicIDForProvider,
+                        "startTime": "2018-01-3T04:02:00.000Z",
+                        "endTime": 0
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            /*-------------------      schedule/discounts          ---------------------------------------------------------------------------------------------------- */
+
+            it('Create new provider discount/ time slot conflicts (the same date/time)', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/discounts')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T00:00:00.000Z",
+                        "percent": 1,
+                        "personal": true,
+                        "consumerIds": [
+                            ConsumerIDForProvider
+                        ]
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+            it('Create new provider discount/ Start date/time must be less than end date/time', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/discounts')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T00:00:00.000Z",
+                        "percent": 1,
+                        "personal": true,
+                        "consumerIds": [
+                            ConsumerIDForProvider
+                        ]
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+            it('Create new provider discount/ Start date/time must be less than end date/time', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/discounts')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-12-01T00:00:00.000Z",
+                        "endDate": "2018-13-01T23:59:59.999Z",
+                        "percent": 7,
+                        "personal": false
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
 
 
         });
@@ -605,7 +975,7 @@ describe('Schedule-Templates', function () {
                     })
             });
 
-
+            /*-------------------      schedule  ---------------------------------------------------------------------------------------------------- */
             it('Provider schedule generation / validation for parameter format / End date', function (done) {
                 api.post('/providers/' + ProviderIdForPatch + '/schedule')
                     .set('Accept', 'aplication/json')
@@ -624,8 +994,26 @@ describe('Schedule-Templates', function () {
                     })
             });
 
+            /*-------------------      schedule/time-slots           ---------------------------------------------------------------------------------------------------- */
+            it('Post provider schedule time slot / validation for parameter type / end Time -> number', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule/time-slots')
+                    .set('Accept', 'aplication/json')
+                    .send({
+
+                        "centreId": ClinicIDForProvider,
+                        "startTime": "2018-01-3T04:02:00.000Z",
+                        "endTime": "2018-01-3T04:02:00.000Z"
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(401);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
 
         });
+        /*-------------------      schedule---------------------------------------------------------------------------------------------------- */
         describe('HTTP responce code - 404', function () {
             it('Provider schedule generation / Not found scheduleTemplateId', function (done) {
                 api.post('/providers/' + ProviderIdForPatch + '/schedule')
@@ -644,8 +1032,29 @@ describe('Schedule-Templates', function () {
                     })
             });
 
+
+            // it('Post provider schedule time slot / Not found providerId', function (done) {
+            //     api.post('/providers/' + ProviderIdForPatch +'sdfioiojkl79nlkj' + '/schedule/time-slots')
+            //         .set('Accept', 'aplication/json')
+            //         .set('Authorization', 'Bearer ' + token)
+            //         .send({
+            //
+            //             "centreId": ClinicIDForProvider,
+            //             "startTime": "2018-01-01T00:00:00.000Z",
+            //             "endTime": "2018-01-01T01:00:00.000Z"
+            //
+            //         })
+            //         .end(function (err, res) {
+            //             expect(res.statusCode).to.equal(404);
+            //             expect(res.body).to.exist;
+            //             done();
+            //         })
+            // });
+
         });
     });
+
+    /*-------------------   Get List        ---------------------------------------------------------------------------------------------------- */
 
     describe('Get list provider schedule-templates object', function () {
         describe('HTTP responce code - 200', function () {});
@@ -653,6 +1062,8 @@ describe('Schedule-Templates', function () {
         describe('HTTP responce code - 401', function () {});
         describe('HTTP responce code - 404', function () {});
     });
+
+    /*-------------------     Patch         ---------------------------------------------------------------------------------------------------- */
 
     describe('Patch provider schedule template', function () {
         describe('HTTP responce code - 200', function () {
@@ -837,6 +1248,8 @@ describe('Schedule-Templates', function () {
 
         });
     });
+
+    /*-------------------      Delete  ---------------------------------------------------------------------------------------------------- */
 
     describe('Delete provider schedule template', function () {
         describe('HTTP responce code - 200', function () {
