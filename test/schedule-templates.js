@@ -368,10 +368,13 @@ describe('Schedule-Templates', function () {
 
         });
 
-        /* змінив на новий    */
+
         describe('HTTP responce code - 400', function () {
 
-            it('Patch provider schedule template object / change name parameter', function (done) {
+
+
+            /* новий    */
+            it('Patch provider schedule template object / Invalid id working days', function (done) {
                 api.patch('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -392,9 +395,97 @@ describe('Schedule-Templates', function () {
             });
 
 
+
+            /* новий    */
+            it('Patch provider schedule template object / validation for parameter type / "name"-> null', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name":null,
+                        "workingDayIds": [
+                            WorkingDayId
+                        ]
+                    })
+                    .end(function (err, res) {
+                        console.log(res.body);
+                        console.log(WorkingDayId);
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+
+                        done();
+                    })
+            });
+
+            /* новий    */
+            it('Patch provider schedule template object / validation for parameter type / "name"-> number', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name":0,
+                        "workingDayIds": [
+                            WorkingDayId
+                        ]
+                    })
+                    .end(function (err, res) {
+                        console.log(res.body);
+                        console.log(WorkingDayId);
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+
+                        done();
+                    })
+            });
+
+
+
+            /* новий    */
+            it('Patch provider schedule template object / validation for parameter type / "name"-> boolean', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name":true,
+                        "workingDayIds": [
+                            WorkingDayId
+                        ]
+                    })
+                    .end(function (err, res) {
+                        console.log(res.body);
+                        console.log(WorkingDayId);
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+
+                        done();
+                    })
+            });
+
         });
-        describe('HTTP responce code - 401', function () {});
-        describe('HTTP responce code - 404', function () {});
+        describe('HTTP responce code - 401', function () {
+            /* новий    */
+            it('Patch provider schedule template object / Unauthenticated', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        "name":randomValueName,
+                        "workingDayIds": [
+                            WorkingDayId
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(401);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+        });
+        describe('HTTP responce code - 404', function () {
+
+
+        });
     });
 
 
@@ -403,9 +494,29 @@ describe('Schedule-Templates', function () {
 
 
     describe('Delete provider schedule template', function () {
-        describe('HTTP responce code - 200', function () {});
+        describe('HTTP responce code - 200', function () {
+            it('Delete provider schedule template object / successful case', function (done) {
+                api.del('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .expect(200,done)
+            });
+        });
         describe('HTTP responce code - 400', function () {});
-        describe('HTTP responce code - 401', function () {});
-        describe('HTTP responce code - 404', function () {});
+        describe('HTTP responce code - 401', function () {
+            it('Delete provider schedule template object / successful case', function (done) {
+                api.del('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
+                    .set('Accept', 'application/json')
+                    .expect(401,done)
+            });
+        });
+        describe('HTTP responce code - 404', function () {
+            it('Delete provider schedule template object / successful case', function (done) {
+                api.del('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .expect(404,done)
+            });
+        });
     });
 })
