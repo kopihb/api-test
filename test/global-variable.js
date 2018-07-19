@@ -35,7 +35,8 @@ var randomValueMailShedule = randomString(7); /*use for mail*/
 var randomValueProviderMailShedule = randomString(8); /*use for mail*/
 var   emailForProvidersProvider = randomValueProviderMailProvider + '@mail.com';
 var   emailForProvidersShedule = randomValueProviderMailShedule + '@mail.com';
-var WorkingDayId
+var WorkingDayId = "";
+var ScheduleIdForProviders = "";
 
 function randomString(len, charSet) {
     charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -141,6 +142,8 @@ module.exports={
     consumerObjProvider,
     consumerObjShedule,
     centreShedule,
-    randomValueNameShedule
+    randomValueNameShedule,
+    WorkingDayId,
+    ScheduleIdForProviders
 
 }

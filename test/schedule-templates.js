@@ -12,8 +12,8 @@ var consumerObj = global.consumerObjShedule;
 var ClinicIDForProvider = global.ClinicIDForProvider;
 var ConsumerIDForProvider = global.ConsumerIDForProvider;
 var ProviderIdForPatch = global.ProviderIdForPatch;
-var WorkingDayId = "";
-var ScheduleIdForProviders = "";
+var WorkingDayId = global.WorkingDayId;
+var ScheduleIdForProviders = global.ScheduleIdForProviders;
 var randomValueName = global.randomValueNameShedule;
 
 
@@ -495,6 +495,7 @@ describe('Schedule-Templates', function () {
 
     describe('Delete provider schedule template', function () {
         describe('HTTP responce code - 200', function () {
+            /* новий    */
             it('Delete provider schedule template object / successful case', function (done) {
                 api.del('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
                     .set('Accept', 'application/json')
@@ -502,8 +503,9 @@ describe('Schedule-Templates', function () {
                     .expect(200,done)
             });
         });
-        describe('HTTP responce code - 400', function () {});
+
         describe('HTTP responce code - 401', function () {
+            /* новий    */
             it('Delete provider schedule template object / successful case', function (done) {
                 api.del('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
                     .set('Accept', 'application/json')
@@ -511,6 +513,7 @@ describe('Schedule-Templates', function () {
             });
         });
         describe('HTTP responce code - 404', function () {
+            /* новий    */
             it('Delete provider schedule template object / successful case', function (done) {
                 api.del('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
                     .set('Accept', 'application/json')
