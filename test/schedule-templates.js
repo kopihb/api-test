@@ -38,8 +38,6 @@ describe('Schedule-Templates', function () {
                     done();
                 })
         });
-
-
         it('Create new consumer/Successfull case + get ID for attachment to provider', function (done) {
             api.post('/consumers')
                 .set('Accept', 'aplication/json')
@@ -62,7 +60,6 @@ describe('Schedule-Templates', function () {
                 })
 
         });
-
         it('Create new Provider/ Successful case', function (done) {
             api.post('/providers')
                 .set('Accept', 'aplication/json')
@@ -92,7 +89,6 @@ describe('Schedule-Templates', function () {
                     done();
                 });
         });
-
         it('Create provider working day / successful case', function (done) {
             api.post('/providers/' + ProviderIdForPatch + '/working-days')
                 .set('Accept', 'aplication/json')
@@ -115,10 +111,7 @@ describe('Schedule-Templates', function () {
                 });
 
         });
-
-
-
-    })
+    });
 
     describe('Get list provider schedule-templates', function () {
 
@@ -135,6 +128,7 @@ describe('Schedule-Templates', function () {
                     });
             });
 
+
             it('Get list of provider days-off / Not found provider Id ', function (done) {
                 api.get('/providers/' + ConsumerIDForProvider + '/schedule-templates')
                     .set('Accept', 'aplication/json')
@@ -146,6 +140,19 @@ describe('Schedule-Templates', function () {
                     });
 
             });
+
+            it('Get provider schedule / successful case ', function (done) {
+                api.get('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.be.an('array');
+                        done();
+                    });
+
+            });
+
         });
 
 
@@ -163,6 +170,22 @@ describe('Schedule-Templates', function () {
 
 
         });
+
+        describe('HTTP responce code - 400', function () {
+            it('Get provider schedule / Invalid providerId', function (done) {
+                api.get('/providers/' + ProviderIdForPatch +'sdf'+ '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+
+            });
+
+
+        });
+
+
 
     });
 
@@ -201,6 +224,28 @@ describe('Schedule-Templates', function () {
                         done();
                     })
             });
+
+
+
+            it('Provider schedule generation / successful case', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                    "startDate": "2018-03-01",
+                    "endDate": "2018-03-01",
+                    "anchorDate": "2018-03-01",
+                    "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
         });
         describe('HTTP responce code - 400', function () {
             it('Create provider schedule template / Duplicate name', function (done) {
@@ -272,6 +317,276 @@ describe('Schedule-Templates', function () {
                     })
             });
 
+             it('Provider schedule generation / time slot conflicts', function (done) {
+                 api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-03-01",
+                        "endDate": "2018-03-01",
+                        "anchorDate": "2018-03-01",
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                         expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+             });
+
+            it('Provider schedule generation / validation for parameter type / start date -> number', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": 0,
+                        "endDate": "2018-03-07",
+                        "anchorDate": "2018-03-01",
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Provider schedule generation / validation for parameter type / start date -> null', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": null,
+                        "endDate": "2018-03-07",
+                        "anchorDate": "2018-03-01",
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Provider schedule generation / validation for parameter type / start date -> boolean', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": true,
+                        "endDate": "2018-03-07",
+                        "anchorDate": "2018-03-01",
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Provider schedule generation / validation for parameter type / end date -> boolean', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-03-07",
+                        "endDate": true,
+                        "anchorDate": "2018-03-01",
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Provider schedule generation / validation for parameter type / end date -> null', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-03-07",
+                        "endDate": null,
+                        "anchorDate": "2018-03-01",
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Provider schedule generation / validation for parameter type / end date -> number', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-03-07",
+                        "endDate": 0,
+                        "anchorDate": "2018-03-01",
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Provider schedule generation / validation for parameter type / end date -> number', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-03-07",
+                        "endDate": 0,
+                        "anchorDate": "2018-03-01",
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+            it('Provider schedule generation / validation for parameter type / "anchorDate" -> number', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-03-07",
+                        "endDate": "2018-03-09",
+                        "anchorDate": 0,
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Provider schedule generation / validation for parameter type / "anchorDate" -> null', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-03-07",
+                        "endDate": "2018-03-09",
+                        "anchorDate": null,
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Provider schedule generation / validation for parameter type / "anchorDate" -> boolean', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-03-07",
+                        "endDate": "2018-03-09",
+                        "anchorDate": true,
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Provider schedule generation / validation for parameter format / "anchorDate"', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-03-07",
+                        "endDate": "2018-03-09",
+                        "anchorDate": "2018-03-9",
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+            it('Provider schedule generation / validation for parameter format / Start date', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-03-0",
+                        "endDate": "2018-03-09",
+                        "anchorDate": "2018-03-9",
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Provider schedule generation / validation for parameter format / End date', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-03-0",
+                        "endDate": "2018-03-0",
+                        "anchorDate": "2018-03-9",
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+
         });
         describe('HTTP responce code - 401', function () {
             it('Create provider schedule template / Unauthenticated', function (done) {
@@ -289,8 +604,47 @@ describe('Schedule-Templates', function () {
                         done();
                     })
             });
+
+
+            it('Provider schedule generation / validation for parameter format / End date', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .send({
+
+                        "startDate": "2018-03-0",
+                        "endDate": "2018-03-0",
+                        "anchorDate": "2018-03-9",
+                        "scheduleTemplateId": ScheduleIdForProviders
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(401);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
         });
-        describe('HTTP responce code - 404', function () {});
+        describe('HTTP responce code - 404', function () {
+            it('Provider schedule generation / Not found scheduleTemplateId', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "startDate": "2018-03-03",
+                        "endDate": "2018-03-04",
+                        "anchorDate": "2018-03-01",
+                        "scheduleTemplateId": "5b4dd36f4e1be3000ff0030f"
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(404);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+        });
     });
 
     describe('Get list provider schedule-templates object', function () {
@@ -299,10 +653,6 @@ describe('Schedule-Templates', function () {
         describe('HTTP responce code - 401', function () {});
         describe('HTTP responce code - 404', function () {});
     });
-
-
-
-
 
     describe('Patch provider schedule template', function () {
         describe('HTTP responce code - 200', function () {
@@ -487,11 +837,6 @@ describe('Schedule-Templates', function () {
 
         });
     });
-
-
-
-
-
 
     describe('Delete provider schedule template', function () {
         describe('HTTP responce code - 200', function () {
