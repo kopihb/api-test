@@ -936,7 +936,7 @@ describe('Schedule-Templates', function () {
             });
 
 
-            it('Create new provider discount/ Start date/time must be less than end date/time', function (done) {
+            it('Post new provider discount/ Invalid date - MONTH', function (done) {
                 api.post('/providers/' + ProviderIdForPatch + '/discounts')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
@@ -954,6 +954,161 @@ describe('Schedule-Templates', function () {
                         done();
                     })
             });
+
+
+
+            it('Post new provider discount /Invalid time format', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/discounts')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-11-01T00:00:00.000Z",
+                        "endDate": "2018-12-01T23:59:61.999Z",
+                        "percent": 7,
+                        "personal": false
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Create new provider discount/Invalid discount format(min value)', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/discounts')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-11-01T00:00:00.000Z",
+                        "endDate": "2018-12-01T23:59:59.999Z",
+                        "percent":0,
+                        "personal": false
+
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+            it('Create new provider discount/Invalid discount format(max value)', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/discounts')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-11-01T00:00:00.000Z",
+                        "endDate": "2018-12-01T23:59:59.999Z",
+                        "percent":101,
+                        "personal": false
+
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+
+            it('Create new provider discount/No ConsumerId mentioned if "personal:true"', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/discounts')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-11-01T00:00:00.000Z",
+                        "endDate": "2018-12-01T23:59:59.999Z",
+                        "percent":2,
+                        "personal": true
+
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+
+            it('Create new provider discount/ ConsumerId is incorrect', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/discounts')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 5,
+                        "personal": true,
+                        "consumerIds": [
+                            ConsumerIDForProvider+ '1'
+                        ]
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+            it('Create new provider discount/ ConsumerId is invalid', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/discounts')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 5,
+                        "personal": true,
+                        "consumerIds": [
+                            "llllnbjbjbjbbkb"
+                        ]
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
+
+            it('Create new provider discount/ ConsumerIds are duplicated', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/discounts')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 5,
+                        "personal": true,
+                        "consumerIds": [
+                            ConsumerIDForProvider,
+                            ConsumerIDForProvider
+                        ]
+
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
 
 
 
