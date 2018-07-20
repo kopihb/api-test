@@ -1,33 +1,20 @@
+
 var global = require('./global-variable');
 var should = global.should;
 var expect = global.expect;
-var supertest =global.supertest ;
+var supertest = global.supertest ;
 var api = global.api;
 var addContext =  global.addContext;
 var token = global.token;
-
-
-var centre = global.centreWorkingDay;
+var randomValueName = global.randomValueNameWorkingDay; /*use for name*/
 var emailForProviders = global.emailForProvidersWorkingDay;
+var centre = global.centreWorkingDay;
 var consumerObj = global.consumerObjWorkingDay;
-var ClinicIDForProvider = global.ClinicIDForProvider;
-var ConsumerIDForProvider = global.ConsumerIDForProvider;
-var ProviderIdForPatch = global.ProviderIdForPatch;
-
-var WorkingDayId = global.WorkingDayId;
-var ClinicIDForProvider2 = global.ClinicIDForProvider2;
-
-
-// var randomValueName = randomString(5); /*use for name*/
-// var randomValueMail = randomString(7); /*use for mail*/
-// var randomValueProviderMail = randomString(8); /*use for mail*/
-// var emailForProviders = randomValueProviderMail + '@mail.com';
-// var dublicateData = "2018-01-01";
-/*End create random value*/
-
-
-//var randomValueMail = randomString(7); /*use for mail*/
-
+var ClinicIDForProvider = global.ClinicIDForProviderWorkingDay;
+var ConsumerIDForProvider = global.ConsumerIDForProviderWorkingDay;
+var ProviderIdForPatch = global.ProviderIdForPatchWorkingDay;
+var WorkingDayId = global.WorkingDayIdWorkingDay;
+var ClinicIDForProvider2 = global.ClinicIDForProvider2WorkingDay;
 
 
 describe('Working-day', function () {
@@ -45,7 +32,6 @@ describe('Working-day', function () {
 
                 })
                 .end(function (err, res) {
-                    console.log(res.body);
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.exist;
                     ClinicIDForProvider= res.body.res.id;
@@ -53,7 +39,7 @@ describe('Working-day', function () {
                 })
         });
 
-        it('Create new centre/Successfull case + get ID for not attachment to provider', function (done) {
+        it('Create new centre/Successfull case + get ID for attachment to provider', function (done) {
             api.post('/centres')
                 .set('Accept', 'aplication/json')
                 .set('Authorization', 'Bearer ' + token)
@@ -186,7 +172,6 @@ describe('Working-day', function () {
                             ]
                         })
                     .end(function(err, res) {
-                        console.log(res.body);
                         expect(res.statusCode).to.equal(200);
                         WorkingDayId = res.body.res._id;
                         done();

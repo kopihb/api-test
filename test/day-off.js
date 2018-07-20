@@ -5,14 +5,21 @@ var supertest =global.supertest ;
 var api = global.api;
 var addContext =  global.addContext;
 var token = global.token;
+
+
+
 var centre = global.centreDayOff;
-var emailForProviders = global.emailForProviders;
+var emailForProviders = global.emailForProvidersDayOff;
 var dublicateData = global.dublicateData;
-var consumerObj = global.consumerObj;
-var ClinicIDForProvider = global.ClinicIDForProvider;
-var ConsumerIDForProvider = global.ConsumerIDForProvider;
-var ProviderIdForPatch = global.ProviderIdForPatch;
-var DayOffId = global.DayOffId;
+var consumerObj = global.consumerObjDayOff;
+var DayOffId = global.DayOffIdDayOff;
+
+
+var ClinicIDForProvider = global.ClinicIDForProviderDayOff;
+var ConsumerIDForProvider = global.ConsumerIDForProviderDayOff;
+var ProviderIdForPatch = global.ProviderIdForPatchDayOff;
+
+
 
 
 
