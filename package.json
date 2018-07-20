@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha test/*.js --require babel-register --reporter spec || exit 0"
+    "test": "mocha --timeout 10000"
   },
   "author": "",
   "license": "ISC",
