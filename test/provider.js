@@ -107,8 +107,7 @@ describe('PROVIDER', function () {
                                
                             expect(res.statusCode).to.equal(200);
                             expect(res.body).to.exist;
-                            //expect(res.body).to.equal({});
-                            //expect(res.body.res.name).to.equal("namex");
+
                             ConsumerIDForProvider = res.body.res.id;
                             done();
                         })
@@ -132,8 +131,7 @@ describe('PROVIDER', function () {
                         //   
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.exist;
-                        //expect(res.body).to.equal({});
-                        //expect(res.body.res.name).to.equal("namex");
+
                         ConsumerIDForProviderPatch = res.body.res.id;
                         done();
                     })
