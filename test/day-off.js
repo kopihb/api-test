@@ -1,63 +1,18 @@
-var should = require('chai').should(),
-    expect = require('chai').expect,
-    supertest = require('supertest'),
-    api = supertest('http://159.100.241.121:5002');
-const addContext = require('mochawesome/addContext');
-
-var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzIwNzQwMDUsImV4cCI6MTU2MzYxMDAwNSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoiYW55UGF0Y2hSbzJqTENhY0BtYWlsLmNvbSIsInJvbGVzIjpbIlNVUEVSX0FETUlOIiwiU1VQRVJfQURNSU4iXX0.5-ofOLZvvmMUyummmyYgqazQqafPeEnJEnQJIEWeosM';
-/*Start create random value*/
-function randomString(len, charSet) {
-    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var randomString = '';
-    for (var i = 0; i < len; i++) {
-        var randomPoz = Math.floor(Math.random() * charSet.length);
-        randomString += charSet.substring(randomPoz,randomPoz+1);
-    }
-    return randomString;
-}
-
-
-var randomValueName = randomString(5); /*use for name*/
-
-
-
-
-var randomValueName = randomString(5); /*use for name*/
-var randomValueMail = randomString(7); /*use for mail*/
-var randomValueProviderMail = randomString(8); /*use for mail*/
-var emailForProviders = randomValueProviderMail + '@mail.com';
-var dublicateData = "2018-01-01";
-/*End create random value*/
-
-
-//var randomValueMail = randomString(7); /*use for mail*/
-/*End create random value*/
-
-
-/*Test data - */
-var centre = {
-    name: randomValueName,
-    latitude: 0,
-    longitude: 0,
-    confirmed: true
-}
-var consumerObj = {
-    email: randomValueMail + '@mail.com',
-    name: randomValueName,
-    phone: 'phone patch all',
-    receiveNotification: true,
-    dontSentAdv: true,
-    signedUp: true,
-    entityStart: '2020-03-03',
-    entityEnd: '2021-04-04'
-}
-
-/*End test data - centre and consumer*/
-
-var ClinicIDForProvider = "";
-var ConsumerIDForProvider = "";
-var ProviderIdForPatch = "";
-var DayOffId = "";
+var global = require('./global-variable');
+var should = global.should;
+var expect = global.expect;
+var supertest =global.supertest ;
+var api = global.api;
+var addContext =  global.addContext;
+var token = global.token;
+var centre = global.centreDayOff;
+var emailForProviders = global.emailForProviders;
+var dublicateData = global.dublicateData;
+var consumerObj = global.consumerObj;
+var ClinicIDForProvider = global.ClinicIDForProvider;
+var ConsumerIDForProvider = global.ConsumerIDForProvider;
+var ProviderIdForPatch = global.ProviderIdForPatch;
+var DayOffId = global.DayOffId;
 
 
 
