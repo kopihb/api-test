@@ -42,10 +42,10 @@ describe('PROVIDER', function () {
                         done();
                     });
 
-            });
+            }).timeout(40000 );
 
 
-                it('Create new centre/Successfull case + get ID for attachment to provider', function (done) {
+            it('Create new centre/Successfull case + get ID for attachment to provider', function (done) {
                     api.post('/centres')
                         .set('Accept', 'aplication/json')
                         .set('Authorization', 'Bearer ' + token)
@@ -57,11 +57,8 @@ describe('PROVIDER', function () {
 
                         })
                         .end(function (err, res) {
-                               
                             expect(res.statusCode).to.equal(200);
                             expect(res.body).to.exist;
-                            //expect(res.body).to.equal({});
-                            //expect(res.body.res.name).to.equal("namex");
                             ClinicIDForProvider= res.body.res.id;
                             done();
                         })
@@ -79,11 +76,8 @@ describe('PROVIDER', function () {
 
                     })
                     .end(function (err, res) {
-                       //    
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.exist;
-                        //expect(res.body).to.equal({});
-                        //expect(res.body.res.name).to.equal("namex");
                         ClinicIDForProviderPatch= res.body.res.id;
                         done();
                     })
@@ -154,7 +148,7 @@ describe('PROVIDER', function () {
                     done();
                 });
 
-        });
+        }).timeout(40000 );
 
     })
 

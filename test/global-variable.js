@@ -6,7 +6,9 @@ var supertest = require('supertest');
 var api = supertest('http://159.100.241.121:5002');
 const addContext = require('mochawesome/addContext');
 /*-----------------------------------Token---------------------------------------- */
-var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzIwNzQwMDUsImV4cCI6MTU2MzYxMDAwNSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoiYW55UGF0Y2hSbzJqTENhY0BtYWlsLmNvbSIsInJvbGVzIjpbIlNVUEVSX0FETUlOIiwiU1VQRVJfQURNSU4iXX0.5-ofOLZvvmMUyummmyYgqazQqafPeEnJEnQJIEWeosM';
+var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzIwNzQwMDUsImV4cCI6M' +
+    'TU2MzYxMDAwNSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoiYW55UGF0Y2hSbzJqTENhY' +
+    '0BtYWlsLmNvbSIsInJvbGVzIjpbIlNVUEVSX0FETUlOIiwiU1VQRVJfQURNSU4iXX0.5-ofOLZvvmMUyummmyYgqazQqafPeEnJEnQJIEWeosM';
 
 /*---------------------------------Clinic---------------------------- */
 
@@ -22,6 +24,7 @@ var ConsumerIDForProviderPatch = "";
 var ProviderIdForPatch = "";
 var DayOffId = "";
 var ProviderIdForPatchAnyChanges = "";
+var ProviderPromotionID = "";
 
 /*---------------------------------DayOff---------------------------- */
 
@@ -33,6 +36,10 @@ var ConsumerIDForProviderWorkingDay = "";
 var ProviderIdForPatchWorkingDay = "";
 var WorkingDayIdWorkingDay = "";
 var ClinicIDForProvider2WorkingDay = "";
+
+
+/*---------------------------------Promotion---------------------------- */
+var ServiceId = "";
 
 /*---------------------------------Clinics---------------------------- */
 var randomValueName = randomString(5); /*use for name*/
@@ -82,6 +89,14 @@ function randomString(len, charSet) {
 /*---------------------------------Center obj---------------------------- */
 var centreCLinics = {
     name: randomValueName,
+    latitude: 0,
+    longitude: 0,
+    confirmed: true
+}
+
+/*---------------------------------Center obj for Promotion---------------------------- */
+var centreCLinicsPromo = {
+    name: "Promo" + randomValueName,
     latitude: 0,
     longitude: 0,
     confirmed: true
@@ -175,6 +190,19 @@ var consumerObjWorkingDay = {
     entityEnd: '2021-04-04'
 }
 
+/*---------------------------------Consumer obj for promotions---------------------------- */
+
+var consumerObjPromotions = {
+    email: "promo"+ randomValueMailWorkingDay + '@mail.com',
+    name: "promo"+ randomValueNameWorkingDay,
+    phone: 'phone patch all',
+    receiveNotification: true,
+    dontSentAdv: true,
+    signedUp: true,
+    entityStart: '2020-03-03',
+    entityEnd: '2021-04-04'
+}
+
 
 
 module.exports={
@@ -223,6 +251,9 @@ module.exports={
 ConsumerIDForProviderWorkingDay,
 ProviderIdForPatchWorkingDay ,
 WorkingDayIdWorkingDay ,
-ClinicIDForProvider2WorkingDay
+ClinicIDForProvider2WorkingDay,
+    consumerObjPromotions,
+    centreCLinicsPromo,
+    ServiceId
 
 }
