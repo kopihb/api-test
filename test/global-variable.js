@@ -14,6 +14,7 @@ var ClinicID = "";
 var ClinicName = "";
 var ConsumerID = "";
 var ClinicIDForProvider = "";
+var ClinicIDForProvider2 = "";
 var ConsumerIDForProvider = "";
 var ProviderIdForPatch = "";
 var DayOffId = "";
@@ -22,19 +23,20 @@ var ConsumerIDForProviderPatch = "";
 var ProviderIdForPatchAnyChanges = "";
 var randomValueName = randomString(5); /*use for name*/
 var randomValueMail = randomString(7); /*use for mail*/
-var randomValueProviderMail = randomString(8); /*use for mail*/
+var randomValueProviderMail = randomString(4); /*use for mail*/
 var emailForProviders = randomValueProviderMail + '@mail.com';
 var dublicateData = "2018-01-01";
 var randomValueNameProvider = randomString(5); /*use for name*/
-var randomValueMailProvider = randomString(7); /*use for mail*/
-var randomValueProviderMailProvider = randomString(8); /*use for mail*/
+var randomValueMailProvider = randomString(3); /*use for mail*/
+var randomValueProviderMailProvider = randomString(3); /*use for mail*/
 
 
 var randomValueNameShedule = randomString(5); /*use for name*/
-var randomValueMailShedule = randomString(7); /*use for mail*/
+var randomValueMailShedule = randomString(3); /*use for mail*/
 var randomValueProviderMailShedule = randomString(8); /*use for mail*/
 var   emailForProvidersProvider = randomValueProviderMailProvider + '@mail.com';
 var   emailForProvidersShedule = randomValueProviderMailShedule + '@mail.com';
+var   emailForProvidersWorkingDay = "working" + randomValueProviderMailShedule + '@mail.com';
 var WorkingDayId = "";
 var ScheduleIdForProviders = "";
 
@@ -60,6 +62,13 @@ var centreCLinics = {
 
 var centreDayOff = {
     name: randomValueName,
+    latitude: 0,
+    longitude: 0,
+    confirmed: true
+}
+
+var centreWorkingDay = {
+    name: "working" + randomValueName,
     latitude: 0,
     longitude: 0,
     confirmed: true
@@ -112,6 +121,17 @@ var consumerObjShedule = {
     entityEnd: '2021-04-04'
 }
 
+var consumerObjWorkingDay = {
+    email: "workcsmail" + randomValueMail + '@mail.com',
+    name: "workcs" + randomValueName,
+    phone: 'phone patch all',
+    receiveNotification: true,
+    dontSentAdv: true,
+    signedUp: true,
+    entityStart: '2020-03-03',
+    entityEnd: '2021-04-04'
+}
+
 
 module.exports={
     should,
@@ -144,6 +164,10 @@ module.exports={
     centreShedule,
     randomValueNameShedule,
     WorkingDayId,
-    ScheduleIdForProviders
+    ScheduleIdForProviders,
+    centreWorkingDay,
+    consumerObjWorkingDay,
+    ClinicIDForProvider2,
+    emailForProvidersWorkingDay
 
 }
