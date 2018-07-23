@@ -1235,7 +1235,6 @@ describe('Provider  promotion', function () {
                         ]
                     })
                     .end(function (err, res) {
-                        console.log(res.body);
                         expect(res.statusCode).to.equal(400);
                         expect(res.body).to.exist;
                         done();
@@ -1270,6 +1269,101 @@ describe('Provider  promotion', function () {
         });
         describe('HTTP responce code - 404', function () {  });
     });
+
+
+    describe('Get lis provider promotion object', function () {
+        describe('HTTP responce code - 200', function () {
+            it('Get provider promotion object / successful case', function (done) {
+                api.get('/providers/' + ProviderIdForPatch + '/promotions/' + ProviderPromotionID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+            it('Get provider promotion object / No Auth', function (done) {
+                api.get('/providers/' + ProviderIdForPatch + '/promotions/' + ProviderPromotionID)
+                    .set('Accept', 'aplication/json')
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+
+        });
+        describe('HTTP responce code - 400', function () {
+            it('Get provider promotion object / Invalid providerId', function (done) {
+                api.get('/providers/' + "invalid" + ProviderIdForPatch + '/promotions/' + ProviderPromotionID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+            });
+            it('Get provider promotion object / Invalid promotionId', function (done) {
+                api.get('/providers/' + ProviderIdForPatch + '/promotions/' + "invalid" + ProviderPromotionID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+            });
+        });
+        describe('HTTP responce code - 404', function () {
+            it('Get provider promotion object / Not found provider ID', function (done) {
+                api.get('/providers/' + ProviderIdForPatch + '/promotions/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(404);
+                        done();
+                    });
+            });
+        });
+    });
+
+
+    describe('Delete  provider promotion object', function () {
+        describe('HTTP responce code - 200', function () {
+            it('Delete provider promotion object / successful case', function (done) {
+                api.del('/providers/' + ProviderIdForPatch + '/promotions/' + ProviderPromotionID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+            });
+        });
+        describe('HTTP responce code - 400', function () {  });
+        describe('HTTP responce code - 401', function () {
+            it('Delete provider promotion object / Unauthenticated', function (done) {
+                api.del('/providers/' + ProviderIdForPatch + '/promotions/' + ProviderPromotionID)
+                    .set('Accept', 'aplication/json')
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(401);
+                        done();
+                    });
+            });
+        });
+        describe('HTTP responce code - 404', function () {
+            it('Delete provider promotion object / Unauthenticated', function (done) {
+                api.del('/providers/' + ProviderIdForPatch + '/promotions/' + ProviderPromotionID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        console.log(res.body);
+                        expect(res.statusCode).to.equal(404);
+                        done();
+                    });
+            });
+
+        });
+    });
+
 
 
 });
