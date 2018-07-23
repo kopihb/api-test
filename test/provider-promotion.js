@@ -1355,7 +1355,6 @@ describe('Provider  promotion', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .end(function(err, res) {
-                        console.log(res.body);
                         expect(res.statusCode).to.equal(404);
                         done();
                     });
