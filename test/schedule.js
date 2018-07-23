@@ -146,8 +146,10 @@ describe('Schedule', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .end(function(err, res) {
+
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.be.an('array');
+                        console.log(ProviderIdForPatch);
                         done();
                     });
 

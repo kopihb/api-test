@@ -15,8 +15,11 @@ var ProviderIdForPatch = global.ProviderIdForPatch;
 var WorkingDayId = global.WorkingDayId;
 var ScheduleIdForProviders = global.ScheduleIdForProviders;
 var randomValueName = global.randomValueNameShedule;
-
-
+var ScheduleIdForProviders2 = '';
+var ProviderIdForPatch2 = '';
+var WorkingDayId2 = '';
+var WorkingDayId3 = '';
+var WorkingDayId4 = '';
 describe('Schedule-Templates', function () {
     /*-------------------      Create auto data       ---------------------------------------------------------------------------------------------------- */
 
@@ -90,6 +93,40 @@ describe('Schedule-Templates', function () {
                     done();
                 });
         });
+
+
+        it('Create new Provider/ Successful case FOR NEW', function (done) {
+            api.post('/providers')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send({
+
+                    "email": emailForProviders+'er',
+                    "waitingSlots": 0,
+                    "instantBooking": true,
+                    "bookingConfirmation": true,
+                    "sponsored": true,
+                    "minScheduleStep": 7,
+                    "defaultCentreId": ClinicIDForProvider,
+                    "centreIds": [
+                        ClinicIDForProvider
+                    ],
+                    "instantBookingConsumerIds": [
+                        ConsumerIDForProvider
+                    ],
+                    "entityStart": "2018-02-01",
+                    "entityEnd": "2018-02-01"
+
+                })
+                .end(function(err, res) {
+                    expect(res.statusCode).to.equal(200);
+                    ProviderIdForPatch2 = res.body.res.id;
+                    done();
+                });
+        });
+
+
+
         it('Create provider working day / successful case', function (done) {
             api.post('/providers/' + ProviderIdForPatch + '/working-days')
                 .set('Accept', 'aplication/json')
@@ -111,6 +148,86 @@ describe('Schedule-Templates', function () {
                     done();
                 });
 
+        });
+
+        it('Create provider working day / successful case FOR NEW', function (done) {
+            api.post('/providers/' + ProviderIdForPatch2 + '/working-days')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send(
+                    {
+                        "name": randomValueName+'sd',
+                        "timeSlots": [
+                            {
+                                "centreId": ClinicIDForProvider,
+                                "startTime": "1970-01-01T08:00:00.000Z",
+                                "endTime": "1970-01-01T16:00:00.000Z"
+                            }
+                        ]
+                    })
+                .end(function(err, res) {
+                    expect(res.statusCode).to.equal(200);
+                    WorkingDayId4 = res.body.res._id;
+                    done();
+                });
+
+        });
+        it('Create provider working day / CHANGE', function (done) {
+            api.post('/providers/' + ProviderIdForPatch + '/working-days')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send(
+                    {
+                        "name": randomValueName+'22',
+                        "timeSlots": [
+                            {
+                                "centreId": ClinicIDForProvider,
+                                "startTime": "1970-01-01T08:00:00.000Z",
+                                "endTime": "1970-01-01T16:00:00.000Z"
+                            }
+                        ]
+                    })
+                .end(function(err, res) {
+                    expect(res.statusCode).to.equal(200);
+                    WorkingDayId2 = res.body.res._id;
+                    done();
+                });
+
+        });
+
+
+        it('Create provider working day / FOR DELETE', function (done) {
+            api.post('/providers/' + ProviderIdForPatch + '/working-days')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send(
+                    {
+                        "name": randomValueName+'322',
+                        "timeSlots": [
+                            {
+                                "centreId": ClinicIDForProvider,
+                                "startTime": "1970-01-01T08:00:00.000Z",
+                                "endTime": "1970-01-01T16:00:00.000Z"
+                            }
+                        ]
+                    })
+                .end(function(err, res) {
+                    expect(res.statusCode).to.equal(200);
+                    WorkingDayId3 = res.body.res._id;
+                    done();
+                });
+
+        });
+
+
+        it('Delete provider working day / Successful case', function (done) {
+            api.del('/providers/' + ProviderIdForPatch + '/working-days/' + WorkingDayId3 )
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .end(function(err, res) {
+                    expect(res.statusCode).to.equal(200);
+                    done();
+                });
         });
     });
 });
@@ -184,6 +301,32 @@ describe('Schedule-Templates', function () {
                         done();
                     })
             });
+
+
+            it('Create provider schedule template FOR DELETE', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule-templates')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name":randomValueName+'dsfsd',
+                        "workingDayIds": [
+                            WorkingDayId
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.exist;
+                        ScheduleIdForProviders2 = res.body.res.id;
+                        done();
+                    })
+            });
+            it('Delete provider schedule template object DELETE', function (done) {
+                api.del('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders2)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .expect(200,done)
+            });
+
             it('Create provider schedule template / change name', function (done) {
                 api.post('/providers/' + ProviderIdForPatch + '/schedule-templates')
                     .set('Accept', 'aplication/json')
@@ -301,10 +444,64 @@ describe('Schedule-Templates', function () {
     /*-------------------   Get List        ---------------------------------------------------------------------------------------------------- */
 
     describe('Get list provider schedule-templates object', function () {
-        describe('HTTP responce code - 200', function () {});
-        describe('HTTP responce code - 400', function () {});
-        describe('HTTP responce code - 401', function () {});
-        describe('HTTP responce code - 404', function () {});
+        describe('HTTP responce code - 200', function () {
+            it('Get provider schedule template object / successful case', function (done) {
+                api.get('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+
+            });
+        });
+        describe('HTTP responce code - 400', function () {
+            it('Get provider schedule template object / Invalid providerId', function (done) {
+                api.get('/providers/' + ProviderIdForPatch+'sdfsdf' + '/schedule-templates/' + ScheduleIdForProviders)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+
+            });
+            it('Get provider schedule template object / Invalid scheduleTemplateId', function (done) {
+                api.get('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders+'sdfsdf')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+
+            });
+        });
+        describe('HTTP responce code - 401', function () {
+            it('Get provider schedule template object / successful case', function (done) {
+                api.get('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
+                    .set('Accept', 'aplication/json')
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(401);
+                        done();
+                    });
+
+            });
+        });
+        describe('HTTP responce code - 404', function () {
+            it('Get provider schedule template object / Not found scheduleTemplateId', function (done) {
+                api.get('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders2)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(404);
+                        done();
+                    });
+
+            });
+        });
     });
 
     /*-------------------     Patch         ---------------------------------------------------------------------------------------------------- */
@@ -341,6 +538,24 @@ describe('Schedule-Templates', function () {
                     .end(function (err, res) {
                         console.log(res.body);
                         console.log(WorkingDayId);
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.exist;
+
+                        done();
+                    })
+            });
+
+            it('Patch provider schedule template object / change working day ID', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name":randomValueName,
+                        "workingDayIds": [
+                            WorkingDayId2
+                        ]
+                    })
+                    .end(function (err, res) {
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.exist;
 
@@ -446,8 +661,38 @@ describe('Schedule-Templates', function () {
                         done();
                     })
             });
-
-        });
+            it('Patch provider schedule template object / Working days is assigned to antoher provider', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name":randomValueName+'fds',
+                        "workingDayIds": [
+                            WorkingDayId4
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Patch provider schedule template object / deleted working day ', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name":randomValueName+'fds',
+                        "workingDayIds": [
+                            WorkingDayId3
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
         describe('HTTP responce code - 401', function () {
             /* новий    */
             it('Patch provider schedule template object / Unauthenticated', function (done) {
@@ -470,6 +715,23 @@ describe('Schedule-Templates', function () {
         });
         describe('HTTP responce code - 404', function () {
 
+            it('Patch provider schedule template object / for deleted schedule template', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders2)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name":randomValueName,
+                        "workingDayIds": [
+                            WorkingDayId2
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(404);
+                        expect(res.body).to.exist;
+
+                        done();
+                    })
+            });
 
         });
     });
@@ -504,5 +766,6 @@ describe('Schedule-Templates', function () {
                     .expect(404,done)
             });
         });
+    });
     });
     });
