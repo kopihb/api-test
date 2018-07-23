@@ -62,6 +62,11 @@ var ScheduleIdForProviders = "";
 var ScheduleIdForProvidersForTimeSlot = "";
 
 /*---------------------------------Shedules---------------------------- */
+var ScheduleIdForProviders2 = '';
+var ProviderIdForPatch2 = '';
+var WorkingDayId2 = '';
+var WorkingDayId3 = '';
+var WorkingDayId4 = '';
 var randomValueNameShedule = randomString(4); /*use for name*/
 var randomValueMailShedule = randomString(5); /*use for mail*/
 var randomValueProviderMailShedule = randomString(3); /*use for mail*/
@@ -84,7 +89,8 @@ var ScheduleIdForProvidersOne = "";
 
 
 /*---------------------------------Provider Discount---------------------------- */
-
+var DiscountId = '';
+var DiscountId2 = '';
 var randomValueNameDiscount = randomString(6); /*use for name*/
 var randomValueMailDiscount = randomString(5); /*use for mail*/
 var randomValueProviderMailDiscount = randomString(4); /*use for mail*/
@@ -104,7 +110,9 @@ var randomValueNameWorkingDay = randomString(3); /*use for name*/
 var randomValueMailWorkingDay = randomString(7); /*use for mail*/
 var randomValueProviderMailWorkingDay = randomString(4); /*use for mail*/
 var emailForProvidersWorkingDay = randomValueProviderMailWorkingDay + '@mail.com';
-
+/*---------------------------------Time slots---------------------------- */
+var TimeSlotsID = "";
+var CenterForTime = '';
 /*---------------------------------Function For Random---------------------------- */
 function randomString(len, charSet) {
     charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -367,6 +375,15 @@ ClinicIDForProvider2WorkingDay,
     ProviderIdForPatchForTimeSlot,
     ScheduleIdForProvidersForTimeSlot,
     Invalidtoken,
-    ServiceIdForChangePatch
+    ServiceIdForChangePatch,
+    ScheduleIdForProviders2,
+ProviderIdForPatch2,
+WorkingDayId2,
+WorkingDayId3,
+WorkingDayId4,
+TimeSlotsID,
+CenterForTime,
+  DiscountId,
+DiscountId2
 
 }

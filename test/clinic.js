@@ -52,8 +52,6 @@ describe('Version - 1.0.0 ' +
                 
                 expect(res.statusCode).to.equal(200);
                 expect(res.body).to.exist;
-                //expect(res.body).to.equal({});
-                //expect(res.body.res.name).to.equal("namex");
                 ClinicName = res.body.res.name;
                 done();
             })

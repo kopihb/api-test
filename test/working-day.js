@@ -680,7 +680,6 @@ describe('Working-day', function () {
                             ]
                         })
                     .end(function (err, res) {
-                        console.log(res.body);
                         expect(res.statusCode).to.equal(400);
                         done();
                     });

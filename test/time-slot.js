@@ -16,8 +16,8 @@ var ClinicIDForProvider = global.ClinicIDForProviderForTimeSlot;
 var ConsumerIDForProvider = global.ConsumerIDForProviderForTimeSlot;
 var ProviderIdForPatch = global.ProviderIdForPatchForTimeSlot;
 var WorkingDayId = global.WorkingDayId;
-var TimeSlotsID = "";
-var CenterForTime = '';
+var TimeSlotsID = global.TimeSlotsID;
+var CenterForTime = global.CenterForTime;
 var randomValueName = global.randomValueNameSheduleTimeSlot;
 
 describe('Schedule Time Slot', function () {
@@ -131,7 +131,7 @@ describe('Schedule Time Slot', function () {
                 .end(function (err, res) {
                     expect(res.statusCode).to.equal(200);
                     TimeSlotsID = res.body.res._id;
-                    console.log (res.body);
+
                     CenterForTime = res.body.centreId;
                     done();
                 })
@@ -148,8 +148,6 @@ describe('Get list provider time slot', function () {
                 .set('Accept', 'aplication/json')
                 .set('Authorization', 'Bearer ' + token)
                 .end(function(err, res) {
-                    console.log (res.body);
-
                     expect(res.statusCode).to.equal(200);
                     done();
                 });
@@ -244,7 +242,6 @@ describe('Create provider time slot', function () {
 
                 })
                 .end(function (err, res) {
-                    console.log(res.body);
                     expect(res.statusCode).to.equal(400);
                     expect(res.body).to.exist;
                     done();
