@@ -44,6 +44,7 @@ var ClinicIDForProvider2WorkingDay = "";
 
 /*---------------------------------Promotion---------------------------- */
 var ServiceId = "";
+var ServiceIdForChangePatch = "";
 
 /*---------------------------------Clinics---------------------------- */
 var randomValueName = randomString(5); /*use for name*/
@@ -365,6 +366,7 @@ ClinicIDForProvider2WorkingDay,
     ConsumerIDForProviderForTimeSlot,
     ProviderIdForPatchForTimeSlot,
     ScheduleIdForProvidersForTimeSlot,
-    Invalidtoken
+    Invalidtoken,
+    ServiceIdForChangePatch
 
 }
