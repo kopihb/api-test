@@ -1,5 +1,5 @@
 
-var global = require('./global-variable');
+var global = require('../global-variable');
 var should = global.should;
 var expect = global.expect;
 var supertest = global.supertest ;

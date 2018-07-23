@@ -442,9 +442,398 @@ describe('Provider  promotion', function () {
                         ]
                     })
                     .end(function (err, res) {
-                        console.log(ProviderIdForPatch);
-                        console.log(ServiceId);
-                        console.log(res.body);
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / validation for parameter type / "percent" -> null', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": "null" + centre.name,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": null,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-01T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": [
+                            0
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / validation for parameter type / "percent" -> 101', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": "101" + centre.name,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 101,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-01T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": [
+                            0
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / validation for parameter type / "percent" -> 0', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": "0" + centre.name,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 0,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-01T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": [
+                            0
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / validation for parameter type / "weekDays" -> number', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": "0dd" + centre.name,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 55,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-01T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": 2
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / validation for parameter type / "weekDays" -> string', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": "strinwee" + centre.name,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 55,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-01T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": "sdfdf"
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / validation for parameter type / "weekDays" -> boolean', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": "weboo" + centre.name,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 55,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-01T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": true
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / validation for parameter type / "weekDays" -> null', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": "wenull" + centre.name,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 55,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-01T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": null
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / validation for parameter type / "name" -> number', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": 123456,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 77,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-01T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": [
+                            0
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / validation for parameter type / "name" -> boolean', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": true,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 77,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-01T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": [
+                            0
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / validation for parameter type / "name" -> null', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": null,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 77,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-01T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": [
+                            0
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / validation for parameter format / "startDate"', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": "stardattte" + centre.name,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-0T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 77,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-0T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": [
+                            0
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / validation for parameter format / "endDate"', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": "endddat" + centre.name,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-0T23:59:59.999Z",
+                        "percent": 77,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-01T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": [
+                            0
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / validation for parameter format / "dayStartTime"', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": "strtimedate" + centre.name,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 77,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-0T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": [
+                            0
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / validation for parameter format / "dayEndTime"', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": "enddrtimedate" + centre.name,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 77,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-01T00:00:00.000Z",
+                        "dayEndTime": "2018-01-0T23:59:59.999Z",
+                        "weekDays": [
+                            0
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / "weekDays" = 7', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": "weeseven" + centre.name,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 77,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-01T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": [
+                            7
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            it('Create new provider promotion / "weekDays" = -1', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/promotions')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name": "minone" + centre.name,
+                        "providerId": ProviderIdForPatch,
+                        "startDate": "2018-01-01T00:00:00.000Z",
+                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "percent": 77,
+                        "serviceIds": [
+                            ServiceId
+                        ],
+                        "dayStartTime": "2018-01-01T00:00:00.000Z",
+                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "weekDays": [
+                            -1
+                        ]
+                    })
+                    .end(function (err, res) {
                         expect(res.statusCode).to.equal(400);
                         expect(res.body).to.exist;
                         done();
