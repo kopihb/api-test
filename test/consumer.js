@@ -24,11 +24,13 @@ describe('Version - 1.0.0 ' +
             .set('Authorization', 'Bearer ' + token)
             .send({
                 "email": consumerObj.email,
-                "name": "name_auto",
+                "firstName": "name_auto",
+                "lastName": "name_auto",
                 "phone": "phone ",
                 "receiveNotification": true,
                 "dontSentAdv": true,
                 "signedUp": true,
+                "receiveNewsLetters": true,
                 "entityStart": "2020-03-03",
                 "entityEnd": "2021-04-04"
             })
