@@ -16,6 +16,11 @@ var ClinicIDForProvider = "";
 var ClinicIDForProviderForTimeSlot = "";
 var ClinicIDForProviderForDiscount = "";
 var ClinicIDForProviderPatch = "";
+var unitNumberID = "";
+var unitNumberIDPatch ="";
+
+/*---------------------------------SubClinic---------------------------- */
+var SubClinicIDForProvider = "";
 
 /*---------------------------------Provider---------------------------- */
 var ConsumerID = "";
@@ -401,6 +406,9 @@ WorkingDayId4,
 TimeSlotsID,
 CenterForTime,
   DiscountId,
-DiscountId2
+DiscountId2,
+    SubClinicIDForProvider,
+    unitNumberID,
+unitNumberIDPatch
 
 }
