@@ -48,7 +48,8 @@ describe('Schedule Time Slot', function () {
                 .set('Authorization', 'Bearer ' + token)
                 .send({
                     "email": consumerObj.email,
-                    "name": consumerObj.name,
+                    "firstName": consumerObj.firstName,
+                    "lastName": consumerObj.lastName,
                     "phone": "phone ",
                     "receiveNotification": true,
                     "dontSentAdv": true,
