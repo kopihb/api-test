@@ -149,7 +149,6 @@ describe('Schedule', function () {
 
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.be.an('array');
-                        console.log(ProviderIdForPatch);
                         done();
                     });
 
@@ -192,7 +191,6 @@ describe('Schedule', function () {
 
                     })
                     .end(function (err, res) {
-                      console.log(res.body);
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.exist;
                         done();

@@ -19,8 +19,8 @@ var ProviderIdForPatch = global.ProviderIdForPatchForDiscount;
 var WorkingDayId = global.WorkingDayId;
 var randomValueName = global.randomValueNameDiscount;
 var Invalidtoken = global.Invalidtoken;
-var DiscountId = '';
-var DiscountId2 = '';
+var DiscountId = global.DiscountId;
+var DiscountId2 = global.DiscountId2;
 describe('Schedule-Templates', function () {
     /*-------------------      Create auto data       ---------------------------------------------------------------------------------------------------- */
 

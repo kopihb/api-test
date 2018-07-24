@@ -15,11 +15,11 @@ var ProviderIdForPatch = global.ProviderIdForPatch;
 var WorkingDayId = global.WorkingDayId;
 var ScheduleIdForProviders = global.ScheduleIdForProviders;
 var randomValueName = global.randomValueNameShedule;
-var ScheduleIdForProviders2 = '';
-var ProviderIdForPatch2 = '';
-var WorkingDayId2 = '';
-var WorkingDayId3 = '';
-var WorkingDayId4 = '';
+var ScheduleIdForProviders2 = global.ScheduleIdForProviders2;
+var ProviderIdForPatch2 = global.ProviderIdForPatch2;
+var WorkingDayId2 = global.WorkingDayId2;
+var WorkingDayId3 = global.WorkingDayId3;
+var WorkingDayId4 = global.WorkingDayId4;
 describe('Schedule-Templates', function () {
     /*-------------------      Create auto data       ---------------------------------------------------------------------------------------------------- */
 
@@ -536,8 +536,6 @@ describe('Schedule-Templates', function () {
                         ]
                     })
                     .end(function (err, res) {
-                        console.log(res.body);
-                        console.log(WorkingDayId);
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.exist;
 
@@ -586,8 +584,6 @@ describe('Schedule-Templates', function () {
                         ]
                     })
                     .end(function (err, res) {
-                        console.log(res.body);
-                        console.log(WorkingDayId);
                         expect(res.statusCode).to.equal(400);
                         expect(res.body).to.exist;
 
@@ -609,8 +605,6 @@ describe('Schedule-Templates', function () {
                         ]
                     })
                     .end(function (err, res) {
-                        console.log(res.body);
-                        console.log(WorkingDayId);
                         expect(res.statusCode).to.equal(400);
                         expect(res.body).to.exist;
 
@@ -630,8 +624,6 @@ describe('Schedule-Templates', function () {
                         ]
                     })
                     .end(function (err, res) {
-                        console.log(res.body);
-                        console.log(WorkingDayId);
                         expect(res.statusCode).to.equal(400);
                         expect(res.body).to.exist;
 
@@ -653,8 +645,6 @@ describe('Schedule-Templates', function () {
                         ]
                     })
                     .end(function (err, res) {
-                        console.log(res.body);
-                        console.log(WorkingDayId);
                         expect(res.statusCode).to.equal(400);
                         expect(res.body).to.exist;
 

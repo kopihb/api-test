@@ -9,7 +9,6 @@ var token = global.token;
 
 var consumerObj = global.consumerObj;
 
-/*End test data - centre and consumer*/
 var ConsumerID = global.ConsumerID;
 
 
@@ -37,8 +36,6 @@ describe('Version - 1.0.0 ' +
                  
                 expect(res.statusCode).to.equal(200);
                 expect(res.body).to.exist;
-                //expect(res.body).to.equal({});
-                //expect(res.body.res.name).to.equal("namex");
                 ConsumerID = res.body.res.id;
                 done();
             })
