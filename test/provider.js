@@ -89,11 +89,13 @@ describe('PROVIDER', function () {
                         .set('Authorization', 'Bearer ' + token)
                         .send({
                             "email": consumerObj.email,
-                            "name": consumerObj.name,
+                            "firstName": consumerObj.firstName,
+                            "lastName": consumerObj.lastName,
                             "phone": "phone ",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2016-03-03",
                             "entityEnd": "2021-04-04"
                         })
