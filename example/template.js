@@ -8,3 +8,19 @@ describe('Get lis provider promotion', function () {
 console.log(res.body);
 
 .timeout(40000 );
+
+
+ClinicIDForProvider
+ConsumerIDForProvider
+SubClinicIDForProvider
+MasterServiceID
+unitNumberID
+
+ServiceId
+
+
+"lastName":  consumerObj.lastName,
+
+    "receiveNewsLetters": true,
+
+    "name": consumerObj.name,

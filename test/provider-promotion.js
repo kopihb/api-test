@@ -13,7 +13,10 @@ var ServiceId = global.ServiceId;
 var ProviderPromotionID = global.ProviderPromotionID;
 var ServiceIdForChangePatch = global.ServiceIdForChangePatch;
 
-
+var SubClinicIDForProvider = "";
+var MasterServiceID ="";
+var unitNumberID = "";
+var unitNumberIDPatch ="";
 var TEMP_service_ID = "5b508e8c8c3606000f40dcf6";
 
 describe('Provider  promotion', function () {
@@ -21,6 +24,45 @@ describe('Provider  promotion', function () {
 
 
     describe('Create provider for auto test fot promotion', function () {
+
+        it('Create new MasterService(serviceUnitNumbers)/Successfull case + get ID for attachment to centre', function (done) {
+            api.post('/master-services')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send({
+                    name : centre.name,
+                    tags: [
+                        "string"
+                    ]
+                })
+                .end(function (err, res) {
+                    console.log(res.body);
+                    expect(res.statusCode).to.equal(200);
+                    expect(res.body).to.exist;
+                    unitNumberID= res.body.res.unitNumber;
+                    done();
+                })
+        });
+
+        it('Create new MasterService(serviceUnitNumbers)/Successfull case + get ID for attachment to centre', function (done) {
+            api.post('/master-services')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send({
+                    name : "patch" + centre.name,
+                    tags: [
+                        "string"
+                    ]
+                })
+                .end(function (err, res) {
+                    console.log(res.body);
+                    expect(res.statusCode).to.equal(200);
+                    expect(res.body).to.exist;
+                    unitNumberIDPatch= res.body.res.unitNumber;
+                    done();
+                })
+        });
+
         it('Create new centre/Successfull case + get ID for attachment to provider', function (done) {
             api.post('/centres')
                 .set('Accept', 'aplication/json')
@@ -29,10 +71,14 @@ describe('Provider  promotion', function () {
                     name : centre.name,
                     latitude : centre.latitude,
                     longitude: centre.longitude,
-                    confirmed: centre.confirmed
-
+                    confirmed: centre.confirmed,
+                    serviceUnitNumbers: [
+                        unitNumberID,
+                        unitNumberIDPatch
+                     ]
                 })
                 .end(function (err, res) {
+                    console.log(res.body);
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.exist;
                     ClinicIDForProvider= res.body.res.id;
@@ -40,6 +86,21 @@ describe('Provider  promotion', function () {
                 })
         });
 
+        it('Create new centre SUBCATEGORIES/Successfull case + get ID for attachment to provider', function (done) {
+            api.post('/centres/' + ClinicIDForProvider + '/subcategories')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send({
+                    name : "subNameCli",
+
+                })
+                .end(function (err, res) {
+                    expect(res.statusCode).to.equal(200);
+                    expect(res.body).to.exist;
+                    SubClinicIDForProvider= res.body.res.id;
+                    done();
+                })
+        });
 
         it('Create new consumer/Successfull case + get ID for attachment to provider', function (done) {
             api.post('/consumers')
@@ -86,7 +147,7 @@ describe('Provider  promotion', function () {
                         ConsumerIDForProvider
                     ],
                     "entityStart": "2018-01-01",
-                    "entityEnd": "2018-01-01"
+                    "entityEnd": "2018-01-03"
 
                 })
                 .end(function(err, res) {
@@ -102,25 +163,36 @@ describe('Provider  promotion', function () {
                 .set('Accept', 'aplication/json')
                 .set('Authorization', 'Bearer ' + token)
                 .send({
-                        "name": "service_" + centre.name,
-                        "currency": "string",
-                        "providerId": ProviderIdForPatch,
-                        "tags": [
+
+                    "name": "stringtyrtyrty" + centre.name,
+                    "currency": "strirtytryng",
+                    "centreId": ClinicIDForProvider,
+                    "subcategoryId": SubClinicIDForProvider,
+                    "unitNumber": unitNumberID,
+                    "tags": [
                         "string"
                     ],
-                        "entityStart": "2018-01-01",
-                        "entityEnd": "2018-01-01",
-                        "restrictions": [
+                    "entityStart": "2018-01-01",
+                    "entityEnd": "2020-01-03",
+                    "restrictions": [
                         {
-                            "startTime": "1970-01-01T00:00:00.000Z",
-                            "endTime": "1970-01-01T16:00:00.000Z",
-                            "weekDays": [2, 4, 6]
+                            "startTime": "2017-01-01T00:00:00.000Z",
+                            "endTime": "2018-01-03T23:00:00.000Z",
+                            "weekDays": [
+                                2,
+                                4,
+                                6
+                            ]
                         }
                     ]
 
-
                 })
                 .end(function(err, res) {
+                    console.log(ProviderIdForPatch);
+                    console.log(ClinicIDForProvider);
+                    console.log(SubClinicIDForProvider);
+                    console.log(unitNumberID);
+                    console.log(res.body);
                     expect(res.statusCode).to.equal(200);
                     ServiceId = res.body.res._id;
                     done();
@@ -132,19 +204,25 @@ describe('Provider  promotion', function () {
                 .set('Accept', 'aplication/json')
                 .set('Authorization', 'Bearer ' + token)
                 .send({
-                    "name": "service_patch" + centre.name,
-                    "currency": "string",
-                    "providerId": ProviderIdForPatch,
+                    "name": "rterkk" + centre.name,
+                    "currency": "strirtytryng",
+                    "centreId": ClinicIDForProvider,
+                    "subcategoryId": SubClinicIDForProvider,
+                    "unitNumber": unitNumberIDPatch,
                     "tags": [
                         "string"
                     ],
                     "entityStart": "2018-01-01",
-                    "entityEnd": "2018-01-01",
+                    "entityEnd": "2019-01-03",
                     "restrictions": [
                         {
                             "startTime": "1970-01-01T00:00:00.000Z",
-                            "endTime": "1970-01-01T16:00:00.000Z",
-                            "weekDays": [2, 4, 6]
+                            "endTime": "1975-01-05T23:00:00.000Z",
+                            "weekDays": [
+                                2,
+                                4,
+                                6
+                            ]
                         }
                     ]
 
