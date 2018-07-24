@@ -13,11 +13,11 @@ var ServiceId = global.ServiceId;
 var ProviderPromotionID = global.ProviderPromotionID;
 var ServiceIdForChangePatch = global.ServiceIdForChangePatch;
 
-var SubClinicIDForProvider = "";
-var MasterServiceID ="";
-var unitNumberID = "";
-var unitNumberIDPatch ="";
-var TEMP_service_ID = "5b508e8c8c3606000f40dcf6";
+var SubClinicIDForProvider = global.SubClinicIDForProvider;
+//var MasterServiceID ="";
+var unitNumberID = global.unitNumberID;
+var unitNumberIDPatch = global.unitNumberIDPatch;
+//var TEMP_service_ID = "5b508e8c8c3606000f40dcf6";
 
 describe('Provider  promotion', function () {
 

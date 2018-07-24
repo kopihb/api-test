@@ -637,7 +637,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"dcvbc" + consumerObj.email,
-                        "name": "name ",
+                        "firstName": "name ",
                         "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
@@ -657,7 +657,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"rffg" + consumerObj.email,
-                        "name": "name ",
+                        "firstName": "name ",
                         "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
@@ -677,7 +677,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"xcb" + consumerObj.email,
-                        "name": "name ",
+                        "firstName": "name ",
                         "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
@@ -697,7 +697,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":true,
-                        "name": "name mm",
+                        "firstName": "name mm",
                         "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
@@ -717,7 +717,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "cvb" + consumerObj.email,
-                        "name": true,
+                        "firstName": true,
                         "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
@@ -737,7 +737,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "dddd" + consumerObj.email,
-                        "name": "dcdvv",
+                        "firstName": "dcdvv",
                         "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
@@ -756,7 +756,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "vvvv4" + consumerObj.email,
-                        "name": "dcdvv",
+                        "firstName": "dcdvv",
                         "lastName":  consumerObj.lastName,
                         "phone": true,
                         "receiveNotification": true,
@@ -775,7 +775,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "vcvcv" + consumerObj.email,
-                        "name": "dcdvv",
+                        "firstName": "dcdvv",
                         "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
@@ -794,7 +794,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": 0,
-                        "name": "dcdvv",
+                        "firstName": "dcdvv",
                         "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
@@ -813,7 +813,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "mkla" + consumerObj.email,
-                        "name": 0,
+                        "firstName": 0,
                         "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
@@ -832,7 +832,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "mklxvvvs" + consumerObj.email,
-                        "name": " fvcvc",
+                        "firstName": " fvcvc",
                         "lastName":  consumerObj.lastName,
                         "phone": 0,
                         "receiveNotification": true,
@@ -852,7 +852,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "mkl" + consumerObj.email,
-                        "name": " fvcvc",
+                        "firstName": " fvcvc",
                         "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": 0,
@@ -872,7 +872,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "mklxx" + consumerObj.email,
-                        "name": " fvcvc",
+                        "firstName": " fvcvc",
                         "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
@@ -892,7 +892,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "cvvv" + consumerObj.email,
-                        "name": " fvcvc",
+                        "firstName": " fvcvc",
                         "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
@@ -912,7 +912,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "vfvfd" + consumerObj.email,
-                        "name": " fvcvc",
+                        "firstName": " fvcvc",
                         "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
@@ -932,7 +932,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "vvwwq" + consumerObj.email,
-                        "name": " fvcvc",
+                        "firstName": " fvcvc",
                         "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
@@ -951,7 +951,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "xdoo" + consumerObj.email,
-                        "name": " fvcvc",
+                        "firstName": " fvcvc",
                         "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": "dfgdfgdfgd",
@@ -970,7 +970,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "dfdfb" + consumerObj.email,
-                        "name": " fvcvc",
+                        "firstName": " fvcvc",
                         "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
@@ -990,7 +990,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "iop" + consumerObj.email,
-                        "name": " fvcvc",
+                        "firstName": " fvcvc",
                         "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
@@ -1010,7 +1010,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "vbnn" + consumerObj.email,
-                        "name": " fvcvc",
+                        "firstName": " fvcvc",
                         "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
@@ -1030,7 +1030,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "vbnnsdf" + ".com",
-                        "name": " fvcvc",
+                        "firstName": " fvcvc",
                         "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
@@ -1049,7 +1049,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "rbp" + consumerObj.email,
-                        "name": " fvcvc",
+                        "firstName": " fvcvc",
                         "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
@@ -1068,7 +1068,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "cc" + consumerObj.email,
-                        "name": " fvcvc",
+                        "firstName": " fvcvc",
                         "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
@@ -1133,7 +1133,7 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": "name_auto",
+                        "firstName": "name_auto",
                         "lastName":  consumerObj.lastName,
                         "phone": "phone",
                         "receiveNotification": true,
@@ -1152,7 +1152,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "change name patch",
+                            "firstName": "change name patch",
                             "lastName":  consumerObj.lastName,
                             "phone": "phone patch",
                             "receiveNotification": true,
@@ -1171,7 +1171,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch",
+                            "firstName": "name patch",
                             "lastName":  consumerObj.lastName,
                             "phone": "phone patch",
                             "receiveNotification": true,
@@ -1190,7 +1190,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch",
+                            "firstName": "name patch",
                             "lastName":  consumerObj.lastName,
                             "phone": "phone patch",
                             "receiveNotification": false,
@@ -1209,7 +1209,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch",
+                            "firstName": "name patch",
                             "lastName":  consumerObj.lastName,
                             "phone": "phone patch",
                             "receiveNotification": false,
@@ -1228,7 +1228,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch",
+                            "firstName": "name patch",
                             "lastName":  consumerObj.lastName,
                             "phone": "phone patch",
                             "receiveNotification": false,
@@ -1247,7 +1247,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch",
+                            "firstName": "name patch",
                             "lastName":  consumerObj.lastName,
                             "phone": "phone patch",
                             "receiveNotification": false,
@@ -1266,7 +1266,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch",
+                            "firstName": "name patch",
                             "lastName":  consumerObj.lastName,
                             "phone": "phone patch",
                             "receiveNotification": false,
@@ -1286,7 +1286,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "phone patch all",
                             "receiveNotification": true,
@@ -1304,7 +1304,7 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": "",
+                        "firstName": "",
                         "lastName":  consumerObj.lastName,
                         "phone": "phone",
                         "receiveNotification": true,
@@ -1322,7 +1322,7 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": consumerObj.firstName,
+                        "firstName": consumerObj.firstName,
                         "lastName":  consumerObj.lastName,
                         "phone": "",
                         "receiveNotification": true,
@@ -1341,7 +1341,7 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "lastName":  consumerObj.lastName,
+                        "firstName":  consumerObj.lastName,
                         "phone": "cvxcv",
                         "receiveNotification": true,
                         "dontSentAdv": true,
@@ -1358,7 +1358,7 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": consumerObj.firstName,
+                        "firstName": consumerObj.firstName,
                         "lastName":  consumerObj.lastName,
                         "receiveNotification": true,
                         "dontSentAdv": true,
@@ -1375,7 +1375,7 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": consumerObj.firstName,
+                        "firstName": consumerObj.firstName,
                         "lastName":  consumerObj.lastName,
                         "phone": "sdfsdfsd",
                         "dontSentAdv": true,
@@ -1392,7 +1392,7 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": consumerObj.name,
+                        "firstName": consumerObj.name,
                         "lastName":  consumerObj.lastName,
                         "phone": "cvxcv",
                         "receiveNotification": true,
@@ -1410,7 +1410,7 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": consumerObj.name,
+                        "firstName": consumerObj.name,
                         "lastName":  consumerObj.lastName,
                         "phone": "cvxcv",
                         "receiveNotification": true,
@@ -1428,7 +1428,7 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": consumerObj.name,
+                        "firstName": consumerObj.name,
                         "lastName":  consumerObj.lastName,
                         "phone": "cvxcv",
                         "receiveNotification": true,
@@ -1445,7 +1445,7 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": consumerObj.name,
+                        "firstName": consumerObj.name,
                         "lastName":  consumerObj.lastName,
                         "phone": "cvxcv",
                         "receiveNotification": true,
@@ -1467,7 +1467,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "phone patch all",
                             "receiveNotification": true,
@@ -1486,7 +1486,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": 0,
+                            "firstName": 0,
                             "lastName":  consumerObj.lastName,
                             "phone": "phone patch all",
                             "receiveNotification": true,
@@ -1505,7 +1505,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": 0,
                             "receiveNotification": true,
@@ -1525,7 +1525,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": 0,
@@ -1545,7 +1545,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
@@ -1565,7 +1565,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
@@ -1585,7 +1585,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
@@ -1604,7 +1604,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
@@ -1624,7 +1624,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": "string",
@@ -1644,7 +1644,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
@@ -1664,7 +1664,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
@@ -1684,7 +1684,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
@@ -1704,7 +1704,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
@@ -1724,7 +1724,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
@@ -1744,7 +1744,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
@@ -1764,7 +1764,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": true,
+                            "firstName": true,
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
@@ -1784,7 +1784,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": false,
+                            "firstName": false,
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
@@ -1803,7 +1803,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": true,
                             "receiveNotification": true,
@@ -1823,7 +1823,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": false,
                             "receiveNotification": true,
@@ -1844,7 +1844,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdfg",
                             "receiveNotification": true,
@@ -1863,7 +1863,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdfg",
                             "receiveNotification": true,
@@ -1883,7 +1883,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdfg",
                             "receiveNotification": true,
@@ -1903,7 +1903,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdfg",
                             "receiveNotification": true,
@@ -1922,7 +1922,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": null,
+                            "firstName": null,
                             "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdfg",
                             "receiveNotification": true,
@@ -1942,7 +1942,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "sdfdf",
+                            "firstName": "sdfdf",
                             "lastName":  consumerObj.lastName,
                             "phone": null,
                             "receiveNotification": true,
@@ -1962,7 +1962,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "sdfdf",
+                            "firstName": "sdfdf",
                             "lastName":  consumerObj.lastName,
                             "phone": "dsdfsdfsdf",
                             "receiveNotification": null,
@@ -1982,7 +1982,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "sdfdf",
+                            "firstName": "sdfdf",
                             "lastName":  consumerObj.lastName,
                             "phone": "dsdfsdfsdf",
                             "receiveNotification": true,
@@ -2002,7 +2002,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "sdfdf",
+                            "firstName": "sdfdf",
                             "lastName":  consumerObj.lastName,
                             "phone": "dsdfsdfsdf",
                             "receiveNotification": true,
@@ -2023,7 +2023,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "sdfdf",
+                            "firstName": "sdfcccdf",
                             "lastName":  consumerObj.lastName,
                             "phone": "dsdfsdfsdf",
                             "receiveNotification": true,
@@ -2045,7 +2045,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "sdfdf",
+                            "firstName": "sdssfdf",
                             "lastName":  consumerObj.lastName,
                             "phone": "dsdfsdfsdf",
                             "receiveNotification": true,
@@ -2105,7 +2105,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send(
                         {
-                            "name": "name patch all",
+                            "firstName": "name patch all",
                             "lastName":  consumerObj.lastName,
                             "phone": "phone patch all",
                             "receiveNotification": true,
