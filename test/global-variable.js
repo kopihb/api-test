@@ -6,7 +6,7 @@ var supertest = require('supertest');
 var api = supertest('http://159.100.241.121:5002');
 const addContext = require('mochawesome/addContext');
 /*-----------------------------------Token---------------------------------------- */
-var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzIwNzQwMDUsImV4cCI6MTU2MzYxMDAwNSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoiYW55UGF0Y2hSbzJqTENhY0BtYWlsLmNvbSIsInJvbGVzIjpbIlNVUEVSX0FETUlOIiwiU1VQRVJfQURNSU4iXX0.5-ofOLZvvmMUyummmyYgqazQqafPeEnJEnQJIEWeosM';
+var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzI0MTY1MzcsImV4cCI6MTU2Mzk1MjUzNywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AZ21haWwuY29tIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJTVVBFUl9BRE1JTiJdfQ.qu2lvCFOEK30n7g4GJDNL8Ya1eXD_WhyjPnhsKn-tb0';
 var Invalidtoken = 'eyD0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzEzODc2MTEsImV4cCI6MTU2MjkyMzYxMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AbWFpbC5jb20iLCJyb2xlcyI6WyJQUk9WSURFUiIsIlNVUEVSX0FETUlOIl19.RfeB6N6kRFVCGR_mvsXbtqcuWa2KdpFhHPN9DgnHsmU';
 /*---------------------------------Clinic---------------------------- */
 
@@ -194,22 +194,26 @@ var centreWorkingDay = {
 
 var consumerObj = {
     email: randomValueMail + '@mail.com',
-    name: randomValueName,
+    firstName: randomValueName,
+    lastName: "last" + randomValueName,
     phone: 'phone patch all',
     receiveNotification: true,
     dontSentAdv: true,
     signedUp: true,
+    receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
 }
 /*---------------------------------Consumer obj for Provider---------------------------- */
 var consumerObjProvider = {
     email: randomValueMailProvider + '@mail.com',
-    name: randomValueNameProvider,
+    firstName: randomValueNameProvider,
+    lastName: "last" + randomValueNameProvider,
     phone: 'phone patch all',
     receiveNotification: true,
     dontSentAdv: true,
     signedUp: true,
+    receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
 }
@@ -217,11 +221,13 @@ var consumerObjProvider = {
 
 var consumerObjShedule = {
     email: randomValueMailShedule + '@mail.com',
-    name: randomValueNameShedule,
+    firstName: randomValueNameShedule,
+    lastName: "last" + randomValueNameShedule,
     phone: 'phone patch all',
     receiveNotification: true,
     dontSentAdv: true,
     signedUp: true,
+    receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
 }
@@ -230,11 +236,13 @@ var consumerObjShedule = {
 
 var consumerObjSheduleTimeSlot = {
     email: randomValueMailSheduleTimeSlot + '@mail.com',
-    name: randomValueNameShedule,
+    firstName: randomValueNameShedule,
+    lastName: "last" + randomValueNameShedule,
     phone: 'phone patch all',
     receiveNotification: true,
     dontSentAdv: true,
     signedUp: true,
+    receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
 }
@@ -242,11 +250,13 @@ var consumerObjSheduleTimeSlot = {
 
 var consumerObjDiscount = {
     email: randomValueMailDiscount + '@mail.com',
-    name: randomValueNameDiscount,
+    firstName: randomValueNameDiscount,
+    lastName: "last" + randomValueNameDiscount,
     phone: 'phone patch all',
     receiveNotification: true,
     dontSentAdv: true,
     signedUp: true,
+    receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
 }
@@ -254,18 +264,21 @@ var consumerObjDiscount = {
 
 var consumerObjSheduleOne = {
     email: randomValueMailSheduleOne + '@mail.com',
-    name: randomValueNameSheduleOne,
+    firstName: randomValueNameSheduleOne,
+    lastName: "last" + randomValueNameSheduleOne,
     phone: 'phone patch all',
     receiveNotification: true,
     dontSentAdv: true,
     signedUp: true,
+    receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
 }
 /*---------------------------------Consumer obj for DayOff---------------------------- */
 var consumerObjDayOff = {
     email: randomValueMailDayOff + '@mail.com',
-    name: randomValueNameDayOff,
+    firstName: randomValueNameDayOff,
+    lastName: "last" + randomValueNameDayOff,
     phone: 'phone patch all',
     receiveNotification: true,
     dontSentAdv: true,
@@ -278,11 +291,13 @@ var consumerObjDayOff = {
 
 var consumerObjWorkingDay = {
     email: randomValueMailWorkingDay + '@mail.com',
-    name: randomValueNameWorkingDay,
+    firstName: randomValueNameWorkingDay,
+    lastName: "last" + randomValueNameWorkingDay,
     phone: 'phone patch all',
     receiveNotification: true,
     dontSentAdv: true,
     signedUp: true,
+    receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
 }
@@ -291,11 +306,13 @@ var consumerObjWorkingDay = {
 
 var consumerObjPromotions = {
     email: "promo"+ randomValueMailWorkingDay + '@mail.com',
-    name: "promo"+ randomValueNameWorkingDay,
+    firstName: "promo"+ randomValueNameWorkingDay,
+    lastName: "lastPromo" + randomValueNameWorkingDay,
     phone: 'phone patch all',
     receiveNotification: true,
     dontSentAdv: true,
     signedUp: true,
+    receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
 }
