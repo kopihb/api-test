@@ -88,11 +88,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "new" + consumerObj.email,
-                        "name": consumerObj.name +" " + "sever words",
+                        "firstName": consumerObj.firstName +" " + "sever words",
+                        "lastName": consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -106,11 +108,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "qaz" + consumerObj.email,
-                        "name":  "кирилиця",
+                        "firstName":  "кирилиця",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -124,11 +128,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "n" + consumerObj.email,
-                        "name": "4546456",
+                        "firstName": "4546456",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -142,11 +148,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "s" + consumerObj.email,
-                        "name": "!&^%$$#",
+                        "firstName": "!&^%$$#",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -160,11 +168,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "fa" + consumerObj.email,
-                        "name": "name" +consumerObj.name,
+                        "firstName": "name" +consumerObj.name,
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": false,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -178,11 +188,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "fvfbgb" + consumerObj.email,
-                        "name": "name" +consumerObj.name,
+                        "firstName": "name" +consumerObj.name,
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": false,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityEnd": "2021-04-04"
                     })
                     .expect(200, done)
@@ -196,11 +208,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "vgbi" + consumerObj.email,
-                        "name": "name" +consumerObj.name,
+                        "firstName": "name" +consumerObj.name,
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": false,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                     })
                     .expect(200, done)
@@ -212,11 +226,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "dd" + consumerObj.email,
-                        "name": "name" +consumerObj.name,
+                        "firstName": "name" +consumerObj.name,
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": false,
                         "dontSentAdv": false,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -230,11 +246,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "sds" + consumerObj.email,
-                        "name": "name" +consumerObj.name,
+                        "firstName": "name" +consumerObj.name,
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": false,
                         "dontSentAdv": false,
                         "signedUp": false,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -248,11 +266,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "sdsgh" + consumerObj.email,
-                        "name": "    ",
+                        "firstName": "    ",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": false,
                         "dontSentAdv": false,
                         "signedUp": false,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -266,11 +286,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "sdfsdf345" + consumerObj.email,
-                        "name": "",
+                        "firstName": "",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone",
                         "receiveNotification": false,
                         "dontSentAdv": false,
                         "signedUp": false,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -284,11 +306,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "sszz" + consumerObj.email,
-                        "name": "name" +consumerObj.name,
+                        "firstName": "name" +consumerObj.name,
+                        "lastName":  consumerObj.lastName,
                         "phone": "",
                         "receiveNotification": false,
                         "dontSentAdv": false,
                         "signedUp": false,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -301,10 +325,12 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "xxsse" + consumerObj.email,
-                        "name": "name" +consumerObj.name,
+                        "firstName": "name" +consumerObj.name,
+                        "lastName":  consumerObj.lastName,
                         "phone": "456456",
                         "receiveNotification": false,
                         "dontSentAdv": false,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -317,10 +343,12 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "ertert" + consumerObj.email,
-                        "name": "name" +consumerObj.name,
+                        "firstName": "name" +consumerObj.name,
+                        "lastName":  consumerObj.lastName,
                         "phone": "456456456",
                         "receiveNotification": false,
                         "signedUp": false,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -334,11 +362,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "efertt1" + consumerObj.email,
-                        "name": consumerObj.name,
+                        "firstName": "orumqw" + consumerObj.firstName,
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": false,
                         "dontSentAdv": false,
                         "signedUp": false,
+                        "receiveNewsLetters": true,
                         "entityStart": "2010-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -358,11 +388,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": consumerObj.email,
-                        "name": "name ",
+                        "firstName": "name ",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -375,11 +407,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "dsdfsdfsdf ",
-                        "name": "name ",
+                        "firstName": "name ",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -392,11 +426,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": " ",
-                        "name": "name ",
+                        "firstName": "name ",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -409,11 +445,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "fp" + consumerObj.email,
-                        "name": "name ",
+                        "firstName": "name ",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": " ",
                         "entityEnd": "2021-04-04"
                     })
@@ -426,11 +464,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": "cvb" + consumerObj.email,
-                        "name": "name ",
+                        "firstName": "name ",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2021-04-04",
                         "entityEnd": "  "
                     })
@@ -443,11 +483,13 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": "name ",
+                        "firstName": "name ",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2021-04-04",
                         "entityEnd": "2022-04-04"
                     })
@@ -460,11 +502,13 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "email":"naa" + consumerObj.email,
+                        "firstName":"naa" + consumerObj.email,
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2021-04-04",
                         "entityEnd": "2022-04-04"
                     })
@@ -478,10 +522,12 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"phn" + consumerObj.email,
-                        "name": "name ",
+                        "firstName": "name ",
+                        "lastName":  consumerObj.lastName,
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2021-04-04",
                         "entityEnd": "2022-04-04"
                     })
@@ -494,11 +540,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email": null,
-                        "name": "name ",
+                        "firstName": "name ",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2021-04-04",
                         "entityEnd": "2022-04-04"
                     })
@@ -511,11 +559,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"nnnamm" + consumerObj.email,
-                        "name": null,
+                        "firstName": null,
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2021-04-04",
                         "entityEnd": "2022-04-04"
                     })
@@ -528,11 +578,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"dvc" + consumerObj.email,
-                        "name": "name ",
+                        "firstName": "name ",
+                        "lastName":  consumerObj.lastName,
                         "phone": null,
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2021-04-04",
                         "entityEnd": "2022-04-04"
                     })
@@ -545,11 +597,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"ccc" + consumerObj.email,
-                        "name": "name ",
+                        "firstName": "name ",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": null,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2021-04-04",
                         "entityEnd": "2022-04-04"
                     })
@@ -563,11 +617,13 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "email":"xcbbb" + consumerObj.email,
-                        "name": "name ",
+                        "firstName": "name ",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": null,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2021-04-04",
                         "entityEnd": "2022-04-04"
                     })
@@ -582,10 +638,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email":"dcvbc" + consumerObj.email,
                         "name": "name ",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": null,
+                        "receiveNewsLetters": true,
                         "entityStart": "2021-04-04",
                         "entityEnd": "2022-04-04"
                     })
@@ -600,10 +658,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email":"rffg" + consumerObj.email,
                         "name": "name ",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": null,
                         "entityEnd": "2022-04-04"
                     })
@@ -618,10 +678,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email":"xcb" + consumerObj.email,
                         "name": "name ",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2022-04-04",
                         "entityEnd": null
                     })
@@ -636,10 +698,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email":true,
                         "name": "name mm",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2022-04-04",
                         "entityEnd": "2023-03-03"
                     })
@@ -654,10 +718,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "cvb" + consumerObj.email,
                         "name": true,
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2022-04-04",
                         "entityEnd": "2023-03-03"
                     })
@@ -672,10 +738,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "dddd" + consumerObj.email,
                         "name": "dcdvv",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": true,
                         "entityEnd": "2023-03-03"
                     })
@@ -689,10 +757,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "vvvv4" + consumerObj.email,
                         "name": "dcdvv",
+                        "lastName":  consumerObj.lastName,
                         "phone": true,
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2021-03-03",
                         "entityEnd": "2023-03-03"
                     })
@@ -706,10 +776,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "vcvcv" + consumerObj.email,
                         "name": "dcdvv",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2018-03-03",
                         "entityEnd": true
                     })
@@ -723,10 +795,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": 0,
                         "name": "dcdvv",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2018-03-03",
                         "entityEnd":  "2019-05-05"
                     })
@@ -740,10 +814,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "mkla" + consumerObj.email,
                         "name": 0,
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone ",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2018-03-03",
                         "entityEnd": "2019-05-05"
                     })
@@ -757,10 +833,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "mklxvvvs" + consumerObj.email,
                         "name": " fvcvc",
+                        "lastName":  consumerObj.lastName,
                         "phone": 0,
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2018-03-03",
                         "entityEnd": "2019-05-05"
                     })
@@ -775,10 +853,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "mkl" + consumerObj.email,
                         "name": " fvcvc",
+                        "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": 0,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2018-03-03",
                         "entityEnd": "2019-05-05"
                     })
@@ -793,10 +873,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "mklxx" + consumerObj.email,
                         "name": " fvcvc",
+                        "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
                         "dontSentAdv": 0,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2018-03-03",
                         "entityEnd": "2019-05-05"
                     })
@@ -811,10 +893,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "cvvv" + consumerObj.email,
                         "name": " fvcvc",
+                        "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": 0,
+                        "receiveNewsLetters": true,
                         "entityStart": "2018-03-03",
                         "entityEnd": "2019-05-05"
                     })
@@ -829,11 +913,13 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "vfvfd" + consumerObj.email,
                         "name": " fvcvc",
+                        "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
                         "entityStart": 0,
+                        "receiveNewsLetters": true,
                         "entityEnd": "2019-05-05"
                     })
                     .expect(400, done)
@@ -847,10 +933,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "vvwwq" + consumerObj.email,
                         "name": " fvcvc",
+                        "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2019-05-05",
                         "entityEnd": 0
                     })
@@ -864,10 +952,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "xdoo" + consumerObj.email,
                         "name": " fvcvc",
+                        "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": "dfgdfgdfgd",
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2019-05-05",
                         "entityEnd": "2019-04-03"
                     })
@@ -881,10 +971,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "dfdfb" + consumerObj.email,
                         "name": " fvcvc",
+                        "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
                         "dontSentAdv": "dfgdfgdfgd",
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2019-05-05",
                         "entityEnd": "2019-04-03"
                     })
@@ -899,10 +991,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "iop" + consumerObj.email,
                         "name": " fvcvc",
+                        "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
                         "dontSentAdv": "dfgdfgdfgd",
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2019-05-05",
                         "entityEnd": "2019-04-03"
                     })
@@ -917,10 +1011,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "vbnn" + consumerObj.email,
                         "name": " fvcvc",
+                        "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": "dfgdfgdfgd",
+                        "receiveNewsLetters": true,
                         "entityStart": "2019-05-05",
                         "entityEnd": "2019-04-03"
                     })
@@ -935,10 +1031,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "vbnnsdf" + ".com",
                         "name": " fvcvc",
+                        "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2019-05-05",
                         "entityEnd": "2019-04-03"
                     })
@@ -952,10 +1050,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "rbp" + consumerObj.email,
                         "name": " fvcvc",
+                        "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2019-05-0",
                         "entityEnd": "2019-04-03"
                     })
@@ -969,10 +1069,12 @@ describe('CONSUMER', function () {
                     .send({
                         "email": "cc" + consumerObj.email,
                         "name": " fvcvc",
+                        "lastName":  consumerObj.lastName,
                         "phone": "2151515",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2019-05-01",
                         "entityEnd": "2019-04-0"
                     })
@@ -994,7 +1096,7 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .expect(200,done)
 
-            })
+            });
 
             describe('HTTP responce code - 400 ', function () {
 
@@ -1032,10 +1134,12 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": "name_auto",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -1049,10 +1153,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "change name patch",
+                            "lastName":  consumerObj.lastName,
                             "phone": "phone patch",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2018-01-01",
                             "entityEnd": "2018-01-01"
                         })
@@ -1066,10 +1172,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch",
+                            "lastName":  consumerObj.lastName,
                             "phone": "phone patch",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2018-01-01",
                             "entityEnd": "2018-01-01"
                         })
@@ -1083,10 +1191,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch",
+                            "lastName":  consumerObj.lastName,
                             "phone": "phone patch",
                             "receiveNotification": false,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2018-01-01",
                             "entityEnd": "2018-01-01"
                         })
@@ -1100,10 +1210,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch",
+                            "lastName":  consumerObj.lastName,
                             "phone": "phone patch",
                             "receiveNotification": false,
                             "dontSentAdv": false,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2018-01-01",
                             "entityEnd": "2018-01-01"
                         })
@@ -1117,10 +1229,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch",
+                            "lastName":  consumerObj.lastName,
                             "phone": "phone patch",
                             "receiveNotification": false,
                             "dontSentAdv": false,
                             "signedUp": false,
+                            "receiveNewsLetters": true,
                             "entityStart": "2018-01-01",
                             "entityEnd": "2018-01-01"
                         })
@@ -1134,10 +1248,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch",
+                            "lastName":  consumerObj.lastName,
                             "phone": "phone patch",
                             "receiveNotification": false,
                             "dontSentAdv": false,
                             "signedUp": false,
+                            "receiveNewsLetters": true,
                             "entityStart": "2017-01-01",
                             "entityEnd": "2018-01-01"
                         })
@@ -1151,10 +1267,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch",
+                            "lastName":  consumerObj.lastName,
                             "phone": "phone patch",
                             "receiveNotification": false,
                             "dontSentAdv": false,
                             "signedUp": false,
+                            "receiveNewsLetters": true,
                             "entityStart": "2017-01-01",
                             "entityEnd": "2019-02-02"
                         })
@@ -1169,10 +1287,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "phone patch all",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-03-03",
                             "entityEnd": "2021-04-04"
                         })
@@ -1185,10 +1305,12 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": "",
+                        "lastName":  consumerObj.lastName,
                         "phone": "phone",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -1200,11 +1322,13 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": consumerObj.name,
+                        "name": consumerObj.firstName,
+                        "lastName":  consumerObj.lastName,
                         "phone": "",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -1217,10 +1341,12 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
+                        "lastName":  consumerObj.lastName,
                         "phone": "cvxcv",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -1232,10 +1358,12 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": consumerObj.name,
+                        "name": consumerObj.firstName,
+                        "lastName":  consumerObj.lastName,
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -1247,10 +1375,12 @@ describe('CONSUMER', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": consumerObj.name,
+                        "name": consumerObj.firstName,
+                        "lastName":  consumerObj.lastName,
                         "phone": "sdfsdfsd",
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -1263,9 +1393,11 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": consumerObj.name,
+                        "lastName":  consumerObj.lastName,
                         "phone": "cvxcv",
                         "receiveNotification": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -1279,9 +1411,11 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": consumerObj.name,
+                        "lastName":  consumerObj.lastName,
                         "phone": "cvxcv",
                         "receiveNotification": true,
                         "dontSentAdv": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                         "entityEnd": "2021-04-04"
                     })
@@ -1295,10 +1429,12 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": consumerObj.name,
+                        "lastName":  consumerObj.lastName,
                         "phone": "cvxcv",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityEnd": "2021-04-04"
                     })
                     .expect(200,done)
@@ -1310,10 +1446,12 @@ describe('CONSUMER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .send({
                         "name": consumerObj.name,
+                        "lastName":  consumerObj.lastName,
                         "phone": "cvxcv",
                         "receiveNotification": true,
                         "dontSentAdv": true,
                         "signedUp": true,
+                        "receiveNewsLetters": true,
                         "entityStart": "2020-03-03",
                     })
                     .expect(200,done)
@@ -1330,10 +1468,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "phone patch all",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-03-03",
                             "entityEnd": "2021-04-04"
                         })
@@ -1347,10 +1487,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": 0,
+                            "lastName":  consumerObj.lastName,
                             "phone": "phone patch all",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-03-03",
                             "entityEnd": "2021-04-04"
                         })
@@ -1364,10 +1506,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": 0,
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-03-03",
                             "entityEnd": "2021-04-04"
                         })
@@ -1382,10 +1526,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": 0,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-03-03",
                             "entityEnd": "2021-04-04"
                         })
@@ -1400,10 +1546,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
                             "dontSentAdv": 0,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-03-03",
                             "entityEnd": "2021-04-04"
                         })
@@ -1418,10 +1566,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": 0,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-03-03",
                             "entityEnd": "2021-04-04"
                         })
@@ -1436,10 +1586,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": 0,
                             "entityEnd": "2021-04-04"
                         })
@@ -1453,10 +1605,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2021-04-04",
                             "entityEnd": 0
                         })
@@ -1471,10 +1625,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": "string",
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2021-04-04",
                             "entityEnd": "2023-04-04"
                         })
@@ -1489,10 +1645,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
                             "dontSentAdv": "string",
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2021-04-04",
                             "entityEnd": "2023-04-04"
                         })
@@ -1507,10 +1665,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": "string",
+                            "receiveNewsLetters": true,
                             "entityStart": "2021-04-04",
                             "entityEnd": "2023-04-04"
                         })
@@ -1525,10 +1685,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "string",
                             "entityEnd": "2023-04-04"
                         })
@@ -1543,10 +1705,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-04-04",
                             "entityEnd": "string"
                         })
@@ -1561,10 +1725,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-04-0",
                             "entityEnd": "2020-04-04"
                         })
@@ -1579,10 +1745,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-04-04",
                             "entityEnd": "2020-04-0"
                         })
@@ -1597,10 +1765,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": true,
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-04-04",
                             "entityEnd": "2020-04-04"
                         })
@@ -1615,10 +1785,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": false,
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdf",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-04-04",
                             "entityEnd": "2020-04-04"
                         })
@@ -1632,10 +1804,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": true,
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-04-04",
                             "entityEnd": "2020-04-03"
                         })
@@ -1650,10 +1824,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": false,
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-04-04",
                             "entityEnd": "2020-04-03"
                         })
@@ -1669,11 +1845,13 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdfg",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
                             "entityStart": true,
+                            "receiveNewsLetters": true,
                             "entityEnd": "2020-04-03"
                         })
                     .expect(400,done)
@@ -1686,10 +1864,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdfg",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": false,
                             "entityEnd": "2020-04-03"
                         })
@@ -1704,10 +1884,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdfg",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-04-03",
                             "entityEnd": true
                         })
@@ -1722,10 +1904,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdfg",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-04-03",
                             "entityEnd": false
                         })
@@ -1739,10 +1923,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": null,
+                            "lastName":  consumerObj.lastName,
                             "phone": "dfgdfgdfg",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-04-03",
                             "entityEnd": "2020-05-03"
                         })
@@ -1757,10 +1943,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "sdfdf",
+                            "lastName":  consumerObj.lastName,
                             "phone": null,
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-04-03",
                             "entityEnd": "2020-05-03"
                         })
@@ -1775,10 +1963,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "sdfdf",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dsdfsdfsdf",
                             "receiveNotification": null,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-04-03",
                             "entityEnd": "2020-05-03"
                         })
@@ -1793,10 +1983,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "sdfdf",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dsdfsdfsdf",
                             "receiveNotification": true,
                             "dontSentAdv": null,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-04-03",
                             "entityEnd": "2020-05-03"
                         })
@@ -1811,10 +2003,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "sdfdf",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dsdfsdfsdf",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": null,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-04-03",
                             "entityEnd": "2020-05-03"
                         })
@@ -1830,10 +2024,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "sdfdf",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dsdfsdfsdf",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": null,
                             "entityEnd": "2020-05-03"
                         })
@@ -1850,10 +2046,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "sdfdf",
+                            "lastName":  consumerObj.lastName,
                             "phone": "dsdfsdfsdf",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-05-03",
                             "entityEnd": null
                         })
@@ -1908,10 +2106,12 @@ describe('CONSUMER', function () {
                     .send(
                         {
                             "name": "name patch all",
+                            "lastName":  consumerObj.lastName,
                             "phone": "phone patch all",
                             "receiveNotification": true,
                             "dontSentAdv": true,
                             "signedUp": true,
+                            "receiveNewsLetters": true,
                             "entityStart": "2020-03-03",
                             "entityEnd": "2021-04-04"
                         })
