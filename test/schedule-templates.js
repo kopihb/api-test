@@ -20,6 +20,7 @@ var ProviderIdForPatch2 = global.ProviderIdForPatch2;
 var WorkingDayId2 = global.WorkingDayId2;
 var WorkingDayId3 = global.WorkingDayId3;
 var WorkingDayId4 = global.WorkingDayId4;
+
 describe('Schedule-Templates', function () {
     /*-------------------      Create auto data       ---------------------------------------------------------------------------------------------------- */
 
