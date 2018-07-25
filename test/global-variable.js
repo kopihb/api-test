@@ -22,6 +22,10 @@ var unitNumberIDPatch ="";
 /*---------------------------------SubClinic---------------------------- */
 var SubClinicIDForProvider = "";
 
+/*---------------------------------MasterService---------------------------- */
+var MasterServiceID = "";
+var MasterServiceIDPatch ="";
+
 /*---------------------------------Provider---------------------------- */
 var ConsumerID = "";
 var ConsumerIDForProvider = "";
@@ -409,6 +413,8 @@ CenterForTime,
 DiscountId2,
     SubClinicIDForProvider,
     unitNumberID,
-unitNumberIDPatch
+unitNumberIDPatch,
+    MasterServiceID,
+    MasterServiceIDPatch
 
 }
