@@ -9,6 +9,7 @@ var token = global.token;
 var randomNameForDublicate = global.randomString(8);
 var centre = global.centreCLinics;
 var ClinicID = global.ClinicID;
+var ClinicIDForCentreToken = global.ClinicIDForCentreToken;
 var ClinicName = global.ClinicName;
 
 
@@ -22,7 +23,6 @@ describe('Version - 1.0.0 ' +
                 .set('Authorization', 'Bearer ' + token)
                 .send({
                     name : centre.name,
-                    // name : true,
                     latitude : centre.latitude,
                     longitude: centre.longitude,
                     confirmed: centre.confirmed
@@ -35,7 +35,24 @@ describe('Version - 1.0.0 ' +
                 });
             addContext(this, 'text' );
     });
-
+    it('Create new centre/Successfull case + get ID for delete without token', function (done) {
+        api.post('/centres')
+            .set('Accept', 'aplication/json')
+            .set('Authorization', 'Bearer ' + token)
+            .send({
+                name : "token" + centre.name,
+                latitude : centre.latitude,
+                longitude: centre.longitude,
+                confirmed: centre.confirmed
+            })
+            .end(function (err, res) {
+                expect(res.statusCode).to.equal(200);
+                expect(res.body).to.exist;
+                ClinicIDForCentreToken = res.body.res.id;
+                done();
+            });
+        addContext(this, 'text' );
+    });
     it('Create new centre/Successfull case + get name for check duplicate', function (done) {
         api.post('/centres')
             .set('Accept', 'aplication/json')
@@ -73,6 +90,16 @@ describe('centre', function () {
                 api.get('/centres')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.be.an('array');
+                        done();
+                    });
+
+            });
+            it('Get list of clinics / Unauthenticated', function (done) {
+                api.get('/centres')
+                    .set('Accept', 'aplication/json')
                     .end(function(err, res) {
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.be.an('array');
@@ -392,6 +419,11 @@ describe('centre', function () {
                 api.get('/centres/' + ClinicID)
                     .set('Accept', 'application/json')
                     .set('Authorization', 'Bearer ' + token)
+                    .expect(200,done)
+            });
+            it('GET clinic object/ Unauthenticated', function(done) {
+                api.get('/centres/' + ClinicID)
+                    .set('Accept', 'application/json')
                     .expect(200,done)
             });
 
@@ -786,7 +818,30 @@ describe('centre', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .expect(400, done)
             });
-        })
+        });
+
+
+        describe('HTTP responce code - 401', function () {
+            it('Patch clinic object / Unauthenticated', function (done) {
+                api.patch('/centres/' + ClinicID  )
+                    .set('Accept', 'aplication/json')
+                    .send({
+
+                        name : centre.name,
+                        latitude : centre.latitude,
+                        longitude: centre.longitude,
+                        confirmed: centre.confirmed
+
+                    })
+                    .expect(401,done)
+            });
+        });
+
+
+
+
+
+
     })
 
     describe('Delete centre ', function () {
@@ -802,14 +857,23 @@ describe('centre', function () {
         })
         describe('HTTP responce code - 400 ', function () {
 
-            it('Delete centre/not found', function (done) {
-                api.del('/centres/clinicId')
+            it('Delete centre/invalid id', function (done) {
+                api.del('/centres/' + ClinicID + "invalid")
                     .set('Accept', 'application/json')
                     .set('Authorization', 'Bearer ' + token)
                     .expect(400,done)
             });
 
         })
+
+        describe('HTTP responce code - 401 ', function () {
+            it('Delete clinic / Unauthenticated', function (done) {
+                api.del('/centres/' + ClinicIDForCentreToken)
+                    .set('Accept', 'application/json')
+                    .expect(401,done)
+            });
+        });
+
         describe('HTTP responce code - 404 ', function () {
 
             it('Delete centre/not found', function (done) {

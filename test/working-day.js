@@ -181,6 +181,7 @@ describe('Working-day', function () {
 
             });
 
+
             it('Create provider working day / end Time before start Time', function (done) {
                 api.post('/providers/' + ProviderIdForPatch + '/working-days')
                     .set('Accept', 'aplication/json')
@@ -237,6 +238,28 @@ describe('Working-day', function () {
                             "timeSlots": [
                                 {
                                     "centreId": ClinicIDForProvider2,
+                                    "startTime": "1970-01-01T08:00:00.000Z",
+                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                }
+                            ]
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+
+            });
+
+            it('Create provider working day / validation for parameter type / name -> empty', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/working-days')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": "",
+                            "timeSlots": [
+                                {
+                                    "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
                                     "endTime": "1970-01-01T16:00:00.000Z"
                                 }
