@@ -186,6 +186,21 @@ describe('Days-off', function () {
                     });
 
             });
+            it('Create new provider day-off / Successful case', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/days-off')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "date": "1970-01-01"
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        DayOffId = res.body.res._id;
+                        done();
+                    });
+
+            });
         })
 
         describe('HTTP responce code - 400', function () {

@@ -10,7 +10,7 @@ var token = global.token;
 var consumerObj = global.consumerObj;
 
 var ConsumerID = global.ConsumerID;
-
+var ConsumerIDForToken = global.ConsumerIDForToken;
 
 
 
@@ -41,7 +41,30 @@ describe('Version - 1.0.0 ' +
                 ConsumerID = res.body.res.id;
                 done();
             })
-        addContext(this, 'we do it');
+    });
+    it('Create new consumer/Successfull case + get ID for token', function (done) {
+        api.post('/consumers')
+            .set('Accept', 'aplication/json')
+            .set('Authorization', 'Bearer ' + token)
+            .send({
+                "email": "forToken" + consumerObj.email,
+                "firstName": "name_auto",
+                "lastName": "name_auto",
+                "phone": "phone ",
+                "receiveNotification": true,
+                "dontSentAdv": true,
+                "signedUp": true,
+                "receiveNewsLetters": true,
+                "entityStart": "2020-03-03",
+                "entityEnd": "2021-04-04"
+            })
+            .end(function (err, res) {
+
+                expect(res.statusCode).to.equal(200);
+                expect(res.body).to.exist;
+                ConsumerIDForToken = res.body.res.id;
+                done();
+            })
     });
 
 })
@@ -71,7 +94,22 @@ describe('CONSUMER', function () {
 
 
 
-        })
+        });
+
+        describe('HTTP responce code - 401 ', function () {
+
+            it('Get list of consumers / Unauthenticated', function (done) {
+                api.get('/consumers')
+                    .set('Accept', 'aplication/json')
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(401);
+                        done();
+                    });
+            });
+
+
+
+        });
 
 
     })
@@ -1084,6 +1122,36 @@ describe('CONSUMER', function () {
         })
 
 
+
+
+        describe('HTTP responce code - 401', function () {
+            it('Create Consumer / Unauthenticated', function (done) {
+                api.post('/consumers')
+                    .set('Accept', 'aplication/json')
+                    .send({
+                        "email": "notoken" + consumerObj.email,
+                        "firstName": "name_autodgdfg",
+                        "lastName": "name_autodfgdgd",
+                        "phone": "phone ",
+                        "receiveNotification": true,
+                        "dontSentAdv": true,
+                        "signedUp": true,
+                        "receiveNewsLetters": true,
+                        "entityStart": "2020-03-03",
+                        "entityEnd": "2021-04-04"
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(401);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+        });
+
+
+
+
+
     })
 
     describe('GET Consumer object - ', function () {
@@ -2059,6 +2127,25 @@ describe('CONSUMER', function () {
             });
         })
 
+        describe('HTTP responce code - 401', function () {
+            it('Patch Consumer / Unauthenticated', function(done) {
+                api.patch('/consumers/' + ConsumerID )
+                    .set('Accept', 'aplication/json')
+                    .send(
+                        {
+                            "firstName": "name patch all no token",
+                            "lastName":  consumerObj.lastName,
+                            "phone": "phone patch all",
+                            "receiveNotification": true,
+                            "dontSentAdv": true,
+                            "signedUp": true,
+                            "receiveNewsLetters": true,
+                            "entityStart": "2020-03-03",
+                            "entityEnd": "2021-04-04"
+                        })
+                    .expect(401,done)
+            });
+        });
     })
 
     describe('Delete Consumer object',  function ()  {
@@ -2079,6 +2166,15 @@ describe('CONSUMER', function () {
                     .set('Accept', 'application/json')
                     .set('Authorization', 'Bearer ' + token)
                     .expect(400,done)
+            });
+        })
+
+        describe('HTTP responce code - 401 ', function () {
+
+            it('Delete Consumer / Unauthenticated', function (done) {
+                api.del('/consumers/' + ConsumerIDForToken)
+                    .set('Accept', 'application/json')
+                    .expect(401,done)
             });
         })
 

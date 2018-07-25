@@ -135,8 +135,18 @@ describe('PROVIDER', function () {
                     })
                 addContext(this, 'we do it');
             });
-        })
+            it('GET list of Providers / Unauthenticated', function (done) {
+                api.get('/providers')
+                    .set('Accept', 'aplication/json')
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.be.an('array');
+                        done();
+                    });
 
+            }).timeout(40000 );
+
+        })
 
     })
 
@@ -151,6 +161,7 @@ describe('PROVIDER', function () {
                 });
 
         }).timeout(40000 );
+
 
     })
 
@@ -2000,7 +2011,7 @@ describe('PROVIDER', function () {
 
 
 
-    describe('GET  provider', function () {
+    describe('GET  provider object', function () {
 
         describe('HTTP responce code - 200', function () {
 
@@ -2014,6 +2025,17 @@ describe('PROVIDER', function () {
                         });
 
                 });
+
+            it('GET Provider object / Unauthenticated', function (done) {
+                api.get('/providers/' + ProviderIdForPatch)
+                    .set('Accept', 'aplication/json')
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+
+            }).timeout(40000 );
+
 
 
         })
@@ -2030,6 +2052,18 @@ describe('PROVIDER', function () {
             });
         })
         describe('HTTP responce code - 401', function () { })
+        describe('HTTP responce code - 404', function () {
+            it('GET Provider object / not found', function (done) {
+                api.get('/providers/' + ClinicIDForProvider)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(404);
+                        done();
+                    });
+
+            }).timeout(40000 );
+        })
     })
 
 

@@ -11,6 +11,7 @@ var Invalidtoken = 'eyD0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSld
 /*---------------------------------Clinic---------------------------- */
 
 var ClinicID = "";
+var ClinicIDForCentreToken = "";
 var ClinicName = "";
 var ClinicIDForProvider = "";
 var ClinicIDForProviderForTimeSlot = "";
@@ -28,6 +29,7 @@ var MasterServiceIDPatch ="";
 
 /*---------------------------------Provider---------------------------- */
 var ConsumerID = "";
+var ConsumerIDForToken = "";
 var ConsumerIDForProvider = "";
 var ConsumerIDForProviderForDiscount = "";
 var ConsumerIDForProviderPatch = "";
@@ -415,6 +417,8 @@ DiscountId2,
     unitNumberID,
 unitNumberIDPatch,
     MasterServiceID,
-    MasterServiceIDPatch
+    MasterServiceIDPatch,
+    ClinicIDForCentreToken,
+    ConsumerIDForToken
 
 }
