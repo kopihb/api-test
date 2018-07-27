@@ -16,7 +16,7 @@ var ProviderIdForPatch = global.ProviderIdForPatchWorkingDay;
 var WorkingDayId = global.WorkingDayIdWorkingDay;
 var WorkingDayIdDublicateName = global.WorkingDayIdDublicateName;
 var ClinicIDForProvider2 = global.ClinicIDForProvider2WorkingDay;
-
+var ProviderIdForPatch58 = global.ProviderIdForPatch58;
 
 
 describe('Working-day', function () {
@@ -86,6 +86,44 @@ describe('Working-day', function () {
 
         });
 
+
+        it('Create new Provider/ Successful case FOR DELETE PROVIDER', function (done) {
+            api.post('/providers')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send({
+
+                    "email": emailForProviders+ 'wwe',
+                    "waitingSlots": 0,
+                    "instantBooking": true,
+                    "bookingConfirmation": true,
+                    "sponsored": true,
+                    "minScheduleStep": 7,
+                    "defaultCentreId": ClinicIDForProvider,
+                    "centreIds": [
+                        ClinicIDForProvider
+                    ],
+                    "instantBookingConsumerIds": [
+                        ConsumerIDForProvider
+                    ],
+                    "entityStart": "2018-02-01",
+                    "entityEnd": "2018-02-01"
+
+                })
+                .end(function(err, res) {
+                    expect(res.statusCode).to.equal(200);
+                    ProviderIdForPatch58 = res.body.res.id;
+                    done();
+                });
+        });
+
+        it('Delete Provider / successful case', function (done) {
+            api.del('/providers/' + ProviderIdForPatch58)
+                .set('Accept', 'application/json')
+                .set('Authorization', 'Bearer ' + token)
+                .expect(200,done)
+        });
+
         it('Create new Provider/ Successful case', function (done) {
             api.post('/providers')
                 .set('Accept', 'aplication/json')
@@ -118,7 +156,7 @@ describe('Working-day', function () {
 
 
 
-    })
+    });
 
     describe('Get list provider working-day', function () {
 
@@ -134,11 +172,21 @@ describe('Working-day', function () {
                         done();
                     });
             });
-
+            it('Get list of provider working days / deleted Provider ID', function (done) {
+                api.get('/providers/' + ProviderIdForPatch58 + '/working-days')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.be.an('array');
+                        done();
+                    });
+            });
         });
 
 
         describe('HTTP responce code - 400', function () {
+
         });
 
 

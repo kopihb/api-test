@@ -49,6 +49,7 @@ var DayOffIdDayOff = "";
 /*---------------------------------Working Day---------------------------- */
 var WorkingDayId = "";
 var ClinicIDForProviderWorkingDay = "";
+var ProviderIdForPatch58 = '';
 var ConsumerIDForProviderWorkingDay = "";
 var ProviderIdForPatchWorkingDay = "";
 var WorkingDayIdWorkingDay = "";
@@ -58,7 +59,7 @@ var WorkingDayIdDublicateName = "";
 /*---------------------------------Promotion---------------------------- */
 var ServiceId = "";
 var ServiceIdForChangePatch = "";
-
+var ProviderIdForPatch27 = '';
 /*---------------------------------Clinics---------------------------- */
 var randomValueName = randomString(5); /*use for name*/
 var randomValueMail = randomString(7); /*use for mail*/
@@ -428,6 +429,9 @@ unitNumberIDPatch,
     ProviderIdForPatch45,
     ProviderIdForPatch32,
     ProviderIdForPatch22,
-    ProviderIdForPatch28
+    ProviderIdForPatch28,
+    ProviderIdForPatch58,
+    ProviderPromotionID,
+    ProviderIdForPatch27
 
 };
