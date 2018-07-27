@@ -8,8 +8,8 @@ var MasterServiceID = global.MasterServiceID;
 var MasterServiceIDPatch = global.MasterServiceIDPatch;
 var unitNumberID = global.unitNumberID;
 var Invalidtoken = global.Invalidtoken;
-
-
+var tokenConsumer = global.tokenConsumer;
+var tokenProvider = global.tokenProvider;
 
 
 
@@ -326,6 +326,7 @@ describe('Master-service', function () {
                         done();
                     })
             });
+
         });
         describe('HTTP responce code - 400', function () {  });
         describe('HTTP responce code - 401', function () {
@@ -337,6 +338,17 @@ describe('Master-service', function () {
                         done();
                     })
             });
+
+            it('Get list of masterservices/ PROVIDER role/successful case', function (done) {
+                api.get('/master-services')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenProvider)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(401);
+                        done();
+                    })
+            });
+
             it('Get list of masterservices / Unauthenticated - invalid token', function (done) {
                 api.get('/master-services')
                     .set('Accept', 'aplication/json')
@@ -347,7 +359,17 @@ describe('Master-service', function () {
                     })
             });
         });
-        describe('HTTP responce code - 404', function () {  });
+        describe('HTTP responce code - 403', function () {
+            it('Get list of masterservices/ CONSUMER role/unsuccessful case', function (done) {
+                api.get('/master-services')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenConsumer)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(403);
+                        done();
+                    })
+            });
+        });
     });
 
 
@@ -364,6 +386,7 @@ describe('Master-service', function () {
                         done();
                     })
             });
+
         });
         describe('HTTP responce code - 400', function () {
             it('Get masterservice object/Invalid masterservice ID', function (done) {
@@ -376,7 +399,18 @@ describe('Master-service', function () {
                     })
             });
         });
-        describe('HTTP responce code - 401', function () {  });
+        describe('HTTP responce code - 401', function () {
+            it('Get masterservice object/(PROVIDER role)', function (done) {
+                api.get('/master-services/' + MasterServiceID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenProvider)
+                    .end(function(err, res) {
+                        console.log(res.body);
+                        expect(res.statusCode).to.equal(401);
+                        done();
+                    })
+            });
+        });
         describe('HTTP responce code - 404', function () {
 
         });
