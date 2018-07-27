@@ -84,13 +84,13 @@ var randomValueNameShedule = randomString(4); /*use for name*/
 var randomValueMailShedule = randomString(5); /*use for mail*/
 var randomValueProviderMailShedule = randomString(3); /*use for mail*/
 var emailForProvidersShedule = randomValueProviderMailShedule + '@mail.com';
-
+var ProviderIdForPatch32 = '';
 /*---------------------------------Shedules Time Slots---------------------------- */
 var randomValueNameSheduleTimeSlot = randomString(5); /*use for name*/
 var randomValueMailSheduleTimeSlot = randomString(7); /*use for mail*/
 var randomValueProviderMailSheduleTimeSlot = randomString(4); /*use for mail*/
 var emailForProvidersSheduleTimeSlot = randomValueProviderMailSheduleTimeSlot + '@mail.com';
-
+var ProviderIdForPatch45 = '';
 /*---------------------------------ShedulesOne---------------------------- */
 
 var ProviderIdForPatchForShedulesOne = "";
@@ -99,7 +99,7 @@ var randomValueMailSheduleOne = randomString(7); /*use for mail*/
 var randomValueProviderMailSheduleOne = randomString(5); /*use for mail*/
 var emailForProvidersSheduleOne = randomValueProviderMailSheduleOne + '@mail.com';
 var ScheduleIdForProvidersOne = "";
-
+var ProviderIdForPatch28 = '';
 
 /*---------------------------------Provider Discount---------------------------- */
 var DiscountId = '';
@@ -109,7 +109,7 @@ var randomValueMailDiscount = randomString(5); /*use for mail*/
 var randomValueProviderMailDiscount = randomString(4); /*use for mail*/
 var emailForProvidersDiscount = randomValueProviderMailDiscount + '@mail.com';
 var ScheduleIdForProvidersDiscount = "";
-
+var ProviderIdForPatch22 = '';
 /*---------------------------------DayOffs---------------------------- */
 var randomValueNameDayOff = randomString(6); /*use for name*/
 var randomValueMailDayOff = randomString(7); /*use for mail*/
@@ -424,6 +424,10 @@ unitNumberIDPatch,
     ConsumerIDForToken,
     WorkingDayIdDublicateName,
     tokenConsumer,
-    tokenProvider
+    tokenProvider,
+    ProviderIdForPatch45,
+    ProviderIdForPatch32,
+    ProviderIdForPatch22,
+    ProviderIdForPatch28
 
 };

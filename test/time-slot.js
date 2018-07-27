@@ -15,6 +15,7 @@ var consumerObj = global.consumerObjSheduleTimeSlot;
 var ClinicIDForProvider = global.ClinicIDForProviderForTimeSlot;
 var ConsumerIDForProvider = global.ConsumerIDForProviderForTimeSlot;
 var ProviderIdForPatch = global.ProviderIdForPatchForTimeSlot;
+var ProviderIdForPatch45 = global.ProviderIdForPatch45 ;
 var WorkingDayId = global.WorkingDayId;
 var TimeSlotsID = global.TimeSlotsID;
 var CenterForTime = global.CenterForTime;
@@ -94,6 +95,50 @@ describe('Schedule Time Slot', function () {
                     done();
                 });
         });
+
+
+        it('Create new Provider/ Successful case FOR DELETE', function (done) {
+            api.post('/providers')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send({
+
+                    "email": emailForProviders+ 'trtrtr',
+                    "waitingSlots": 0,
+                    "instantBooking": true,
+                    "bookingConfirmation": true,
+                    "sponsored": true,
+                    "minScheduleStep": 7,
+                    "defaultCentreId": ClinicIDForProvider,
+                    "centreIds": [
+                        ClinicIDForProvider
+                    ],
+                    "instantBookingConsumerIds": [
+                        ConsumerIDForProvider
+                    ],
+                    "entityStart": "2018-01-01",
+                    "entityEnd": "2018-01-01"
+
+                })
+                .end(function(err, res) {
+
+                    expect(res.statusCode).to.equal(200);
+                    ProviderIdForPatch45 = res.body.res.id;
+
+                    done();
+                });
+        });
+
+
+        it('Delete Provider / successful case', function (done) {
+            api.del('/providers/' + ProviderIdForPatch45)
+                .set('Accept', 'application/json')
+                .set('Authorization', 'Bearer ' + token)
+                .expect(200,done)
+        });
+
+
+
         it('Create provider working day / successful case', function (done) {
             api.post('/providers/' + ProviderIdForPatch + '/working-days')
                 .set('Accept', 'aplication/json')
@@ -194,7 +239,16 @@ describe('Get list provider time slot', function () {
     });
 
     describe('HTTP responce code - 404', function () {
+        it('Get provider schedule time slot / Not found timeSlotId ', function (done) {
+            api.get('/providers/' + ProviderIdForPatch45 + '/schedule/time-slots/'+ TimeSlotsID )
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .end(function(err, res) {
+                    expect(res.statusCode).to.equal(404);
+                    done();
+                });
 
+        });
     });
 
 });
@@ -746,6 +800,22 @@ describe('Patch provider schedule template', function () {
                     "centreId": CenterForTime,
                     "startTime": 0,
                     "endTime": "2018-01-06T01:00:00.000Z"
+                })
+                .end(function (err, res) {
+                    expect(res.statusCode).to.equal(400);
+                    done();
+                })
+        });
+
+
+        it('Patch provider schedule time slot / time slot conflicts', function (done) {
+            api.patch('/providers/' + ProviderIdForPatch + '/schedule/time-slots/' + TimeSlotsID )
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send({
+                    "centreId": CenterForTime,
+                    "startTime": "2018-01-03T07:00:00.000Z",
+                    "endTime": "2018-01-03T06:00:00.000Z"
                 })
                 .end(function (err, res) {
                     expect(res.statusCode).to.equal(400);

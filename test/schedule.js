@@ -14,6 +14,7 @@ var consumerObj = global.consumerObjSheduleOne;
 var ClinicIDForProvider = global.ClinicIDForProvider;
 var ConsumerIDForProvider = global.ConsumerIDForProvider;
 var ProviderIdForPatch = global.ProviderIdForPatch;
+var ProviderIdForPatch28 = global.ProviderIdForPatch28;
 var WorkingDayId = global.WorkingDayId;
 var ScheduleIdForProviders = global.ScheduleIdForProvidersOne;
 var randomValueName = global.randomValueNameSheduleOne;
@@ -93,6 +94,45 @@ describe('Schedule', function () {
                     done();
                 });
         });
+
+
+        it('Create new Provider/ Successful case FOR DELETE', function (done) {
+            api.post('/providers')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send({
+
+                    "email": emailForProviders+'sdfsdfsd',
+                    "waitingSlots": 0,
+                    "instantBooking": true,
+                    "bookingConfirmation": true,
+                    "sponsored": true,
+                    "minScheduleStep": 7,
+                    "defaultCentreId": ClinicIDForProvider,
+                    "centreIds": [
+                        ClinicIDForProvider
+                    ],
+                    "instantBookingConsumerIds": [
+                        ConsumerIDForProvider
+                    ],
+                    "entityStart": "2018-01-01",
+                    "entityEnd": "2018-01-01"
+
+                })
+                .end(function(err, res) {
+                    expect(res.statusCode).to.equal(200);
+                    ProviderIdForPatch28 = res.body.res.id;
+                    done();
+                });
+        });
+
+        it('Delete Provider / successful case', function (done) {
+            api.del('/providers/' + ProviderIdForPatch28)
+                .set('Accept', 'application/json')
+                .set('Authorization', 'Bearer ' + token)
+                .expect(200,done)
+        });
+
         it('Create provider working day / successful case', function (done) {
             api.post('/providers/' + ProviderIdForPatch + '/working-days')
                 .set('Accept', 'aplication/json')
@@ -154,6 +194,19 @@ describe('Schedule', function () {
                     });
 
             });
+            it('Get provider schedule / for deleted Provider ', function (done) {
+                api.get('/providers/' + ProviderIdForPatch28 + '/schedule')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.be.an('array');
+                        done();
+                    });
+
+            });
+
 
         });
 
@@ -197,6 +250,7 @@ describe('Schedule', function () {
                         done();
                     })
             });
+
 
         });
         describe('HTTP responce code - 400', function () {

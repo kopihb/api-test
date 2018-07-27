@@ -16,6 +16,7 @@ var ClinicIDForProvider = global.ClinicIDForProviderForDiscount;
 var ConsumerIDForProvider = global.ConsumerIDForProviderForDiscount;
 
 var ProviderIdForPatch = global.ProviderIdForPatchForDiscount;
+var ProviderIdForPatch22 = global.ProviderIdForPatch22;
 var WorkingDayId = global.WorkingDayId;
 var randomValueName = global.randomValueNameDiscount;
 var Invalidtoken = global.Invalidtoken;
@@ -97,6 +98,50 @@ describe('Schedule-Templates', function () {
                     done();
                 });
         });
+
+
+
+
+        it('Create new Provider/ Successful case FOR DELETE', function (done) {
+            api.post('/providers')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send({
+
+                    "email": emailForProviders+ 'trtrtr',
+                    "waitingSlots": 0,
+                    "instantBooking": true,
+                    "bookingConfirmation": true,
+                    "sponsored": true,
+                    "minScheduleStep": 7,
+                    "defaultCentreId": ClinicIDForProvider,
+                    "centreIds": [
+                        ClinicIDForProvider
+                    ],
+                    "instantBookingConsumerIds": [
+                        ConsumerIDForProvider
+                    ],
+                    "entityStart": "2018-01-01",
+                    "entityEnd": "2018-01-01"
+
+                })
+                .end(function(err, res) {
+
+                    expect(res.statusCode).to.equal(200);
+                    ProviderIdForPatch22 = res.body.res.id;
+
+                    done();
+                });
+        });
+
+
+        it('Delete Provider / successful case', function (done) {
+            api.del('/providers/' + ProviderIdForPatch22)
+                .set('Accept', 'application/json')
+                .set('Authorization', 'Bearer ' + token)
+                .expect(200,done)
+        });
+
         it('Create provider working day / successful case', function (done) {
             api.post('/providers/' + ProviderIdForPatch + '/working-days')
                 .set('Accept', 'aplication/json')
@@ -530,6 +575,29 @@ describe('Create provider schedule template', function () {
 
     });
 
+    describe('HTTP responce code - 404', function () {
+        it('Create new provider discount / Enter deleted providerId ', function (done) {
+
+            api.post('/providers/' + ProviderIdForPatch22 + '/discounts')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send({
+
+                    "startDate": "2018-01-01T00:00:00.000Z",
+                    "endDate": "2018-01-01T23:59:59.999Z",
+                    "percent": 33,
+                    "personal": false
+
+                })
+                .end(function (err, res) {
+                    expect(res.statusCode).to.equal(404);
+                    expect(res.body).to.exist;
+                    done();
+                })
+        });
+
+
+    });
 });
 
 /*-------------------   Get List        ---------------------------------------------------------------------------------------------------- */
@@ -973,7 +1041,24 @@ describe('Patch provider schedule template', function () {
 
     });
     describe('HTTP responce code - 404', function () {
+        it('Patch new provider discount / Enter deleted providerId', function (done) {
+            api.patch('/providers/' + ProviderIdForPatch22 + '/discounts' )
+                .set('Accept', 'aplication/json')
+                .send({
+                    "startDate": "2018-01-01T00:00:00.000Z",
+                    "endDate": "2018-01-01T23:59:59.999Z",
+                    "percent": 33,
+                    "personal": false
 
+
+                })
+                .end(function (err, res) {
+
+                    expect(res.statusCode).to.equal(404);
+                    expect(res.body).to.exist;
+                    done();
+                })
+        });
 
     });
 });
