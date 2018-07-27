@@ -237,7 +237,7 @@ describe('Provider  promotion', function () {
 
 
 
-    })
+    });
 
 
 

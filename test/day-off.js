@@ -106,7 +106,7 @@ describe('Days-off', function () {
 
 
 
-    })
+    });
 
     describe('Get list provider deys-off', function () {
 
@@ -186,22 +186,7 @@ describe('Days-off', function () {
                     });
 
             });
-            it('Create new provider day-off / Successful case', function (done) {
-                api.post('/providers/' + ProviderIdForPatch + '/days-off')
-                    .set('Accept', 'aplication/json')
-                    .set('Authorization', 'Bearer ' + token)
-                    .send(
-                        {
-                            "date": "1970-01-01"
-                        })
-                    .end(function(err, res) {
-                        expect(res.statusCode).to.equal(200);
-                        DayOffId = res.body.res._id;
-                        done();
-                    });
-
-            });
-        })
+        });
 
         describe('HTTP responce code - 400', function () {
 
@@ -276,7 +261,7 @@ describe('Days-off', function () {
 
             });
 
-        })
+        });
 
 
         describe('HTTP responce code - 401', function () {
@@ -293,7 +278,7 @@ describe('Days-off', function () {
                     });
 
             });
-        })
+        });
 
         describe('HTTP responce code - 404', function () {
             it('Create new provider day-off / Unauthenticated', function (done) {
@@ -348,7 +333,7 @@ describe('Days-off', function () {
                     });
 
             });
-        })
+        });
         describe('HTTP responce code - 400', function () {
 
             it('Patch provider day-off / Invalid provider Id', function (done) {
@@ -424,7 +409,7 @@ describe('Days-off', function () {
 
 
 
-        })
+        });
         describe('HTTP responce code - 401', function () {
 
             it('Patch provider day-off / Unauthenticated', function (done) {
@@ -442,7 +427,7 @@ describe('Days-off', function () {
             });
 
 
-        })
+        });
         describe('HTTP responce code - 404', function () {
             it('Patch provider day-off / Not found provider Id', function (done) {
                 api.patch('/providers/' + DayOffId + '/days-off/' + DayOffId )
@@ -475,7 +460,7 @@ describe('Days-off', function () {
             });
         })
 
-    })
+    });
 
     describe('Delete provider day-off', function () {
 
@@ -537,4 +522,4 @@ describe('Days-off', function () {
     });
 
 
-})
+});

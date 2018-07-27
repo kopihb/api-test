@@ -23,7 +23,7 @@ describe('Version - 1.0.0 ' +
     ' Auto create and get  ID for test ', function () {
 
 
-})
+});
 
 
 describe('PROVIDER', function () {
@@ -135,20 +135,10 @@ describe('PROVIDER', function () {
                     })
                 addContext(this, 'we do it');
             });
-            it('GET list of Providers / Unauthenticated', function (done) {
-                api.get('/providers')
-                    .set('Accept', 'aplication/json')
-                    .end(function(err, res) {
-                        expect(res.statusCode).to.equal(200);
-                        expect(res.body).to.be.an('array');
-                        done();
-                    });
-
-            }).timeout(40000 );
-
         })
 
-    })
+
+    });
 
     describe('GET object -', function () {
         it('Should return 200 responce - /provider', function (done) {
@@ -162,8 +152,7 @@ describe('PROVIDER', function () {
 
         }).timeout(40000 );
 
-
-    })
+    });
 
 
     describe('Create provider', function () {
@@ -652,7 +641,7 @@ describe('PROVIDER', function () {
 
 
 
-        })
+        });
         describe('HTTP responce code - 400', function () {
 
             it('Create new Provider with duplicated email', function (done) {
@@ -1975,7 +1964,7 @@ describe('PROVIDER', function () {
 
 
 
-        })
+        });
         describe('HTTP responce code - 401', function () {
             it('Create new Provider / Unauthenticated', function (done) {
                 api.post('/providers')
@@ -2006,12 +1995,12 @@ describe('PROVIDER', function () {
             });
 
         })
-    })
+    });
 
 
 
 
-    describe('GET  provider object', function () {
+    describe('GET  provider', function () {
 
         describe('HTTP responce code - 200', function () {
 
@@ -2026,19 +2015,8 @@ describe('PROVIDER', function () {
 
                 });
 
-            it('GET Provider object / Unauthenticated', function (done) {
-                api.get('/providers/' + ProviderIdForPatch)
-                    .set('Accept', 'aplication/json')
-                    .end(function(err, res) {
-                        expect(res.statusCode).to.equal(200);
-                        done();
-                    });
 
-            }).timeout(40000 );
-
-
-
-        })
+        });
         describe('HTTP responce code - 400', function () {
             it('GET Provider object/successful case', function (done) {
                 api.get('/providers/'+ ProviderIdForPatch + 1)
@@ -2050,21 +2028,9 @@ describe('PROVIDER', function () {
                     });
 
             });
-        })
+        });
         describe('HTTP responce code - 401', function () { })
-        describe('HTTP responce code - 404', function () {
-            it('GET Provider object / not found', function (done) {
-                api.get('/providers/' + ClinicIDForProvider)
-                    .set('Accept', 'aplication/json')
-                    .set('Authorization', 'Bearer ' + token)
-                    .end(function(err, res) {
-                        expect(res.statusCode).to.equal(404);
-                        done();
-                    });
-
-            }).timeout(40000 );
-        })
-    })
+    });
 
 
 
@@ -3286,7 +3252,7 @@ describe('PROVIDER', function () {
             });
 
 
-        })
+        });
 
 
 
@@ -3319,7 +3285,7 @@ describe('PROVIDER', function () {
                         done();
                     });
             });
-        })
+        });
 
         describe('HTTP responce code - 404', function () {
             it('Patch Provider object / Not found provider ID', function (done) {
@@ -3356,7 +3322,7 @@ describe('PROVIDER', function () {
 
 
 
-    })
+    });
 
 
 
@@ -3372,7 +3338,7 @@ describe('PROVIDER', function () {
                     .expect(200,done)
             });
 
-        })
+        });
         describe('HTTP responce code - 400', function () {
             it('Delete Provider / Invalid provider ID', function (done) {
                 api.del('/providers/' + ProviderIdForPatch + 1)
@@ -3380,7 +3346,7 @@ describe('PROVIDER', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .expect(400,done)
             });
-        })
+        });
         describe('HTTP responce code - 401', function () {
             it('Delete Provider / Invalid provider ID', function (done) {
                 api.del('/providers/' + ProviderIdForPatch)
@@ -3388,7 +3354,7 @@ describe('PROVIDER', function () {
                     .expect(401,done)
             });
 
-        })
+        });
         describe('HTTP responce code - 404', function () {
             it('Delete Provider / Not found provider ID', function (done) {
                 api.del('/providers/' + ProviderIdForPatch)
@@ -3398,16 +3364,16 @@ describe('PROVIDER', function () {
             });
         })
 
-    })
+    });
 
 
 
 
     describe('Patch  provider/Not Found', function () {
-        describe('HTTP responce code - 200', function () { })
-        describe('HTTP responce code - 400', function () { })
+        describe('HTTP responce code - 200', function () { });
+        describe('HTTP responce code - 400', function () { });
         describe('HTTP responce code - 401', function () { })
-    })
+    });
 
-})
+});
 

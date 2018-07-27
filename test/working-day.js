@@ -1064,7 +1064,7 @@ describe('Working-day', function () {
 
             });
 
-        })
+        });
         
         describe('HTTP responce code - 200', function () {
             it('Delete not assigned centre  / Successful case', function (done) {
@@ -1105,4 +1105,4 @@ describe('Working-day', function () {
 
     })
 
-})
+});

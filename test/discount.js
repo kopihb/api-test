@@ -525,24 +525,7 @@ describe('Create provider schedule template', function () {
 
     describe('HTTP responce code - 403', function () {
 
-        // it('Create new provider discount / Enter existed providerId and Consumer role instead of Provider one', function (done) {
-        //     api.post('/providers/' + ProviderIdForPatch + '/discounts')
-        //         .set('Accept', 'aplication/json')
-        //         .set('Authorization', 'Bearer ' + token)
-        //         .send({
-        //
-        //             "startDate": "2018-01-01T00:00:00.000Z",
-        //             "endDate": "2018-01-01T23:59:59.999Z",
-        //             "percent": 33,
-        //             "personal": false
-        //
-        //         })
-        //         .end(function (err, res) {
-        //             expect(res.statusCode).to.equal(403);
-        //             expect(res.body).to.exist;
-        //             done();
-        //         })
-        // });
+
 
     });
 
@@ -552,16 +535,7 @@ describe('Create provider schedule template', function () {
 
 describe('Get list provider schedule-templates object', function () {
     describe('HTTP responce code - 200', function () {
-        // it('Get provider schedule / successful case ', function (done) {
-        //     api.get('/providers/' + ProviderIdForPatch + '/discounts/' + DiscountId)
-        //         .set('Accept', 'aplication/json')
-        //         .set('Authorization', 'Bearer ' + token)
-        //         .end(function(err, res) {
-        //             expect(res.statusCode).to.equal(200);
-        //             done();
-        //         });
-        //
-        // });
+
     });
     describe('HTTP responce code - 400', function () {
         it('Get  provider discount  / enter invalid discountId ', function (done) {

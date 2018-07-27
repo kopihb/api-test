@@ -141,7 +141,7 @@ var centreCLinics = {
     latitude: 0,
     longitude: 0,
     confirmed: true
-}
+};
 
 /*---------------------------------Center obj for Promotion---------------------------- */
 var centreCLinicsPromo = {
@@ -149,28 +149,28 @@ var centreCLinicsPromo = {
     latitude: 0,
     longitude: 0,
     confirmed: true
-}
+};
 /*---------------------------------Center obj for DayOff---------------------------- */
 var centreDayOff = {
     name: randomValueNameDayOff,
     latitude: 0,
     longitude: 0,
     confirmed: true
-}
+};
 /*---------------------------------Center obj for Provider---------------------------- */
 var centreProvider = {
     name: randomValueNameProvider,
     latitude: 0,
     longitude: 0,
     confirmed: true
-}
+};
 /*---------------------------------Center obj  for Shedule---------------------------- */
 var centreShedule = {
     name: randomValueNameShedule,
     latitude: 0,
     longitude: 0,
     confirmed: true
-}
+};
 
 /*---------------------------------Center obj  for Shedule Time Slots---------------------------- */
 var centreSheduleTimeSlot = {
@@ -178,28 +178,28 @@ var centreSheduleTimeSlot = {
     latitude: 0,
     longitude: 0,
     confirmed: true
-}
+};
 /*---------------------------------Center obj  for Provider Discount---------------------------- */
 var centreProviderDiscount = {
     name: randomValueNameDiscount,
     latitude: 0,
     longitude: 0,
     confirmed: true
-}
+};
 /*---------------------------------Center obj  for SheduleOne---------------------------- */
 var centreSheduleOne = {
     name: randomValueNameSheduleOne,
     latitude: 0,
     longitude: 0,
     confirmed: true
-}
+};
 /*---------------------------------Center obj for WorkingDay---------------------------- */
 var centreWorkingDay = {
     name: randomValueNameWorkingDay,
     latitude: 0,
     longitude: 0,
     confirmed: true
-}
+};
 
 /*---------------------------------Consumer obj ---------------------------- */
 
@@ -214,7 +214,7 @@ var consumerObj = {
     receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
-}
+};
 /*---------------------------------Consumer obj for Provider---------------------------- */
 var consumerObjProvider = {
     email: randomValueMailProvider + '@mail.com',
@@ -227,7 +227,7 @@ var consumerObjProvider = {
     receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
-}
+};
 /*---------------------------------Consumer obj for Shedule---------------------------- */
 
 var consumerObjShedule = {
@@ -241,7 +241,7 @@ var consumerObjShedule = {
     receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
-}
+};
 
 /*---------------------------------Consumer obj for Shedule Time Slot---------------------------- */
 
@@ -256,7 +256,7 @@ var consumerObjSheduleTimeSlot = {
     receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
-}
+};
 /*---------------------------------Consumer obj for Provider Discount---------------------------- */
 
 var consumerObjDiscount = {
@@ -270,7 +270,7 @@ var consumerObjDiscount = {
     receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
-}
+};
 /*---------------------------------Consumer obj for SheduleONe---------------------------- */
 
 var consumerObjSheduleOne = {
@@ -284,7 +284,7 @@ var consumerObjSheduleOne = {
     receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
-}
+};
 /*---------------------------------Consumer obj for DayOff---------------------------- */
 var consumerObjDayOff = {
     email: randomValueMailDayOff + '@mail.com',
@@ -296,7 +296,7 @@ var consumerObjDayOff = {
     signedUp: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
-}
+};
 
 /*---------------------------------Consumer obj for WorkingDay---------------------------- */
 
@@ -311,7 +311,7 @@ var consumerObjWorkingDay = {
     receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
-}
+};
 
 /*---------------------------------Consumer obj for promotions---------------------------- */
 
@@ -326,7 +326,7 @@ var consumerObjPromotions = {
     receiveNewsLetters: true,
     entityStart: '2020-03-03',
     entityEnd: '2021-04-04'
-}
+};
 
 
 
@@ -421,4 +421,4 @@ unitNumberIDPatch,
     ClinicIDForCentreToken,
     ConsumerIDForToken
 
-}
+};
