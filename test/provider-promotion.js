@@ -12,12 +12,10 @@ var ProviderIdForPatch = global.ProviderIdForPatchWorkingDay;
 var ServiceId = global.ServiceId;
 var ProviderPromotionID = global.ProviderPromotionID;
 var ServiceIdForChangePatch = global.ServiceIdForChangePatch;
-
+var ProviderIdForPatch27 = global.ProviderIdForPatch27;
 var SubClinicIDForProvider = global.SubClinicIDForProvider;
-//var MasterServiceID ="";
 var unitNumberID = global.unitNumberID;
 var unitNumberIDPatch = global.unitNumberIDPatch;
-//var TEMP_service_ID = "5b508e8c8c3606000f40dcf6";
 
 describe('Provider  promotion', function () {
 
@@ -156,7 +154,45 @@ describe('Provider  promotion', function () {
                     done();
                 });
         });
+        it('Create new Provider/ Successful case FOR DELETE', function (done) {
+            api.post('/providers')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send({
 
+                    "email": emailForProviders+ 'trtrtr',
+                    "waitingSlots": 0,
+                    "instantBooking": true,
+                    "bookingConfirmation": true,
+                    "sponsored": true,
+                    "minScheduleStep": 7,
+                    "defaultCentreId": ClinicIDForProvider,
+                    "centreIds": [
+                        ClinicIDForProvider
+                    ],
+                    "instantBookingConsumerIds": [
+                        ConsumerIDForProvider
+                    ],
+                    "entityStart": "2018-01-01",
+                    "entityEnd": "2018-01-01"
+
+                })
+                .end(function(err, res) {
+
+                    expect(res.statusCode).to.equal(200);
+                    ProviderIdForPatch27 = res.body.res.id;
+
+                    done();
+                });
+        });
+
+
+        it('Delete Provider / successful case', function (done) {
+            api.del('/providers/' + ProviderIdForPatch27)
+                .set('Accept', 'application/json')
+                .set('Authorization', 'Bearer ' + token)
+                .expect(200,done)
+        });
 
         it('Create new Provider/ SERVICE ID', function (done) {
             api.post('/providers/' + ProviderIdForPatch + '/services')
@@ -2557,6 +2593,16 @@ describe('Provider  promotion', function () {
         describe('HTTP responce code - 404', function () {
             it('Delete provider promotion object / Unauthenticated', function (done) {
                 api.del('/providers/' + ProviderIdForPatch + '/promotions/' + ProviderPromotionID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(404);
+                        done();
+                    });
+            });
+
+            it('Delete provider promotion object / Not found providerId', function (done) {
+                api.del('/providers/' + ProviderIdForPatch27 + '/promotions/' + ProviderPromotionID)
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .end(function(err, res) {
