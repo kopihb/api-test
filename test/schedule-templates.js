@@ -17,6 +17,7 @@ var ScheduleIdForProviders = global.ScheduleIdForProviders;
 var randomValueName = global.randomValueNameShedule;
 var ScheduleIdForProviders2 = global.ScheduleIdForProviders2;
 var ProviderIdForPatch2 = global.ProviderIdForPatch2;
+var ProviderIdForPatch32 = global.ProviderIdForPatch32;
 var WorkingDayId2 = global.WorkingDayId2;
 var WorkingDayId3 = global.WorkingDayId3;
 var WorkingDayId4 = global.WorkingDayId4;
@@ -127,6 +128,47 @@ describe('Schedule-Templates', function () {
                 });
         });
 
+        ///////////////////////////////////////-------------- //////////////////////////////
+
+        it('Create new Provider/ Successful case FOR DELETE PROVIDER', function (done) {
+            api.post('/providers')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + token)
+                .send({
+
+                    "email": emailForProviders+ 'wwe',
+                    "waitingSlots": 0,
+                    "instantBooking": true,
+                    "bookingConfirmation": true,
+                    "sponsored": true,
+                    "minScheduleStep": 7,
+                    "defaultCentreId": ClinicIDForProvider,
+                    "centreIds": [
+                        ClinicIDForProvider
+                    ],
+                    "instantBookingConsumerIds": [
+                        ConsumerIDForProvider
+                    ],
+                    "entityStart": "2018-02-01",
+                    "entityEnd": "2018-02-01"
+
+                })
+                .end(function(err, res) {
+                    expect(res.statusCode).to.equal(200);
+                    ProviderIdForPatch32 = res.body.res.id;
+                    done();
+                });
+        });
+
+        it('Delete Provider / successful case', function (done) {
+            api.del('/providers/' + ProviderIdForPatch32)
+                .set('Accept', 'application/json')
+                .set('Authorization', 'Bearer ' + token)
+                .expect(200,done)
+        });
+        ///////////////////////////////////////-------------- //////////////////////////////
+
+
 
 
         it('Create provider working day / successful case', function (done) {
@@ -151,6 +193,8 @@ describe('Schedule-Templates', function () {
                 });
 
         });
+
+
 
         it('Create provider working day / successful case FOR NEW', function (done) {
             api.post('/providers/' + ProviderIdForPatch2 + '/working-days')
@@ -420,6 +464,23 @@ describe('Schedule-Templates', function () {
                     })
             });
 
+            it('Create provider schedule template / for deleted working day', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/schedule-templates')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name":0,
+                        "workingDayIds": [
+                            WorkingDayId3
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
 
         });
         describe('HTTP responce code - 401', function () {
@@ -442,13 +503,45 @@ describe('Schedule-Templates', function () {
 
 
         });
+        describe('HTTP responce code - 404', function () {
+            it('Create provider schedule template / for deleted Provider', function (done) {
+                api.post('/providers/' + ProviderIdForPatch32 + '/schedule-templates')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        "name":randomValueName,
+                        "workingDayIds": [
+                            WorkingDayId
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(404);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
 
+
+
+        });
     /*-------------------   Get List        ---------------------------------------------------------------------------------------------------- */
 
     describe('Get list provider schedule-templates object', function () {
         describe('HTTP responce code - 200', function () {
             it('Get provider schedule template object / successful case', function (done) {
                 api.get('/providers/' + ProviderIdForPatch + '/schedule-templates/' + ScheduleIdForProviders)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .end(function(err, res) {
+
+                        expect(res.statusCode).to.equal(200);
+                        done();
+                    });
+
+            });
+
+            it('Get list of provider schedule templates / deleted Provider', function (done) {
+                api.get('/providers/' + ProviderIdForPatch32 + '/schedule-templates/')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .end(function(err, res) {
