@@ -6,7 +6,7 @@ var supertest = global.supertest ;
 var api = global.api;
 var addContext =  global.addContext;
 var token = global.token;
-
+var tokenConsumer = global.tokenConsumer;
 
 var emailForProviders = global.emailForProvidersDiscount;
 var centre = global.centreProviderDiscount;
@@ -160,16 +160,17 @@ describe('Get list provider schedule/discount', function () {
     });
     describe('HTTP responce code - 403', function () {
 
-        // it('Get  provider discount  / Forbidden ', function (done) {
-        //     api.get('/providers/' + ConsumerIDForProvider + '/discounts')
-        //         .set('Accept', 'aplication/json')
-        //         .set('Authorization', 'Bearer ' + token + '1')
-        //         .end(function(err, res) {
-        //             expect(res.statusCode).to.equal(403);
-        //             done();
-        //         });
-        //
-        // });
+        it('Get  provider discount  / Forbidden ', function (done) {
+            api.get('/providers/' + ConsumerIDForProvider + '/discounts')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + tokenConsumer)
+                .end(function(err, res) {
+                    console.log(res.body);
+                    expect(res.statusCode).to.equal(403);
+                    done();
+                });
+
+        });
 
     });
 
