@@ -8,6 +8,8 @@ const addContext = require('mochawesome/addContext');
 /*-----------------------------------Token---------------------------------------- */
 var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzI0MTY1MzcsImV4cCI6MTU2Mzk1MjUzNywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AZ21haWwuY29tIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJTVVBFUl9BRE1JTiJdfQ.qu2lvCFOEK30n7g4GJDNL8Ya1eXD_WhyjPnhsKn-tb0';
 var Invalidtoken = 'eyD0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzEzODc2MTEsImV4cCI6MTU2MjkyMzYxMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AbWFpbC5jb20iLCJyb2xlcyI6WyJQUk9WSURFUiIsIlNVUEVSX0FETUlOIl19.RfeB6N6kRFVCGR_mvsXbtqcuWa2KdpFhHPN9DgnHsmU';
+var tokenConsumer = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzI2MDg2MDEsImV4cCI6MTU2NDE0NDYwMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoiT0F0SGVAbWFpbC5jb20iLCJyb2xlcyI6WyJDT05TVU1FUiIsIkNPTlNVTUVSIl19.XAq0c5H-AvRCHblZ-iQKRqxUsQUmDPFY4uk8xL8GumU';
+var tokenProvider = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzI2MDg2MDEsImV4cCI6MTU2NDE0NDYwMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoieDk5eHhlZWQ2eW9WWUBtYWlsLmNvbSIsInJvbGVzIjpbIlBST1ZJREVSUyIsIlBST1ZJREVSUyJdfQ.xd1-8TNG-d-jzf1NbkYvd72hbNcychNJvOe0lLOL7TU';
 /*---------------------------------Clinic---------------------------- */
 
 var ClinicID = "";
@@ -51,7 +53,7 @@ var ConsumerIDForProviderWorkingDay = "";
 var ProviderIdForPatchWorkingDay = "";
 var WorkingDayIdWorkingDay = "";
 var ClinicIDForProvider2WorkingDay = "";
-
+var WorkingDayIdDublicateName = "";
 
 /*---------------------------------Promotion---------------------------- */
 var ServiceId = "";
@@ -419,6 +421,9 @@ unitNumberIDPatch,
     MasterServiceID,
     MasterServiceIDPatch,
     ClinicIDForCentreToken,
-    ConsumerIDForToken
+    ConsumerIDForToken,
+    WorkingDayIdDublicateName,
+    tokenConsumer,
+    tokenProvider
 
 }

@@ -14,7 +14,9 @@ var ClinicIDForProvider = global.ClinicIDForProviderWorkingDay;
 var ConsumerIDForProvider = global.ConsumerIDForProviderWorkingDay;
 var ProviderIdForPatch = global.ProviderIdForPatchWorkingDay;
 var WorkingDayId = global.WorkingDayIdWorkingDay;
+var WorkingDayIdDublicateName = global.WorkingDayIdDublicateName;
 var ClinicIDForProvider2 = global.ClinicIDForProvider2WorkingDay;
+
 
 
 describe('Working-day', function () {
@@ -176,6 +178,29 @@ describe('Working-day', function () {
                     .end(function(err, res) {
                         expect(res.statusCode).to.equal(200);
                         WorkingDayId = res.body.res._id;
+                        done();
+                    });
+
+            });
+
+            it('Create provider working day for check duplicate patch name + get ID/ successful case', function (done) {
+                api.post('/providers/' + ProviderIdForPatch + '/working-days')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": "dublicate" + randomValueName,
+                            "timeSlots": [
+                                {
+                                    "centreId": ClinicIDForProvider,
+                                    "startTime": "1970-01-01T08:00:00.000Z",
+                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                }
+                            ]
+                        })
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        WorkingDayIdDublicateName = res.body.res._id;
                         done();
                     });
 
@@ -679,6 +704,27 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "197-01-01T09:00:00.000Z",
+                                    "endTime": "1970-01-03T16:00:00.000Z"
+                                }
+                            ]
+                        })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(400);
+                        done();
+                    });
+
+            });
+            it('Patch provider working day / name - > duplicate key error', function (done) {
+                api.patch('/providers/' + ProviderIdForPatch + '/working-days/' + WorkingDayId)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": "dublicate" + randomValueName,
+                            "timeSlots": [
+                                {
+                                    "centreId": ClinicIDForProvider,
+                                    "startTime": "1970-01-01T09:00:00.000Z",
                                     "endTime": "1970-01-03T16:00:00.000Z"
                                 }
                             ]
