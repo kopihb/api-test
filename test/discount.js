@@ -101,13 +101,11 @@ describe('Schedule-Templates', function () {
 
 
 
-
         it('Create new Provider/ Successful case FOR DELETE', function (done) {
             api.post('/providers')
                 .set('Accept', 'aplication/json')
                 .set('Authorization', 'Bearer ' + token)
                 .send({
-
                     "email": emailForProviders+ 'trtrtr',
                     "waitingSlots": 0,
                     "instantBooking": true,
@@ -123,13 +121,10 @@ describe('Schedule-Templates', function () {
                     ],
                     "entityStart": "2018-01-01",
                     "entityEnd": "2018-01-01"
-
                 })
                 .end(function(err, res) {
-
                     expect(res.statusCode).to.equal(200);
                     ProviderIdForPatch22 = res.body.res.id;
-
                     done();
                 });
         });
