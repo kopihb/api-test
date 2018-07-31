@@ -435,7 +435,7 @@ describe('Master-service', function () {
                     .end(function (err, res) {
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.exist;
-                        MasterServiceIDPatch = res.body.res._id
+                        MasterServiceIDPatch = res.body.res._id;
                         done();
                     })
             });

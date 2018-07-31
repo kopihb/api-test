@@ -902,5 +902,5 @@ describe('centre', function () {
 
     })
 
-})
+});
 

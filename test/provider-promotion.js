@@ -16,7 +16,7 @@ var ProviderIdForPatch27 = global.ProviderIdForPatch27;
 var SubClinicIDForProvider = global.SubClinicIDForProvider;
 var unitNumberID = global.unitNumberID;
 var unitNumberIDPatch = global.unitNumberIDPatch;
-var unitNumberNamePatch = '';
+var unitNumberNamePatch = global.unitNumberNamePatch;
 describe('Provider  promotion', function () {
 
 

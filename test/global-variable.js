@@ -24,11 +24,15 @@ var unitNumberIDPatch ="";
 
 /*---------------------------------SubClinic---------------------------- */
 var SubClinicIDForProvider = "";
-
+var SubClinicForClinic = "";
+var ClinicIDForSubClinic = "";
+var ClinicIDForSubClinicOther = " ";
+var ClinicIDForSubClinicDelete = " ";
+var unitNumberIDPatchForSub = '';
 /*---------------------------------MasterService---------------------------- */
 var MasterServiceID = "";
 var MasterServiceIDPatch ="";
-
+var randomValueNameForSubClinics = randomString(6); /*use for name*/
 /*---------------------------------Provider---------------------------- */
 var ConsumerID = "";
 var ConsumerIDForToken = "";
@@ -60,7 +64,8 @@ var WorkingDayIdDublicateName = "";
 var ServiceId = "";
 var ServiceIdForChangePatch = "";
 var ProviderIdForPatch27 = '';
-/*---------------------------------Clinics---------------------------- */
+var unitNumberNamePatch = '';
+ /*---------------------------------Clinics---------------------------- */
 var randomValueName = randomString(5); /*use for name*/
 var randomValueMail = randomString(7); /*use for mail*/
 var randomValueProviderMail = randomString(3); /*use for mail*/
@@ -141,6 +146,14 @@ function randomString(len, charSet) {
 /*---------------------------------Center obj---------------------------- */
 var centreCLinics = {
     name: randomValueName,
+    latitude: 0,
+    longitude: 0,
+    confirmed: true
+};
+
+/*---------------------------------Center obj for SubClinic---------------------------- */
+var centreSubCLinics = {
+    name: randomValueNameForSubClinics,
     latitude: 0,
     longitude: 0,
     confirmed: true
@@ -432,6 +445,12 @@ unitNumberIDPatch,
     ProviderIdForPatch28,
     ProviderIdForPatch58,
     ProviderPromotionID,
-    ProviderIdForPatch27
-
+    ProviderIdForPatch27,
+    SubClinicForClinic,
+    ClinicIDForSubClinic,
+    centreSubCLinics,
+   ClinicIDForSubClinicOther,
+ClinicIDForSubClinicDelete,
+    unitNumberNamePatch,
+    unitNumberIDPatchForSub
 };
