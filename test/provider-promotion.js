@@ -16,7 +16,7 @@ var ProviderIdForPatch27 = global.ProviderIdForPatch27;
 var SubClinicIDForProvider = global.SubClinicIDForProvider;
 var unitNumberID = global.unitNumberID;
 var unitNumberIDPatch = global.unitNumberIDPatch;
-
+var unitNumberNamePatch = '';
 describe('Provider  promotion', function () {
 
 
@@ -34,7 +34,7 @@ describe('Provider  promotion', function () {
                     ]
                 })
                 .end(function (err, res) {
-                    console.log(res.body);
+
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.exist;
                     unitNumberID= res.body.res.unitNumber;
@@ -49,14 +49,17 @@ describe('Provider  promotion', function () {
                 .send({
                     name : "patch" + centre.name,
                     tags: [
-                        "string"
+                        "ghj"
                     ]
                 })
                 .end(function (err, res) {
-                    console.log(res.body);
+
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.exist;
                     unitNumberIDPatch= res.body.res.unitNumber;
+                    unitNumberNamePatch = res.body.res.name;
+                    // console.log(res.body.res.name);
+
                     done();
                 })
         });
@@ -76,13 +79,14 @@ describe('Provider  promotion', function () {
                      ]
                 })
                 .end(function (err, res) {
-                    console.log(res.body);
+
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.exist;
                     ClinicIDForProvider= res.body.res.id;
                     done();
                 })
         });
+
 
         it('Create new centre SUBCATEGORIES/Successfull case + get ID for attachment to provider', function (done) {
             api.post('/centres/' + ClinicIDForProvider + '/subcategories')
@@ -200,20 +204,20 @@ describe('Provider  promotion', function () {
                 .set('Authorization', 'Bearer ' + token)
                 .send({
 
-                    "name": "stringtyrtyrty" + centre.name,
-                    "currency": "strirtytryng",
+                    "name": centre.name,
+                    "currency": "rterkk",
                     "centreId": ClinicIDForProvider,
                     "subcategoryId": SubClinicIDForProvider,
                     "unitNumber": unitNumberID,
                     "tags": [
-                        "string"
+                        "eer"
                     ],
                     "entityStart": "2018-01-01",
                     "entityEnd": "2020-01-03",
                     "restrictions": [
                         {
                             "startTime": "2017-01-01T00:00:00.000Z",
-                            "endTime": "2018-01-03T23:00:00.000Z",
+                            "endTime": "2018-01-03T23:59:59.000Z",
                             "weekDays": [
                                 2,
                                 4,
@@ -224,11 +228,7 @@ describe('Provider  promotion', function () {
 
                 })
                 .end(function(err, res) {
-                    console.log(ProviderIdForPatch);
-                    console.log(ClinicIDForProvider);
-                    console.log(SubClinicIDForProvider);
-                    console.log(unitNumberID);
-                    console.log(res.body);
+
                     expect(res.statusCode).to.equal(200);
                     ServiceId = res.body.res._id;
                     done();
@@ -240,24 +240,22 @@ describe('Provider  promotion', function () {
                 .set('Accept', 'aplication/json')
                 .set('Authorization', 'Bearer ' + token)
                 .send({
-                    "name": "rterkk" + centre.name,
-                    "currency": "strirtytryng",
+                    "name": unitNumberNamePatch ,
+                    "currency": "klkl",
                     "centreId": ClinicIDForProvider,
                     "subcategoryId": SubClinicIDForProvider,
                     "unitNumber": unitNumberIDPatch,
                     "tags": [
-                        "string"
+                        "rer"
                     ],
-                    "entityStart": "2018-01-01",
-                    "entityEnd": "2019-01-03",
+                    "entityStart": "2020-01-01",
+                    "entityEnd": "2021-02-03",
                     "restrictions": [
                         {
-                            "startTime": "1970-01-01T00:00:00.000Z",
-                            "endTime": "1975-01-05T23:00:00.000Z",
+                            "startTime": "2010-01-02T00:00:00.000Z",
+                            "endTime": "2015-01-05T23:59:59.000Z",
                             "weekDays": [
-                                2,
-                                4,
-                                6
+                                2, 4, 5
                             ]
                         }
                     ]
@@ -265,8 +263,13 @@ describe('Provider  promotion', function () {
 
                 })
                 .end(function(err, res) {
+                   console.log (ProviderIdForPatch);
+                    console.log (centre.name + 'ds');
+                    console.log (ClinicIDForProvider);
+                    console.log (SubClinicIDForProvider);
+                    console.log (unitNumberIDPatch);
                     expect(res.statusCode).to.equal(200);
-                    ServiceIdForChangePatch = res.body.res._id;
+                    ServiceIdForChangePatch = res.body.res.id;
                     done();
                 });
         });
@@ -334,13 +337,13 @@ describe('Provider  promotion', function () {
                         "name": "creatprom" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 6,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -357,18 +360,19 @@ describe('Provider  promotion', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": "creatpromnoserid" + centre.name,
+                        "name": centre.name + 'ds',
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 6,
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:59:59.000Z",
                         "weekDays": [
                             0
                         ]
                     })
                     .end(function (err, res) {
+
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.exist;
                         done();
@@ -382,10 +386,10 @@ describe('Provider  promotion', function () {
                         "name": "noworkday" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 6,
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:59:59.000Z",
                     })
                     .end(function (err, res) {
                         expect(res.statusCode).to.equal(200);
@@ -401,13 +405,13 @@ describe('Provider  promotion', function () {
                         "name": "percent" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 0.1,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:59:59.000Z",
                         "weekDays": [
                             0
                         ]
@@ -426,13 +430,13 @@ describe('Provider  promotion', function () {
                         "name": "percentfull" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 100,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:59:59.000Z",
                         "weekDays": [
                             0
                         ]
@@ -451,13 +455,13 @@ describe('Provider  promotion', function () {
                         "name": "errdfgdfgserv" + centre.name,
                         "providerId": 2222 + ProviderIdForPatch + 1111,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-02T23:59:59.999Z",
+                        "endDate": "2018-01-02T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-03T23:59:59.999Z",
+                        "dayEndTime": "2018-01-03T23:59:59.000Z",
                         "weekDays": [
                             1, 4
                         ]
@@ -476,13 +480,13 @@ describe('Provider  promotion', function () {
                         "name": "arraysa" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-02T23:59:59.999Z",
+                        "endDate": "2018-01-02T23:59:59.000Z",
                         "percent": 55,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                           0, 5, 6
                         ]
@@ -501,13 +505,13 @@ describe('Provider  promotion', function () {
                         "name": "notseven" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-02T23:59:59.999Z",
+                        "endDate": "2018-01-02T23:59:59.000Z",
                         "percent": 55,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             6
                         ]
@@ -528,13 +532,13 @@ describe('Provider  promotion', function () {
                         "name": "creatprom" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 6,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -553,12 +557,12 @@ describe('Provider  promotion', function () {
                         "name": "mispersen" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -577,13 +581,13 @@ describe('Provider  promotion', function () {
                         "name": "strin" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": "9",
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -602,13 +606,13 @@ describe('Provider  promotion', function () {
                         "name": "perBool" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": true,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -627,13 +631,13 @@ describe('Provider  promotion', function () {
                         "name": "null" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": null,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -652,13 +656,13 @@ describe('Provider  promotion', function () {
                         "name": "101" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 101,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -677,13 +681,13 @@ describe('Provider  promotion', function () {
                         "name": "0" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 0,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -702,13 +706,13 @@ describe('Provider  promotion', function () {
                         "name": "0dd" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 55,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": 2
                     })
                     .end(function (err, res) {
@@ -725,13 +729,13 @@ describe('Provider  promotion', function () {
                         "name": "strinwee" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 55,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": "sdfdf"
                     })
                     .end(function (err, res) {
@@ -748,13 +752,13 @@ describe('Provider  promotion', function () {
                         "name": "weboo" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 55,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": true
                     })
                     .end(function (err, res) {
@@ -771,13 +775,13 @@ describe('Provider  promotion', function () {
                         "name": "wenull" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 55,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": null
                     })
                     .end(function (err, res) {
@@ -794,13 +798,13 @@ describe('Provider  promotion', function () {
                         "name": 123456,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -819,13 +823,13 @@ describe('Provider  promotion', function () {
                         "name": true,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -844,13 +848,13 @@ describe('Provider  promotion', function () {
                         "name": null,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -869,13 +873,13 @@ describe('Provider  promotion', function () {
                         "name": "stardattte" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-0T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-0T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -894,13 +898,13 @@ describe('Provider  promotion', function () {
                         "name": "endddat" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-0T23:59:59.999Z",
+                        "endDate": "2018-01-0T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -919,13 +923,13 @@ describe('Provider  promotion', function () {
                         "name": "strtimedate" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-0T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -944,13 +948,13 @@ describe('Provider  promotion', function () {
                         "name": "enddrtimedate" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-0T23:59:59.999Z",
+                        "dayEndTime": "2018-01-0T23:59:59.000Z",
                         "weekDays": [
                             0
                         ]
@@ -969,13 +973,13 @@ describe('Provider  promotion', function () {
                         "name": "weeseven" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             7
                         ]
@@ -994,13 +998,13 @@ describe('Provider  promotion', function () {
                         "name": "minone" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             -1
                         ]
@@ -1019,13 +1023,13 @@ describe('Provider  promotion', function () {
                         "name": "minone3333" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": 456456,
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             1, 4
                         ]
@@ -1044,13 +1048,13 @@ describe('Provider  promotion', function () {
                         "name": "mindfg6one" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": true,
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             1, 4
                         ]
@@ -1069,13 +1073,13 @@ describe('Provider  promotion', function () {
                         "name": "xxccc" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": null,
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             1, 4
                         ]
@@ -1100,7 +1104,7 @@ describe('Provider  promotion', function () {
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             1, 4
                         ]
@@ -1125,7 +1129,7 @@ describe('Provider  promotion', function () {
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             1, 4
                         ]
@@ -1150,7 +1154,7 @@ describe('Provider  promotion', function () {
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             1, 4
                         ]
@@ -1169,13 +1173,13 @@ describe('Provider  promotion', function () {
                         "name": "num44berwwww" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-02T23:59:59.999Z",
+                        "endDate": "2018-01-02T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": true,
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             1, 4
                         ]
@@ -1194,13 +1198,13 @@ describe('Provider  promotion', function () {
                         "name": "num44bernull" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-02T23:59:59.999Z",
+                        "endDate": "2018-01-02T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": null,
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             1, 4
                         ]
@@ -1219,13 +1223,13 @@ describe('Provider  promotion', function () {
                         "name": "num44bernull345" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-02T23:59:59.999Z",
+                        "endDate": "2018-01-02T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": 45345345,
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             1, 4
                         ]
@@ -1244,13 +1248,13 @@ describe('Provider  promotion', function () {
                         "name": "num44bernull34sdfs5" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-02T23:59:59.999Z",
+                        "endDate": "2018-01-02T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
-                        "dayStartTime": "2018-01-01T23:59:59.999Z",
-                        "dayEndTime": "2018-01-01T23:59:59.999Z",
+                        "dayStartTime": "2018-01-01T23:59:59.000Z",
+                        "dayEndTime": "2018-01-01T23:59:59.000Z",
                         "weekDays": [
                             1, 4
                         ]
@@ -1269,7 +1273,7 @@ describe('Provider  promotion', function () {
                         "name": "mghjg" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-02T23:59:59.999Z",
+                        "endDate": "2018-01-02T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
@@ -1294,7 +1298,7 @@ describe('Provider  promotion', function () {
                         "name": "mghjg222" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-02T23:59:59.999Z",
+                        "endDate": "2018-01-02T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
@@ -1319,7 +1323,7 @@ describe('Provider  promotion', function () {
                         "name": "mghjg222null" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-02T23:59:59.999Z",
+                        "endDate": "2018-01-02T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
@@ -1344,13 +1348,13 @@ describe('Provider  promotion', function () {
                         "name": "errserdddv" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-02T23:59:59.999Z",
+                        "endDate": "2018-01-02T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ProviderIdForPatch
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-03T23:59:59.999Z",
+                        "dayEndTime": "2018-01-03T23:59:59.000Z",
                         "weekDays": [
                             1, 4
                         ]
@@ -1370,13 +1374,13 @@ describe('Provider  promotion', function () {
                         "name": "errdfgdfgserv" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-02T23:59:59.999Z",
+                        "endDate": "2018-01-02T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-03T23:59:59.999Z",
+                        "dayEndTime": "2018-01-03T23:59:59.000Z",
                         "weekDays": [
                             1, 4
                         ]
@@ -1396,13 +1400,13 @@ describe('Provider  promotion', function () {
                         "name": "notok" + centre.name,
                         "providerId": ProviderIdForPatch,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 6,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -1425,8 +1429,6 @@ describe('Provider  promotion', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .end(function(err, res) {
-                        console.log(ProviderIdForPatch);
-                        console.log(ProviderPromotionID);
                         expect(res.statusCode).to.equal(200);
                         done();
                     });
@@ -1487,13 +1489,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "forPatch" + centre.name,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 45,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -1511,13 +1513,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "forPatch" + centre.name,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-01T23:59:59.999Z",
+                        "endDate": "2018-01-01T23:59:59.000Z",
                         "percent": 45,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-02T23:59:59.999Z",
+                        "dayEndTime": "2018-01-02T23:00:00.000Z",
                         "weekDays": [
                             0
                         ]
@@ -1535,13 +1537,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "allchange" + centre.name,
                         "startDate": "2018-01-02T00:00:00.000Z",
-                        "endDate": "2018-01-03T23:59:59.999Z",
+                        "endDate": "2018-01-03T23:59:59.000Z",
                         "percent": 55,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2018-01-08T23:59:59.999Z",
+                        "dayEndTime": "2018-01-08T23:59:59.000Z",
                         "weekDays": [
                             2, 4, 6
                         ]
@@ -1559,13 +1561,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "changeName" + centre.name,
                         "startDate": "2018-01-02T00:00:00.000Z",
-                        "endDate": "2018-01-03T23:59:59.999Z",
+                        "endDate": "2018-01-03T23:59:59.000Z",
                         "percent": 55,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2018-01-08T23:59:59.999Z",
+                        "dayEndTime": "2018-01-08T23:59:59.000Z",
                         "weekDays": [
                             2, 4, 6
                         ]
@@ -1583,13 +1585,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "changeNameDa" + centre.name,
                         "startDate": "2018-01-02T00:00:00.000Z",
-                        "endDate": "2018-01-03T23:59:59.999Z",
+                        "endDate": "2018-01-03T23:59:59.000Z",
                         "percent": 55,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2016-01-04T00:00:00.000Z",
-                        "dayEndTime": "2018-01-08T23:59:59.999Z",
+                        "dayEndTime": "2018-01-08T23:59:59.000Z",
                         "weekDays": [
                             2, 4, 6
                         ]
@@ -1607,13 +1609,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "changeend" + centre.name,
                         "startDate": "2018-01-02T00:00:00.000Z",
-                        "endDate": "2020-01-03T23:59:59.999Z",
+                        "endDate": "2020-01-03T23:59:59.000Z",
                         "percent": 55,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2016-01-04T00:00:00.000Z",
-                        "dayEndTime": "2018-01-08T23:59:59.999Z",
+                        "dayEndTime": "2018-01-08T23:59:59.000Z",
                         "weekDays": [
                             2, 4, 6
                         ]
@@ -1631,13 +1633,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "changeend" + centre.name,
                         "startDate": "2018-01-02T00:00:00.000Z",
-                        "endDate": "2020-01-03T23:59:59.999Z",
+                        "endDate": "2020-01-03T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceId
                         ],
                         "dayStartTime": "2016-01-04T00:00:00.000Z",
-                        "dayEndTime": "2018-01-08T23:59:59.999Z",
+                        "dayEndTime": "2018-01-08T23:59:59.000Z",
                         "weekDays": [
                             2, 4, 6
                         ]
@@ -1653,20 +1655,21 @@ describe('Provider  promotion', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": "changeendID" + centre.name,
+                        "name": centre.name,
                         "startDate": "2018-01-02T00:00:00.000Z",
-                        "endDate": "2020-01-03T23:59:59.999Z",
+                        "endDate": "2020-01-03T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
-                            ServiceIdForChangePatch
+                            ServiceId
                         ],
                         "dayStartTime": "2016-01-04T00:00:00.000Z",
-                        "dayEndTime": "2018-01-08T23:59:59.999Z",
+                        "dayEndTime": "2018-01-08T23:59:59.000Z",
                         "weekDays": [
                             2, 4, 6
                         ]
                     })
                     .end(function (err, res) {
+
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.exist;
                         done();
@@ -1677,20 +1680,21 @@ describe('Provider  promotion', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": "changeend" + centre.name,
+                        "name": centre.name + 'sd',
                         "startDate": "2018-01-02T00:00:00.000Z",
-                        "endDate": "2020-01-03T23:59:59.999Z",
+                        "endDate": "2020-01-03T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
-                            ServiceIdForChangePatch
+                            ServiceId
                         ],
-                        "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2018-01-08T23:59:59.999Z",
+                        "dayStartTime": "2018-01-04T01:00:00.000Z",
+                        "dayEndTime": "2018-01-08T23:59:59.000Z",
                         "weekDays": [
                             2, 4, 6
                         ]
                     })
                     .end(function (err, res) {
+
                         expect(res.statusCode).to.equal(200);
                         expect(res.body).to.exist;
                         done();
@@ -1701,15 +1705,15 @@ describe('Provider  promotion', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": "changeend" + centre.name,
+                        "name": centre.name,
                         "startDate": "2018-01-02T00:00:00.000Z",
-                        "endDate": "2020-01-03T23:59:59.999Z",
+                        "endDate": "2020-01-03T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
-                            ServiceIdForChangePatch
+                            ServiceId
                         ],
-                        "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayStartTime": "2018-01-04T01:00:00.000Z",
+                        "dayEndTime": "2020-01-08T22:59:59.000Z",
                         "weekDays": [
                             2, 4, 6
                         ]
@@ -1725,17 +1729,18 @@ describe('Provider  promotion', function () {
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        "name": "chanweek" + centre.name,
+                        "name": centre.name,
                         "startDate": "2018-01-02T00:00:00.000Z",
-                        "endDate": "2020-01-03T23:59:59.999Z",
+                        "endDate": "2020-01-03T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
-                            ServiceIdForChangePatch
+                            ServiceId
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
-                            3
+                            3,
+                            6
                         ]
                     })
                     .end(function (err, res) {
@@ -1751,13 +1756,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "chanweek3" + centre.name,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-03T23:59:59.999Z",
+                        "endDate": "2018-01-03T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
-                            ServiceIdForChangePatch
+                            ServiceId
                         ],
                         "dayStartTime": "2021-01-09T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             3
                         ]
@@ -1777,13 +1782,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "chanweek3" + centre.name,
                         "startDate": "2018-01-07T00:00:00.000Z",
-                        "endDate": "2018-01-03T23:59:59.999Z",
+                        "endDate": "2018-01-03T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             3
                         ]
@@ -1801,13 +1806,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "chanssweek3" + centre.name,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-05T23:59:59.999Z",
+                        "endDate": "2018-01-05T23:59:59.000Z",
                         "percent": 0,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             3
                         ]
@@ -1825,13 +1830,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "chanssdddweek3" + centre.name,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-05T23:59:59.999Z",
+                        "endDate": "2018-01-05T23:59:59.000Z",
                         "percent": 101,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             3
                         ]
@@ -1849,13 +1854,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "chanssdddddweek3" + centre.name,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-05T23:59:59.999Z",
+                        "endDate": "2018-01-05T23:59:59.000Z",
                         "percent": 88,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             7
                         ]
@@ -1873,13 +1878,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "chanssdfgdddddweek3" + centre.name,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-05T23:59:59.999Z",
+                        "endDate": "2018-01-05T23:59:59.000Z",
                         "percent": 88,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             -1
                         ]
@@ -1897,13 +1902,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "chweek3" + centre.name,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-05T23:59:59.999Z",
+                        "endDate": "2018-01-05T23:59:59.000Z",
                         "percent": 88,
                         "serviceIds": [
                             "invalid" + ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             3
                         ]
@@ -1921,13 +1926,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "chweek32www" + centre.name,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-05T23:59:59.999Z",
+                        "endDate": "2018-01-05T23:59:59.000Z",
                         "percent": 88,
                         "serviceIds": [
                              ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             3
                         ]
@@ -1945,13 +1950,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": 35345345,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-05T23:59:59.999Z",
+                        "endDate": "2018-01-05T23:59:59.000Z",
                         "percent": 88,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -1969,13 +1974,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": null,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-05T23:59:59.999Z",
+                        "endDate": "2018-01-05T23:59:59.000Z",
                         "percent": 88,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -1993,13 +1998,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": true,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-05T23:59:59.999Z",
+                        "endDate": "2018-01-05T23:59:59.000Z",
                         "percent": 88,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -2017,13 +2022,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "chww" + centre.name,
                         "startDate": true,
-                        "endDate": "2018-01-05T23:59:59.999Z",
+                        "endDate": "2018-01-05T23:59:59.000Z",
                         "percent": 88,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -2041,13 +2046,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "chwwss" + centre.name,
                         "startDate": 5645645,
-                        "endDate": "2018-01-05T23:59:59.999Z",
+                        "endDate": "2018-01-05T23:59:59.000Z",
                         "percent": 88,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -2065,13 +2070,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "chwwssnullll" + centre.name,
                         "startDate": null,
-                        "endDate": "2018-01-05T23:59:59.999Z",
+                        "endDate": "2018-01-05T23:59:59.000Z",
                         "percent": 88,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -2095,7 +2100,7 @@ describe('Provider  promotion', function () {
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -2119,7 +2124,7 @@ describe('Provider  promotion', function () {
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -2143,7 +2148,7 @@ describe('Provider  promotion', function () {
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -2161,13 +2166,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "cllavvad2" + centre.name,
                         "startDate": "2018-01-04T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": true,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -2185,13 +2190,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "cllavvcvva" + centre.name,
                         "startDate": "2018-01-04T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": null,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -2209,13 +2214,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "34vas" + centre.name,
                         "startDate": "2018-01-04T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": "dfgdfg",
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -2233,13 +2238,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "34vasss" + centre.name,
                         "startDate": "2018-01-04T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": 47,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": null,
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -2257,13 +2262,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "34vass1ss11" + centre.name,
                         "startDate": "2018-01-04T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": 47,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": 45645645,
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -2281,13 +2286,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "310s111" + centre.name,
                         "startDate": "2018-01-04T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": 47,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": true,
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             4
                         ]
@@ -2305,7 +2310,7 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "310s11q1" + centre.name,
                         "startDate": "2018-01-04T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": 47,
                         "serviceIds": [
                             ServiceIdForChangePatch
@@ -2329,7 +2334,7 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "310sssav11q1" + centre.name,
                         "startDate": "2018-01-04T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": 47,
                         "serviceIds": [
                             ServiceIdForChangePatch
@@ -2353,7 +2358,7 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "31s0sssav11q1" + centre.name,
                         "startDate": "2018-01-04T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": 47,
                         "serviceIds": [
                             ServiceIdForChangePatch
@@ -2377,7 +2382,7 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "v11q1" + centre.name,
                         "startDate": "2018-01-04T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": 47,
                         "serviceIds": [
                             ServiceIdForChangePatch
@@ -2399,13 +2404,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "v11sq1" + centre.name,
                         "startDate": "2018-01-04T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": 47,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2018-01-09T00:00:00.000Z",
+                        "dayEndTime": "2018-01-09T00:59:59.000Z",
                         "weekDays": null
                     })
                     .end(function (err, res) {
@@ -2421,13 +2426,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "v11sq1dd" + centre.name,
                         "startDate": "2018-01-04T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": 47,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2018-01-09T00:00:00.000Z",
+                        "dayEndTime": "2018-01-09T00:59:59.000Z",
                         "weekDays": true
                     })
                     .end(function (err, res) {
@@ -2443,13 +2448,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "v11sq1dwwd" + centre.name,
                         "startDate": "2018-01-0T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": 47,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2018-01-09T00:00:00.000Z",
+                        "dayEndTime": "2018-01-09T00:59:59.000Z",
                         "weekDays": [
                             3
                         ]
@@ -2467,13 +2472,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "v1r1sq1dwwd7" + centre.name,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-0T00:00:00.000Z",
+                        "endDate": "2018-01-0T00:59:59.000Z",
                         "percent": 47,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2018-01-09T00:00:00.000Z",
+                        "dayEndTime": "2018-01-09T00:59:59.000Z",
                         "weekDays": [
                             3
                         ]
@@ -2491,13 +2496,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "v1r1sq88" + centre.name,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": 47,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-0T00:00:00.000Z",
-                        "dayEndTime": "2018-01-09T00:00:00.000Z",
+                        "dayEndTime": "2018-01-09T00:59:59.000Z",
                         "weekDays": [
                             3
                         ]
@@ -2515,13 +2520,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "v1r1sq88c" + centre.name,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": 47,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-0T00:00:00.000Z",
+                        "dayEndTime": "2018-01-0T00:59:59.000Z",
                         "weekDays": [
                             3
                         ]
@@ -2542,13 +2547,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "chanwssseek" + centre.name,
                         "startDate": "2018-01-02T00:00:00.000Z",
-                        "endDate": "2020-01-03T23:59:59.999Z",
+                        "endDate": "2020-01-03T23:59:59.000Z",
                         "percent": 77,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-04T00:00:00.000Z",
-                        "dayEndTime": "2020-01-08T23:59:59.999Z",
+                        "dayEndTime": "2020-01-08T23:59:59.000Z",
                         "weekDays": [
                             3
                         ]
@@ -2625,13 +2630,13 @@ describe('Provider  promotion', function () {
                     .send({
                         "name": "v1r1sq88c" + centre.name,
                         "startDate": "2018-01-01T00:00:00.000Z",
-                        "endDate": "2018-01-09T00:00:00.000Z",
+                        "endDate": "2018-01-09T00:59:59.000Z",
                         "percent": 47,
                         "serviceIds": [
                             ServiceIdForChangePatch
                         ],
                         "dayStartTime": "2018-01-01T00:00:00.000Z",
-                        "dayEndTime": "2018-01-09T00:00:00.000Z",
+                        "dayEndTime": "2018-01-09T00:59:59.000Z",
                         "weekDays": [
                             3
                         ]

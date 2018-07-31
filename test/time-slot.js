@@ -150,7 +150,7 @@ describe('Schedule Time Slot', function () {
                             {
                                 "centreId": ClinicIDForProvider,
                                 "startTime": "1970-01-01T08:00:00.000Z",
-                                "endTime": "1970-01-01T16:00:00.000Z"
+                                "endTime": "1970-01-01T16:59:59.000Z"
                             }
                         ]
                     })
@@ -171,7 +171,7 @@ describe('Schedule Time Slot', function () {
 
                     "centreId": ClinicIDForProvider,
                    "startTime": "2018-01-01T00:00:00.000Z",
-                               "endTime": "2018-01-01T01:00:00.000Z"
+                               "endTime": "2018-01-01T01:59:59.000Z"
 
                 })
                 .end(function (err, res) {
@@ -268,7 +268,7 @@ describe('Create provider time slot', function () {
 
                     "centreId": ClinicIDForProvider,
                     "startTime": "2018-02-01T00:00:00.000Z",
-                    "endTime": "2018-02-01T01:00:00.000Z"
+                    "endTime": "2018-02-01T01:59:59.000Z"
 
                 })
                 .end(function (err, res) {
@@ -293,7 +293,7 @@ describe('Create provider time slot', function () {
 
                     "centreId": ClinicIDForProvider,
                     "startTime": "2018-01-01T00:00:00.000Z",
-                    "endTime": "2018-01-01T01:00:00.000Z"
+                    "endTime": "2018-01-01T01:59:59.000Z"
 
                 })
                 .end(function (err, res) {
@@ -569,7 +569,7 @@ describe('Create provider time slot', function () {
 
                     "centreId": ProviderIdForPatch,
                     "startTime": "2018-01-01T00:00:00.000Z",
-                    "endTime": "2018-01-01T01:00:00.000Z"
+                    "endTime": "2018-01-01T01:59:59.000Z"
 
                 })
                 .end(function (err, res) {
@@ -596,7 +596,7 @@ describe('Patch provider schedule template', function () {
                 .send({
                     "centreId": CenterForTime,
                     "startTime": "2018-01-01T05:00:00.000Z",
-                    "endTime": "2018-01-01T06:00:00.000Z"
+                    "endTime": "2018-01-01T06:59:59.000Z"
                 })
                 .end(function (err, res) {
                     expect(res.statusCode).to.equal(200);
@@ -771,7 +771,7 @@ describe('Patch provider schedule template', function () {
                 .send({
                     "centreId": CenterForTime,
                     "startTime": true,
-                    "endTime": "2018-01-06T01:00:00.000Z"
+                    "endTime": "2018-01-06T01:59:59.000Z"
                 })
                 .end(function (err, res) {
                     expect(res.statusCode).to.equal(400);
@@ -785,7 +785,7 @@ describe('Patch provider schedule template', function () {
                 .send({
                     "centreId": CenterForTime,
                     "startTime": null,
-                    "endTime": "2018-01-06T01:00:00.000Z"
+                    "endTime": "2018-01-06T01:59:59.000Z"
                 })
                 .end(function (err, res) {
                     expect(res.statusCode).to.equal(400);
@@ -799,7 +799,7 @@ describe('Patch provider schedule template', function () {
                 .send({
                     "centreId": CenterForTime,
                     "startTime": 0,
-                    "endTime": "2018-01-06T01:00:00.000Z"
+                    "endTime": "2018-01-06T01:59:59.000Z"
                 })
                 .end(function (err, res) {
                     expect(res.statusCode).to.equal(400);
