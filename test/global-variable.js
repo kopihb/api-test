@@ -6,7 +6,7 @@ var supertest = require('supertest');
 var api = supertest('http://159.100.241.121:5002');
 const addContext = require('mochawesome/addContext');
 /*-----------------------------------Token---------------------------------------- */
-var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzI0MTY1MzcsImV4cCI6MTU2Mzk1MjUzNywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AZ21haWwuY29tIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJTVVBFUl9BRE1JTiJdfQ.qu2lvCFOEK30n7g4GJDNL8Ya1eXD_WhyjPnhsKn-tb0';
+var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzMwMjEyMzcsImV4cCI6MTU2NDU1NzIzNywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AZ21haWwuY29tIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJQUk9WSURFUiJdfQ.-WFpWXvG1Qc3fGtx9X_9wjJcP3wg5Elksg-VPteJWSI';
 var Invalidtoken = 'eyD0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzEzODc2MTEsImV4cCI6MTU2MjkyMzYxMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AbWFpbC5jb20iLCJyb2xlcyI6WyJQUk9WSURFUiIsIlNVUEVSX0FETUlOIl19.RfeB6N6kRFVCGR_mvsXbtqcuWa2KdpFhHPN9DgnHsmU';
 var tokenConsumer = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzI2MDg2MDEsImV4cCI6MTU2NDE0NDYwMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoiT0F0SGVAbWFpbC5jb20iLCJyb2xlcyI6WyJDT05TVU1FUiIsIkNPTlNVTUVSIl19.XAq0c5H-AvRCHblZ-iQKRqxUsQUmDPFY4uk8xL8GumU';
 var tokenProvider = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzI2MDg2MDEsImV4cCI6MTU2NDE0NDYwMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoieDk5eHhlZWQ2eW9WWUBtYWlsLmNvbSIsInJvbGVzIjpbIlBST1ZJREVSUyIsIlBST1ZJREVSUyJdfQ.xd1-8TNG-d-jzf1NbkYvd72hbNcychNJvOe0lLOL7TU';
@@ -24,11 +24,15 @@ var unitNumberIDPatch ="";
 
 /*---------------------------------SubClinic---------------------------- */
 var SubClinicIDForProvider = "";
-
+var SubClinicForClinic = "";
+var ClinicIDForSubClinic = "";
+var ClinicIDForSubClinicOther = " ";
+var ClinicIDForSubClinicDelete = " ";
+var unitNumberIDPatchForSub = '';
 /*---------------------------------MasterService---------------------------- */
 var MasterServiceID = "";
 var MasterServiceIDPatch ="";
-
+var randomValueNameForSubClinics = randomString(6); /*use for name*/
 /*---------------------------------Provider---------------------------- */
 var ConsumerID = "";
 var ConsumerIDForToken = "";
@@ -60,18 +64,19 @@ var WorkingDayIdDublicateName = "";
 var ServiceId = "";
 var ServiceIdForChangePatch = "";
 var ProviderIdForPatch27 = '';
-/*---------------------------------Clinics---------------------------- */
+var unitNumberNamePatch = '';
+ /*---------------------------------Clinics---------------------------- */
 var randomValueName = randomString(5); /*use for name*/
 var randomValueMail = randomString(7); /*use for mail*/
 var randomValueProviderMail = randomString(3); /*use for mail*/
-var emailForProviders = randomValueProviderMail + '@mail.com';
+var emailForProviders = randomValueProviderMail + '@gmail.com';
 var dublicateData = "2018-01-01";
 
 /*---------------------------------Providers---------------------------- */
 var randomValueNameProvider = randomString(3); /*use for name*/
 var randomValueMailProvider = randomString(4); /*use for mail*/
 var randomValueProviderMailProvider = randomString(5); /*use for mail*/
-var emailForProvidersProvider = randomValueProviderMailProvider + '@mail.com';
+var emailForProvidersProvider = randomValueProviderMailProvider + '@gmail.com';
 var ScheduleIdForProviders = "";
 var ScheduleIdForProvidersForTimeSlot = "";
 
@@ -84,13 +89,13 @@ var WorkingDayId4 = '';
 var randomValueNameShedule = randomString(4); /*use for name*/
 var randomValueMailShedule = randomString(5); /*use for mail*/
 var randomValueProviderMailShedule = randomString(3); /*use for mail*/
-var emailForProvidersShedule = randomValueProviderMailShedule + '@mail.com';
+var emailForProvidersShedule = randomValueProviderMailShedule + '@gmail.com';
 var ProviderIdForPatch32 = '';
 /*---------------------------------Shedules Time Slots---------------------------- */
 var randomValueNameSheduleTimeSlot = randomString(5); /*use for name*/
 var randomValueMailSheduleTimeSlot = randomString(7); /*use for mail*/
 var randomValueProviderMailSheduleTimeSlot = randomString(4); /*use for mail*/
-var emailForProvidersSheduleTimeSlot = randomValueProviderMailSheduleTimeSlot + '@mail.com';
+var emailForProvidersSheduleTimeSlot = randomValueProviderMailSheduleTimeSlot + '@gmail.com';
 var ProviderIdForPatch45 = '';
 /*---------------------------------ShedulesOne---------------------------- */
 
@@ -98,7 +103,7 @@ var ProviderIdForPatchForShedulesOne = "";
 var randomValueNameSheduleOne = randomString(6); /*use for name*/
 var randomValueMailSheduleOne = randomString(7); /*use for mail*/
 var randomValueProviderMailSheduleOne = randomString(5); /*use for mail*/
-var emailForProvidersSheduleOne = randomValueProviderMailSheduleOne + '@mail.com';
+var emailForProvidersSheduleOne = randomValueProviderMailSheduleOne + '@gmail.com';
 var ScheduleIdForProvidersOne = "";
 var ProviderIdForPatch28 = '';
 
@@ -108,14 +113,14 @@ var DiscountId2 = '';
 var randomValueNameDiscount = randomString(6); /*use for name*/
 var randomValueMailDiscount = randomString(5); /*use for mail*/
 var randomValueProviderMailDiscount = randomString(4); /*use for mail*/
-var emailForProvidersDiscount = randomValueProviderMailDiscount + '@mail.com';
+var emailForProvidersDiscount = randomValueProviderMailDiscount + '@gmail.com';
 var ScheduleIdForProvidersDiscount = "";
 var ProviderIdForPatch22 = '';
 /*---------------------------------DayOffs---------------------------- */
 var randomValueNameDayOff = randomString(6); /*use for name*/
 var randomValueMailDayOff = randomString(7); /*use for mail*/
 var randomValueProviderMailDayOff = randomString(8); /*use for mail*/
-var emailForProvidersDayOff = randomValueProviderMailDayOff + '@mail.com'
+var emailForProvidersDayOff = randomValueProviderMailDayOff + '@gmail.com'
 var ClinicIDForProviderDayOff = "";
 var ConsumerIDForProviderDayOff = "";
 var ProviderIdForPatchDayOff = "";
@@ -123,7 +128,7 @@ var ProviderIdForPatchDayOff = "";
 var randomValueNameWorkingDay = randomString(3); /*use for name*/
 var randomValueMailWorkingDay = randomString(7); /*use for mail*/
 var randomValueProviderMailWorkingDay = randomString(4); /*use for mail*/
-var emailForProvidersWorkingDay = randomValueProviderMailWorkingDay + '@mail.com';
+var emailForProvidersWorkingDay = randomValueProviderMailWorkingDay + '@gmail.com';
 /*---------------------------------Time slots---------------------------- */
 var TimeSlotsID = "";
 var CenterForTime = '';
@@ -141,6 +146,14 @@ function randomString(len, charSet) {
 /*---------------------------------Center obj---------------------------- */
 var centreCLinics = {
     name: randomValueName,
+    latitude: 0,
+    longitude: 0,
+    confirmed: true
+};
+
+/*---------------------------------Center obj for SubClinic---------------------------- */
+var centreSubCLinics = {
+    name: randomValueNameForSubClinics,
     latitude: 0,
     longitude: 0,
     confirmed: true
@@ -207,7 +220,7 @@ var centreWorkingDay = {
 /*---------------------------------Consumer obj ---------------------------- */
 
 var consumerObj = {
-    email: randomValueMail + '@mail.com',
+    email: randomValueMail + '@gmail.com',
     firstName: randomValueName,
     lastName: "last" + randomValueName,
     phone: 'phone patch all',
@@ -220,7 +233,7 @@ var consumerObj = {
 };
 /*---------------------------------Consumer obj for Provider---------------------------- */
 var consumerObjProvider = {
-    email: randomValueMailProvider + '@mail.com',
+    email: randomValueMailProvider + '@gmail.com',
     firstName: randomValueNameProvider,
     lastName: "last" + randomValueNameProvider,
     phone: 'phone patch all',
@@ -234,7 +247,7 @@ var consumerObjProvider = {
 /*---------------------------------Consumer obj for Shedule---------------------------- */
 
 var consumerObjShedule = {
-    email: randomValueMailShedule + '@mail.com',
+    email: randomValueMailShedule + '@gmail.com',
     firstName: randomValueNameShedule,
     lastName: "last" + randomValueNameShedule,
     phone: 'phone patch all',
@@ -249,7 +262,7 @@ var consumerObjShedule = {
 /*---------------------------------Consumer obj for Shedule Time Slot---------------------------- */
 
 var consumerObjSheduleTimeSlot = {
-    email: randomValueMailSheduleTimeSlot + '@mail.com',
+    email: randomValueMailSheduleTimeSlot + '@gmail.com',
     firstName: randomValueNameShedule,
     lastName: "last" + randomValueNameShedule,
     phone: 'phone patch all',
@@ -263,7 +276,7 @@ var consumerObjSheduleTimeSlot = {
 /*---------------------------------Consumer obj for Provider Discount---------------------------- */
 
 var consumerObjDiscount = {
-    email: randomValueMailDiscount + '@mail.com',
+    email: randomValueMailDiscount + '@gmail.com',
     firstName: randomValueNameDiscount,
     lastName: "last" + randomValueNameDiscount,
     phone: 'phone patch all',
@@ -277,7 +290,7 @@ var consumerObjDiscount = {
 /*---------------------------------Consumer obj for SheduleONe---------------------------- */
 
 var consumerObjSheduleOne = {
-    email: randomValueMailSheduleOne + '@mail.com',
+    email: randomValueMailSheduleOne + '@gmail.com',
     firstName: randomValueNameSheduleOne,
     lastName: "last" + randomValueNameSheduleOne,
     phone: 'phone patch all',
@@ -290,7 +303,7 @@ var consumerObjSheduleOne = {
 };
 /*---------------------------------Consumer obj for DayOff---------------------------- */
 var consumerObjDayOff = {
-    email: randomValueMailDayOff + '@mail.com',
+    email: randomValueMailDayOff + '@gmail.com',
     firstName: randomValueNameDayOff,
     lastName: "last" + randomValueNameDayOff,
     phone: 'phone patch all',
@@ -304,7 +317,7 @@ var consumerObjDayOff = {
 /*---------------------------------Consumer obj for WorkingDay---------------------------- */
 
 var consumerObjWorkingDay = {
-    email: randomValueMailWorkingDay + '@mail.com',
+    email: randomValueMailWorkingDay + '@gmail.com',
     firstName: randomValueNameWorkingDay,
     lastName: "last" + randomValueNameWorkingDay,
     phone: 'phone patch all',
@@ -319,7 +332,7 @@ var consumerObjWorkingDay = {
 /*---------------------------------Consumer obj for promotions---------------------------- */
 
 var consumerObjPromotions = {
-    email: "promo"+ randomValueMailWorkingDay + '@mail.com',
+    email: "promo"+ randomValueMailWorkingDay + '@gmail.com',
     firstName: "promo"+ randomValueNameWorkingDay,
     lastName: "lastPromo" + randomValueNameWorkingDay,
     phone: 'phone patch all',
@@ -432,6 +445,12 @@ unitNumberIDPatch,
     ProviderIdForPatch28,
     ProviderIdForPatch58,
     ProviderPromotionID,
-    ProviderIdForPatch27
-
+    ProviderIdForPatch27,
+    SubClinicForClinic,
+    ClinicIDForSubClinic,
+    centreSubCLinics,
+   ClinicIDForSubClinicOther,
+ClinicIDForSubClinicDelete,
+    unitNumberNamePatch,
+    unitNumberIDPatchForSub
 };

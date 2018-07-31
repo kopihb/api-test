@@ -153,7 +153,7 @@ describe('Schedule-Templates', function () {
                             {
                                 "centreId": ClinicIDForProvider,
                                 "startTime": "1970-01-01T08:00:00.000Z",
-                                "endTime": "1970-01-01T16:00:00.000Z"
+                                "endTime": "1970-01-01T16:59:59.000Z"
                             }
                         ]
                     })

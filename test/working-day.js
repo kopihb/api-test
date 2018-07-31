@@ -219,7 +219,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -242,7 +242,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -266,7 +266,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1969-01-01T16:00:00.000Z"
+                                    "endTime": "1969-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -289,7 +289,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "2018-01-01T08:00:00.000Z",
-                                    "endTime": "2018-01-01T16:00:00.000Z"
+                                    "endTime": "2018-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -312,7 +312,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider2,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -334,7 +334,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -356,7 +356,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -377,7 +377,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-0T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -398,7 +398,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-02T08:00:00.000Z",
-                                    "endTime": "1970-01-0T16:00:00.000Z"
+                                    "endTime": "1970-01-0T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -461,7 +461,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": null,
-                                    "endTime": "1970-01-02T09:00:00.000Z"
+                                    "endTime": "1970-01-02T09:59:59.000Z"
                                 }
                             ]
                         })
@@ -482,7 +482,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": true,
-                                    "endTime": "1970-01-02T09:00:00.000Z"
+                                    "endTime": "1970-01-02T09:59:59.000Z"
                                 }
                             ]
                         })
@@ -503,7 +503,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-02T08:00:00.000Z",
-                                    "endTime": "1970-01-02T09:00:00.000Z"
+                                    "endTime": "1970-01-02T09:59:59.000Z"
                                 }
                             ]
                         })
@@ -525,7 +525,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-02T08:00:00.000Z",
-                                    "endTime": "1970-01-02T09:00:00.000Z"
+                                    "endTime": "1970-01-02T09:59:59.000Z"
                                 }
                             ]
                         })
@@ -546,7 +546,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -567,7 +567,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-02T08:00:00.000Z",
-                                    "endTime": "1970-01-02T09:00:00.000Z"
+                                    "endTime": "1970-01-02T09:59:59.000Z"
                                 }
                             ]
                         })
@@ -588,7 +588,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-02T08:00:00.000Z",
-                                    "endTime": "1970-01-02T09:00:00.000Z"
+                                    "endTime": "1970-01-02T09:59:59.000Z"
                                 }
                             ]
                         })
@@ -609,7 +609,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ProviderIdForPatch + ProviderIdForPatch,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-02T09:00:00.000Z"
+                                    "endTime": "1970-01-02T09:59:59.000Z"
                                 }
                             ]
                         })
@@ -631,7 +631,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -661,7 +661,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -683,7 +683,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-02T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -705,7 +705,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-02T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -727,7 +727,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -752,7 +752,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "197-01-01T09:00:00.000Z",
-                                    "endTime": "1970-01-03T16:00:00.000Z"
+                                    "endTime": "1970-01-03T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -773,7 +773,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T09:00:00.000Z",
-                                    "endTime": "1970-01-03T16:00:00.000Z"
+                                    "endTime": "1970-01-03T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -794,7 +794,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "197-01-01T09:00:00.000Z",
-                                    "endTime": "1970-01-03T14:00:00.000Z"
+                                    "endTime": "1970-01-03T14:59:59.000Z"
                                 }
                             ]
                         })
@@ -816,7 +816,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -837,7 +837,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -858,7 +858,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -879,7 +879,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": true,
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -900,7 +900,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": 5,
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -920,8 +920,8 @@ describe('Working-day', function () {
                             "timeSlots": [
                                 {
                                     "centreId": ClinicIDForProvider,
-                                    "startTime": "1970-01-01T16:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "startTime": "1970-01-01T16:59:59.000Z",
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -1002,7 +1002,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-0T08:00:00.000Z"
+                                    "endTime": "1970-01-0T08:59:59.000Z"
                                 }
                             ]
                         })
@@ -1024,7 +1024,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -1047,7 +1047,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -1147,7 +1147,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
@@ -1184,7 +1184,7 @@ describe('Working-day', function () {
                                 {
                                     "centreId": ClinicIDForProvider2,
                                     "startTime": "1970-01-01T08:00:00.000Z",
-                                    "endTime": "1970-01-01T16:00:00.000Z"
+                                    "endTime": "1970-01-01T16:59:59.000Z"
                                 }
                             ]
                         })
