@@ -6,13 +6,18 @@ var supertest =global.supertest ;
 var api = global.api;
 var addContext =  global.addContext;
 var token = global.token;
+var tokenConsumer = global.tokenForConsumer;
+var tokenForGuest = global.tokenForGuest;
+var tokenForDIRECTORYUSER = global.tokenForDIRECTORYUSER;
 var randomNameForDublicate = global.randomString(8);
 var centre = global.centreCLinics;
 var ClinicID = global.ClinicID;
+var ClinicID222222= '';
 var ClinicIDForCentreToken = global.ClinicIDForCentreToken;
 var ClinicName = global.ClinicName;
-
-
+var unitNumberIDPatchForCenter = global.unitNumberIDPatchForCenter;
+var unitNumberIDPatchForCenter2 = global.unitNumberIDPatchForCenter2;
+var token22 = global.token22;
 describe('Version - 1.0.0 ' +
     ' centres ' +
     ' Auto create and get  ID for test ', function () {
@@ -28,6 +33,7 @@ describe('Version - 1.0.0 ' +
                     confirmed: centre.confirmed
                 })
                 .end(function (err, res) {
+                    console.log(token22);
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.exist;
                     ClinicID = res.body.res.id;
@@ -35,6 +41,11 @@ describe('Version - 1.0.0 ' +
                 });
             addContext(this, 'text' );
     });
+
+
+
+
+
     it('Create new centre/Successfull case + get ID for delete without token', function (done) {
         api.post('/centres')
             .set('Accept', 'aplication/json')
@@ -74,7 +85,46 @@ describe('Version - 1.0.0 ' +
             })
     });
 
-})
+    it('Create new MasterService(serviceUnitNumbers)', function (done) {
+        api.post('/master-services')
+            .set('Accept', 'aplication/json')
+            .set('Authorization', 'Bearer ' + token)
+            .send({
+                name : "patch" + centre.name,
+                tags: [
+                    "ghj"
+                ]
+            })
+            .end(function (err, res) {
+
+                expect(res.statusCode).to.equal(200);
+                expect(res.body).to.exist;
+                unitNumberIDPatchForCenter = res.body.res.unitNumber;
+
+                done();
+            })
+    });
+    it('Create new MasterService(serviceUnitNumbers) 2', function (done) {
+        api.post('/master-services')
+            .set('Accept', 'aplication/json')
+            .set('Authorization', 'Bearer ' + token)
+            .send({
+                name : "sdfsd" + centre.name,
+                tags: [
+                    "ers"
+                ]
+            })
+            .end(function (err, res) {
+
+                expect(res.statusCode).to.equal(200);
+                expect(res.body).to.exist;
+                unitNumberIDPatchForCenter2 = res.body.res.unitNumber;
+
+                done();
+            })
+    });
+
+});
 
 
 
@@ -192,7 +242,7 @@ describe('centre', function () {
 
 
 
-        })
+        });
 
 
 
@@ -409,7 +459,7 @@ describe('centre', function () {
 
 
         })
-    })
+    });
 
     describe('GET centre object - ', function () {
 
@@ -574,7 +624,24 @@ describe('centre', function () {
                         })
                     .expect(200,done)
             });
-
+            // it('Patch centre object/PROVIDER and DIRECTORY_USER roles', function(done) {
+            //     api.patch('/centres/' + ClinicID )
+            //         .set('Accept', 'aplication/json')
+            //         .set('Authorization', 'Bearer ' + tokenForDIRECTORYUSER)
+            //         .send(
+            //             {
+            //
+            //                 name: centre.name ,
+            //                 "latitude": 0,
+            //                 "longitude": 0,
+            //                 "serviceUnitNumbers": [
+            //                     unitNumberIDPatchForCenter
+            //                 ]
+            //
+            //             })
+            //
+            //         .expect(200,done)
+            // });
 
             it('Patch centre object/name - check for duplicated centres', function(done) {
                 api.patch('/centres/' + ClinicID )
@@ -590,8 +657,23 @@ describe('centre', function () {
                     .expect(200,done)
             });
 
-
-        })
+            it('Patch centre object/Service Unit Numbers  (SUPER_ADMIN roles)', function(done) {
+                api.patch('/centres/' + ClinicID )
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": ClinicName+ 'sd',
+                            latitude : centre.latitude,
+                            longitude: centre.longitude,
+                            confirmed: centre.confirmed,
+                            "serviceUnitNumbers": [
+                                unitNumberIDPatchForCenter
+                            ]
+                        })
+                    .expect(200,done)
+            });
+        });
 
         describe('HTTP responce code - 400 ', function () {
 
@@ -818,6 +900,118 @@ describe('centre', function () {
                     .set('Authorization', 'Bearer ' + token)
                     .expect(400, done)
             });
+            it('Patch centre object/Service Unit Numbers - Use int value /UnSuccessfull case', function (done) {
+                api.patch('/centres/' + ClinicID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": "centerVika1",
+                            "latitude": 0,
+                            "longitude": 0,
+                            "confirmed": true,
+                            "serviceUnitNumbers": [
+                                176329182346
+                            ]
+                        })
+                    .expect(400, done)
+            });
+            it('Patch centre object/Service Unit Numbers - Use invalid unit numbers/UnSuccessfull case', function (done) {
+                api.patch('/centres/' + ClinicID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": "centerVika12",
+                            "latitude": 0,
+                            "longitude": 0,
+                            "confirmed": true,
+                            "serviceUnitNumbers": [
+                                "dsfsd"
+                            ]
+                        })
+                    .expect(400, done)
+            });
+            it('Patch centre object/Service Unit Numbers - Use boolean value /UnSuccessfull case', function (done) {
+                api.patch('/centres/' + ClinicID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": "centerVika15446",
+                            "latitude": 0,
+                            "longitude": 0,
+                            "confirmed": true,
+                            "serviceUnitNumbers": [
+                                true
+                            ]
+                        })
+                    .expect(400, done)
+            });
+            it('Patch centre object/Service Unit Numbers - Use null value /UnSuccessfull case', function (done) {
+                api.patch('/centres/' + ClinicID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": "centerVika134",
+                            "latitude": 0,
+                            "longitude": 0,
+                            "confirmed": true,
+                            "serviceUnitNumbers": [
+                                null
+                            ]
+                        })
+                    .expect(400, done)
+            });
+            it('Patch centre object/Service Unit Numbers - Use several service unit numbers, one has boolean or int value/UnSuccessfull case', function (done) {
+                api.patch('/centres/' + ClinicID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": "centerVika143",
+                            "latitude": 0,
+                            "longitude": 0,
+                            "confirmed": true,
+                            "serviceUnitNumbers": [
+                                unitNumberIDPatchForCenter2,unitNumberIDPatchForCenter , 809093
+                            ]
+                        })
+                    .expect(400, done)
+            });
+            it('Patch centre object/Service Unit Numbers - Use several service unit numbers, one is invalid/UnSuccessfull case', function (done) {
+                api.patch('/centres/' + ClinicID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": "centerVika143",
+                            "latitude": 0,
+                            "longitude": 0,
+                            "confirmed": true,
+                            "serviceUnitNumbers": [
+                                unitNumberIDPatchForCenter2,unitNumberIDPatchForCenter , "dfsdretr"
+                            ]
+                        })
+                    .expect(400, done)
+            });
+            it('Patch centre object/Service Unit Numbers - Use several service unit numbers - dublicated/UnSuccessfull case', function (done) {
+                api.patch('/centres/' + ClinicID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send(
+                        {
+                            "name": "centerVika143",
+                            "latitude": 0,
+                            "longitude": 0,
+                            "confirmed": true,
+                            "serviceUnitNumbers": [
+                                unitNumberIDPatchForCenter2,unitNumberIDPatchForCenter , unitNumberIDPatchForCenter2
+                            ]
+                        })
+                    .expect(400, done)
+            });
         });
 
 
@@ -835,14 +1029,70 @@ describe('centre', function () {
                     })
                     .expect(401,done)
             });
+
+            it('Patch centre object/CONSUMER roles', function (done) {
+                api.patch('/centres/' + ClinicID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenConsumer)
+                    .send(
+                        {
+                            "name": "centerVika14323",
+                            "latitude": 0,
+                            "longitude": 0,
+                            "confirmed": true,
+                            "serviceUnitNumbers": [
+                                unitNumberIDPatchForCenter2,unitNumberIDPatchForCenter , unitNumberIDPatchForCenter2
+                            ]
+                        })
+                    .expect(401, done)
+            });
+
+            it('Patch centre object/GUEST roles', function (done) {
+                api.patch('/centres/' + ClinicID  )
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenForGuest)
+                    .send({
+
+                        "name": "centerVika143232",
+                        "latitude": 0,
+                        "longitude": 0,
+                        "confirmed": true,
+                        "serviceUnitNumbers": [
+                            unitNumberIDPatchForCenter2,unitNumberIDPatchForCenter , unitNumberIDPatchForCenter2
+                        ]
+
+                    })
+                    .expect(401,done)
+            });
+
+            it('Patch centre object/PROVIDER and BOOKING_USER roles', function (done) {
+                api.patch('/centres/' + ClinicID  )
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenForDIRECTORYUSER)
+                    .send({
+
+                        "name": "centerVika143232",
+                        "latitude": 0,
+                        "longitude": 0,
+                        "confirmed": true,
+                        "serviceUnitNumbers": [
+                            unitNumberIDPatchForCenter2,unitNumberIDPatchForCenter
+                        ]
+
+                    })
+                    .expect(401,done)
+            });
+        });
+
+        describe('HTTP responce code - 403', function () {
+
+
         });
 
 
 
 
-
-
-    })
+    });
 
     describe('Delete centre ', function () {
 
@@ -854,7 +1104,7 @@ describe('centre', function () {
                     .expect(200,done)
             });
 
-        })
+        });
         describe('HTTP responce code - 400 ', function () {
 
             it('Delete centre/invalid id', function (done) {
@@ -892,7 +1142,7 @@ describe('centre', function () {
         describe('HTTP responce code - 404 ', function () {
 
             it('Patch centre object/Not found', function (done) {
-                api.patch('/centres/5b30f32ede19bd000f1241ee')
+                api.patch('/centres/5b30f32ede19bd000f124100')
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .expect(404, done)
