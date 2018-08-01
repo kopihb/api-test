@@ -9,15 +9,41 @@ var token = global.token;
 var tokenConsumer = global.tokenForConsumer;
 var tokenForGuest = global.tokenForGuest;
 var tokenForDIRECTORYUSER = global.tokenForDIRECTORYUSER;
+var emailForProviders = global.emailForProvidersProvider;
 var randomNameForDublicate = global.randomString(8);
 var centre = global.centreCLinics;
 var ClinicID = global.ClinicID;
-var ClinicID222222= '';
+var tokenProvider= global.tokenProvider;
+var consumerObjforClinic = global.consumerObjforClinic;
 var ClinicIDForCentreToken = global.ClinicIDForCentreToken;
 var ClinicName = global.ClinicName;
 var unitNumberIDPatchForCenter = global.unitNumberIDPatchForCenter;
 var unitNumberIDPatchForCenter2 = global.unitNumberIDPatchForCenter2;
-var token22 = global.token22;
+var tokenOfmailProvider = '';
+var ClinicIDForClinic= '';
+var ConsumerIDForClinic='';
+///////----------------Create Token For Provider -----------------------------//////////////
+var jwt = require('jsonwebtoken');
+
+
+
+///////----------------Create Token For Provider -----------------------------//////////////
+function createTokenForprovider (email) {
+    var tokenforproviderNew = jwt.sign({
+        "iss": "Online JWT Builder",
+        "iat": 1533050900,
+        "exp": 1564586900,
+        "aud": "www.example.com",
+        "sub": "jrocket@example.com",
+        "email": email,
+        "roles": [
+            "PROVIDER",
+            "PROVIDER"
+        ]
+    }, 'test_manul_key');
+    return tokenforproviderNew ;
+}
+
 describe('Version - 1.0.0 ' +
     ' centres ' +
     ' Auto create and get  ID for test ', function () {
@@ -33,7 +59,6 @@ describe('Version - 1.0.0 ' +
                     confirmed: centre.confirmed
                 })
                 .end(function (err, res) {
-                    console.log(token22);
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.exist;
                     ClinicID = res.body.res.id;
@@ -42,9 +67,81 @@ describe('Version - 1.0.0 ' +
             addContext(this, 'text' );
     });
 
+    it('Create new centre/Successfull case + get ID for clinic', function (done) {
+        api.post('/centres')
+            .set('Accept', 'aplication/json')
+            .set('Authorization', 'Bearer ' + token)
+            .send({
+                name : centre.name + 'clinic23',
+                latitude : centre.latitude,
+                longitude: centre.longitude,
+                confirmed: centre.confirmed
+            })
+            .end(function (err, res) {
+                expect(res.statusCode).to.equal(200);
+                expect(res.body).to.exist;
+                ClinicIDForClinic = res.body.res.id;
+                done();
+            });
+        addContext(this, 'text' );
+    });
+    it('Create new consumer/Successfull case + get ID for attachment to provider', function (done) {
+        api.post('/consumers')
+            .set('Accept', 'aplication/json')
+            .set('Authorization', 'Bearer ' + token)
+            .send({
+                "email": consumerObjforClinic.email,
+                "firstName": consumerObjforClinic.firstName,
+                "lastName": consumerObjforClinic.lastName,
+                "phone": "phone ",
+                "receiveNotification": true,
+                "dontSentAdv": true,
+                "signedUp": true,
+                "entityStart": "2015-01-03",
+                "entityEnd": "2021-01-04"
+            })
+            .end(function (err, res) {
 
+                expect(res.statusCode).to.equal(200);
+                expect(res.body).to.exist;
+                ConsumerIDForClinic = res.body.res.id;
+                done();
+            })
 
+    });
 
+    it('Create new Provider/ Successful case', function (done) {
+        api.post('/providers')
+            .set('Accept', 'aplication/json')
+            .set('Authorization', 'Bearer ' + token)
+            .send({
+
+                "email": emailForProviders + 'nw',
+                "waitingSlots": 0,
+                "instantBooking": true,
+                "bookingConfirmation": true,
+                "sponsored": true,
+                "minScheduleStep": 7,
+                "defaultCentreId": ClinicIDForClinic,
+                "centreIds": [
+                    ClinicIDForClinic
+                ],
+                "instantBookingConsumerIds": [
+                    ConsumerIDForClinic
+                ],
+                "entityStart": "2018-01-01",
+                "entityEnd": "2018-01-01"
+
+            })
+            .end(function(err, res) {
+
+                expect(res.statusCode).to.equal(200);
+                var mailProvider = res.body.res.email;
+                tokenOfmailProvider = createTokenForprovider(mailProvider);
+
+                done();
+            });
+    });
 
     it('Create new centre/Successfull case + get ID for delete without token', function (done) {
         api.post('/centres')
@@ -157,10 +254,20 @@ describe('centre', function () {
                     });
 
             });
-        })
+        });
+        describe('HTTP responce code - 403 ', function () {
+            it('Get list of centres/ Unsuccessfull case /DIRECTORY_USER/BOOKING_USER roles\n', function (done) {
+                api.get('/centres')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenOfmailProvider)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(403);
+                        done();
+                    });
 
-
-    })
+            });
+        });
+    });
 
     describe('Create centre', function () {
 
@@ -456,8 +563,21 @@ describe('centre', function () {
                         })
                     .expect(400,done)
             });
-
-
+            describe('HTTP responce code - 403 ', function () {
+            it('Create new centre/incorrect format for longitude', function(done) {
+                api.post('/centres')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenOfmailProvider)
+                    .send(
+                        {
+                            name : centre.name + 'word',
+                            latitude : 0,
+                            longitude: '',
+                            confirmed: true
+                        })
+                    .expect(403,done)
+            });
+            });
         })
     });
 
@@ -624,24 +744,7 @@ describe('centre', function () {
                         })
                     .expect(200,done)
             });
-            // it('Patch centre object/PROVIDER and DIRECTORY_USER roles', function(done) {
-            //     api.patch('/centres/' + ClinicID )
-            //         .set('Accept', 'aplication/json')
-            //         .set('Authorization', 'Bearer ' + tokenForDIRECTORYUSER)
-            //         .send(
-            //             {
-            //
-            //                 name: centre.name ,
-            //                 "latitude": 0,
-            //                 "longitude": 0,
-            //                 "serviceUnitNumbers": [
-            //                     unitNumberIDPatchForCenter
-            //                 ]
-            //
-            //             })
-            //
-            //         .expect(200,done)
-            // });
+
 
             it('Patch centre object/name - check for duplicated centres', function(done) {
                 api.patch('/centres/' + ClinicID )
@@ -1086,7 +1189,24 @@ describe('centre', function () {
 
         describe('HTTP responce code - 403', function () {
 
+            it('Patch centre object/PROVIDER and DIRECTORY_USER roles', function(done) {
+                api.patch('/centres/' + ClinicID )
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenOfmailProvider)
+                    .send(
+                        {
 
+                            name: centre.name ,
+                            "latitude": 0,
+                            "longitude": 0,
+                            "serviceUnitNumbers": [
+                                unitNumberIDPatchForCenter
+                            ]
+
+                        })
+
+                    .expect(403,done)
+            });
         });
 
 
@@ -1095,6 +1215,31 @@ describe('centre', function () {
     });
 
     describe('Delete centre ', function () {
+        describe('HTTP responce code - 401 ', function () {
+            it('Delete center/CONSUMER roles', function (done) {
+                api.del('/centres/' + ClinicID + "invalid")
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + tokenConsumer)
+                    .expect(401,done)
+            });
+        });
+        describe('HTTP responce code - 403 ', function () {
+
+            it('Delete center/GUEST roles', function (done) {
+                api.del('/centres/' + ClinicID + "invalid")
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + tokenOfmailProvider)
+                    .expect(403,done)
+            });
+            it('Delete centre object/PROVIDER and BOOKING_USER roles', function (done) {
+                api.del('/centres/' + ClinicID + "invalid")
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + tokenOfmailProvider)
+                    .expect(403,done)
+            });
+
+        });
+
 
         describe('HTTP responce code - 200 ', function () {
             it('Delete centre/Successfull', function (done) {
@@ -1114,7 +1259,7 @@ describe('centre', function () {
                     .expect(400,done)
             });
 
-        })
+        });
 
         describe('HTTP responce code - 401 ', function () {
             it('Delete clinic / Unauthenticated', function (done) {

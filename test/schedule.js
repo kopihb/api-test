@@ -623,4 +623,4 @@ describe('Schedule', function () {
 
         });
     });
-})
+});

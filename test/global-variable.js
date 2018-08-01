@@ -97,6 +97,8 @@ var unitNumberIDPatchForSub = '';
 var MasterServiceID = "";
 var MasterServiceIDPatch ="";
 var randomValueNameForSubClinics = randomString(6); /*use for name*/
+var MasterServiceIDDelete = '';
+var MasterServiceIDNUll = '';
 /*---------------------------------Provider---------------------------- */
 var ConsumerID = "";
 var ConsumerIDForToken = "";
@@ -177,6 +179,10 @@ var DiscountId2 = '';
 var randomValueNameDiscount = randomString(6); /*use for name*/
 var randomValueMailDiscount = randomString(5); /*use for mail*/
 var randomValueProviderMailDiscount = randomString(4); /*use for mail*/
+
+
+var emailForProvidersDiscountSub = randomValueProviderMailDiscount+'sd' + '@gmail.com';
+
 var emailForProvidersDiscount = randomValueProviderMailDiscount + '@gmail.com';
 var ScheduleIdForProvidersDiscount = "";
 var ProviderIdForPatch22 = '';
@@ -287,6 +293,34 @@ var consumerObj = {
     email: randomValueMail + '@gmail.com',
     firstName: randomValueName,
     lastName: "last" + randomValueName,
+    phone: 'phone patch all',
+    receiveNotification: true,
+    dontSentAdv: true,
+    signedUp: true,
+    receiveNewsLetters: true,
+    entityStart: '2020-03-03',
+    entityEnd: '2021-04-04'
+};
+/*---------------------------------Consumer obj for SUbCategory ---------------------------- */
+
+var consumerObjforSubcategory = {
+    email: randomValueMail+'sww' + '@gmail.com',
+    firstName: randomValueName+'rees',
+    lastName: "last23" + randomValueName,
+    phone: 'phone patch all',
+    receiveNotification: true,
+    dontSentAdv: true,
+    signedUp: true,
+    receiveNewsLetters: true,
+    entityStart: '2020-03-03',
+    entityEnd: '2021-04-04'
+};
+/*---------------------------------Consumer obj  for CLinic ---------------------------- */
+
+var consumerObjforClinic = {
+    email: randomValueMail+'sd' + '@gmail.com',
+    firstName: randomValueName +'ds',
+    lastName: randomValueName + 'el',
     phone: 'phone patch all',
     receiveNotification: true,
     dontSentAdv: true,
@@ -522,4 +556,9 @@ ClinicIDForSubClinicDelete,
     tokenForConsumer,
     tokenForGuest,
     tokenForDIRECTORYUSER,
+    consumerObjforClinic,
+    consumerObjforSubcategory,
+    emailForProvidersDiscountSub,
+    MasterServiceIDDelete,
+    MasterServiceIDNUll
 };

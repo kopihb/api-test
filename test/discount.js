@@ -104,7 +104,6 @@ describe('Schedule-Templates', function () {
                     ConsumerIDForProvider = res.body.res.id;
                     var mailCOnsumer = res.body.res.email;
                     tokenOfmailCOnsumer = createTokenForConsumer(mailCOnsumer);
-                    // console.log(tokenOfmailCOnsumer);
                     done();
                 })
 
@@ -138,7 +137,7 @@ describe('Schedule-Templates', function () {
                     ProviderIdForPatch = res.body.res.id;
                     var mailProvider = res.body.res.email;
                     tokenOfmailProvider = createTokenForConsumer(mailProvider);
-                    console.log(tokenOfmailProvider);
+
                     done();
                 });
         });
@@ -248,16 +247,16 @@ describe('Get list provider schedule/discount', function () {
     });
     describe('HTTP responce code - 403', function () {
 
-        it('Get  provider discount  / Forbidden ', function (done) {
-            api.get('/providers/' + ConsumerIDForProvider + '/discounts')
-                .set('Accept', 'aplication/json')
-                .set('Authorization', 'Bearer ' + tokenConsumer)
-                .end(function(err, res) {
-                    expect(res.statusCode).to.equal(403);
-                    done();
-                });
-
-        });
+        // it('Get  provider discount  / Forbidden ', function (done) {
+        //     api.get('/providers/' + ConsumerIDForProvider + '/discounts')
+        //         .set('Accept', 'aplication/json')
+        //         .set('Authorization', 'Bearer ' + tokenOfmailCOnsumer)
+        //         .end(function(err, res) {
+        //             expect(res.statusCode).to.equal(403);
+        //             done();
+        //         });
+        //
+        // });
 
     });
 
@@ -1098,6 +1097,26 @@ describe('Patch provider schedule template', function () {
                     done();
                 })
         });
+        // it('Patch new provider discount / Input a token of CONSUMER role into Authorization ', function (done) {
+        //     api.patch('/providers/' + ProviderIdForPatch + '/discounts/' + DiscountId )
+        //         .set('Accept', 'aplication/json')
+        //         .set('Authorization', 'Bearer ' + tokenOfmailCOnsumer)
+        //         .send({
+        //             "startDate": "2018-01-01T00:00:00.000Z",
+        //             "endDate": "2018-01-01T23:59:59.999Z",
+        //             "percent": 9,
+        //             "personal": true,
+        //             "consumerIds": [
+        //                 ConsumerIDForProvider
+        //             ]
+        //         })
+        //         .end(function (err, res) {
+        //
+        //             expect(res.statusCode).to.equal(401);
+        //             expect(res.body).to.exist;
+        //             done();
+        //         })
+        // });
 
     });
     describe('HTTP responce code - 404', function () {
@@ -1122,26 +1141,27 @@ describe('Patch provider schedule template', function () {
 
     });
 
-    // describe('HTTP responce code - 403', function () {
-    //     it('Patch new provider discount / Enter existed providerId and PROVIDER/GUEST/DIRECTORY_USER role token instead of BOOKING_USER', function (done) {
-    //         api.patch('/providers/' + ProviderIdForPatch+ '/discounts' )
-    //             .set('Accept', 'aplication/json')
-    //             .set('Authorization', 'Bearer ' + tokenOfmailCOnsumer)
-    //             .send({
-    //                 "startDate": "2018-01-01T00:00:00.000Z",
-    //                 "endDate": "2018-01-01T23:59:59.999Z",
-    //                 "percent": 33,
-    //                 "personal": false
-    //             })
-    //             .end(function (err, res) {
-    //
-    //                 expect(res.statusCode).to.equal(403);
-    //                 expect(res.body).to.exist;
-    //                 done();
-    //             })
-    //     });
-    //
-    // });
+    describe('HTTP responce code - 403', function () {
+        it('Patch new provider discount / Enter existed providerId and PROVIDER/GUEST/DIRECTORY_USER role token instead of BOOKING_USER', function (done) {
+            api.patch('/providers/' + ProviderIdForPatch+ '/discounts/'+ DiscountId)
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + tokenOfmailCOnsumer)
+                .send({
+                    "startDate": "2018-01-01T00:00:00.000Z",
+                    "endDate": "2018-01-01T23:59:59.999Z",
+                    "percent": 33,
+                    "personal": false
+                })
+                .end(function (err, res) {
+                     console.log(ProviderIdForPatch);
+                    console.log(tokenOfmailCOnsumer);
+                    expect(res.statusCode).to.equal(403);
+                    expect(res.body).to.exist;
+                    done();
+                })
+        });
+
+    });
 });
 
 /*-------------------      Delete  ---------------------------------------------------------------------------------------------------- */
@@ -1180,6 +1200,18 @@ describe('Delete provider schedule template', function () {
         });
 
     });
+    describe('HTTP responce code - 403', function () {
+
+        it('Delete provider discount object/ successful case', function (done) {
+            api.del('/providers/' + ProviderIdForPatch + '/discounts/' + DiscountId)
+                .set('Accept', 'application/json')
+                .set('Authorization', 'Bearer ' + tokenOfmailCOnsumer)
+                .expect(403,done);
+
+        });
+
+    });
+
     describe('HTTP responce code - 404', function () {
 
         it('Delete provider schedule time slot / Not found discountId', function (done) {
@@ -1188,6 +1220,13 @@ describe('Delete provider schedule template', function () {
                 .set('Accept', 'application/json')
                 .set('Authorization', 'Bearer ' + token)
                 .expect(404,done)
+        });
+        it('Delete provider discount object/ successful case', function (done) {
+            api.del('/providers/' + ProviderIdForPatch22 + '/discounts/' + DiscountId)
+                .set('Accept', 'application/json')
+                .set('Authorization', 'Bearer ' + token)
+                .expect(404,done);
+
         });
     });
 });
