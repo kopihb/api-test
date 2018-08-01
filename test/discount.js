@@ -22,6 +22,44 @@ var randomValueName = global.randomValueNameDiscount;
 var Invalidtoken = global.Invalidtoken;
 var DiscountId = global.DiscountId;
 var DiscountId2 = global.DiscountId2;
+var tokenOfmailCOnsumer = '';
+var tokenOfmailProvider = '';
+var jwt = require('jsonwebtoken');
+
+///////----------------Create Token For Consumer -----------------------------//////////////
+function createTokenForConsumer (email) {
+    var tokenforConsumerNew = jwt.sign({
+        "iss": "Online JWT Builder",
+        "iat": 1533050900,
+        "exp": 1564586900,
+        "aud": "www.example.com",
+        "sub": "jrocket@example.com",
+        "email": email,
+        "roles": [
+            "CONSUMER",
+            "CONSUMER"
+        ]
+    }, 'test_manul_key');
+    return tokenforConsumerNew ;
+}
+///////----------------Create Token For Provider -----------------------------//////////////
+function createTokenForprovider (email) {
+    var tokenforproviderNew = jwt.sign({
+        "iss": "Online JWT Builder",
+        "iat": 1533050900,
+        "exp": 1564586900,
+        "aud": "www.example.com",
+        "sub": "jrocket@example.com",
+        "email": email,
+        "roles": [
+            "PROVIDER",
+            "PROVIDER"
+        ]
+    }, 'test_manul_key');
+    return tokenforproviderNew ;
+}
+
+
 describe('Schedule-Templates', function () {
     /*-------------------      Create auto data       ---------------------------------------------------------------------------------------------------- */
 
@@ -60,9 +98,13 @@ describe('Schedule-Templates', function () {
                     "entityEnd": "2021-04-04"
                 })
                 .end(function (err, res) {
+
                     expect(res.statusCode).to.equal(200);
                     expect(res.body).to.exist;
                     ConsumerIDForProvider = res.body.res.id;
+                    var mailCOnsumer = res.body.res.email;
+                    tokenOfmailCOnsumer = createTokenForConsumer(mailCOnsumer);
+                    // console.log(tokenOfmailCOnsumer);
                     done();
                 })
 
@@ -94,7 +136,9 @@ describe('Schedule-Templates', function () {
 
                     expect(res.statusCode).to.equal(200);
                     ProviderIdForPatch = res.body.res.id;
-                    console.log(ProviderIdForPatch);
+                    var mailProvider = res.body.res.email;
+                    tokenOfmailProvider = createTokenForConsumer(mailProvider);
+                    console.log(tokenOfmailProvider);
                     done();
                 });
         });
@@ -158,7 +202,6 @@ describe('Schedule-Templates', function () {
                         ]
                     })
                 .end(function(err, res) {
-                    console.log(res.body);
                     expect(res.statusCode).to.equal(200);
                     WorkingDayId = res.body.res._id;
                     done();
@@ -210,7 +253,6 @@ describe('Get list provider schedule/discount', function () {
                 .set('Accept', 'aplication/json')
                 .set('Authorization', 'Bearer ' + tokenConsumer)
                 .end(function(err, res) {
-                    console.log(res.body);
                     expect(res.statusCode).to.equal(403);
                     done();
                 });
@@ -570,6 +612,24 @@ describe('Create provider schedule template', function () {
     });
 
     describe('HTTP responce code - 403', function () {
+        it('Create new provider discount / Enter existed providerId and Consumer role instead of Provider one', function (done) {
+            api.post('/providers/' + ProviderIdForPatch + '/discounts')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + tokenOfmailCOnsumer)
+                .send({
+
+                    "startDate": "2018-01-01T00:00:00.000Z",
+                    "endDate": "2018-01-01T23:59:59.999Z",
+                    "percent": 33,
+                    "personal": false
+
+                })
+                .end(function (err, res) {
+                    expect(res.statusCode).to.equal(403);
+                    expect(res.body).to.exist;
+                    done();
+                })
+        });
 
 
 
@@ -1061,6 +1121,27 @@ describe('Patch provider schedule template', function () {
         });
 
     });
+
+    // describe('HTTP responce code - 403', function () {
+    //     it('Patch new provider discount / Enter existed providerId and PROVIDER/GUEST/DIRECTORY_USER role token instead of BOOKING_USER', function (done) {
+    //         api.patch('/providers/' + ProviderIdForPatch+ '/discounts' )
+    //             .set('Accept', 'aplication/json')
+    //             .set('Authorization', 'Bearer ' + tokenOfmailCOnsumer)
+    //             .send({
+    //                 "startDate": "2018-01-01T00:00:00.000Z",
+    //                 "endDate": "2018-01-01T23:59:59.999Z",
+    //                 "percent": 33,
+    //                 "personal": false
+    //             })
+    //             .end(function (err, res) {
+    //
+    //                 expect(res.statusCode).to.equal(403);
+    //                 expect(res.body).to.exist;
+    //                 done();
+    //             })
+    //     });
+    //
+    // });
 });
 
 /*-------------------      Delete  ---------------------------------------------------------------------------------------------------- */

@@ -4,12 +4,75 @@ var should = require('chai').should();
 var expect = require('chai').expect;
 var supertest = require('supertest');
 var api = supertest('http://159.100.241.121:5002');
+var jwt = require('jsonwebtoken');
 const addContext = require('mochawesome/addContext');
+
+/*---------------------------------Create Token---------------------------- */
+
+
+var tokenforSuperADMIN = jwt.sign({
+    "iss": "Online JWT Builder",
+    "iat": 1533050900,
+    "exp": 1564586900,
+    "aud": "www.example.com",
+    "sub": "jrocket@example.com",
+    "email": "super-admin@gmail.com",
+    "roles": [
+        "SUPER_ADMIN",
+        "SUPER_ADMIN"
+    ]
+}, 'test_manul_key');
+
+
+
+///////----------------Create Token For DirectoryUser -----------------------------//////////////
+
+function createTokenForDIRECTORY_USER (email) {
+    var tokenforDIRECTORY_USER = jwt.sign({
+        "iss": "Online JWT Builder",
+        "iat": 1533050900,
+        "exp": 1564586900,
+        "aud": "www.example.com",
+        "sub": "jrocket@example.com",
+        "email": email,
+        "roles": [
+            "PROVIDER",
+            "DIRECTORY_USER"
+        ]
+    }, 'test_manul_key');
+    return tokenforDIRECTORY_USER ;
+}
+
+///////----------------Create Token For bOOKINGUser -----------------------------//////////////
+
+function createTokenForBOOKING_USER (email) {
+    var tokenforBOOKING_USER = jwt.sign({
+        "iss": "Online JWT Builder",
+        "iat": 1533050900,
+        "exp": 1564586900,
+        "aud": "www.example.com",
+        "sub": "jrocket@example.com",
+        "email": email,
+        "roles": [
+            "PROVIDER",
+            "BOOKING_USER"
+        ]
+    }, 'test_manul_key');
+    return tokenforBOOKING_USER ;
+}
+
+/*---------------------------------------------------------------------------- */
+
+
 /*-----------------------------------Token---------------------------------------- */
-var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzMwMjEyMzcsImV4cCI6MTU2NDU1NzIzNywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AZ21haWwuY29tIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJQUk9WSURFUiJdfQ.-WFpWXvG1Qc3fGtx9X_9wjJcP3wg5Elksg-VPteJWSI';
+//  worked TOKEN !   var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzMwMjEyMzcsImV4cCI6MTU2NDU1NzIzNywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AZ21haWwuY29tIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJQUk9WSURFUiJdfQ.-WFpWXvG1Qc3fGtx9X_9wjJcP3wg5Elksg-VPteJWSI';
+var token = tokenforSuperADMIN;
 var Invalidtoken = 'eyD0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzEzODc2MTEsImV4cCI6MTU2MjkyMzYxMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoic3VwZXItYWRtaW5AbWFpbC5jb20iLCJyb2xlcyI6WyJQUk9WSURFUiIsIlNVUEVSX0FETUlOIl19.RfeB6N6kRFVCGR_mvsXbtqcuWa2KdpFhHPN9DgnHsmU';
 var tokenConsumer = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzI2MDg2MDEsImV4cCI6MTU2NDE0NDYwMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoiT0F0SGVAbWFpbC5jb20iLCJyb2xlcyI6WyJDT05TVU1FUiIsIkNPTlNVTUVSIl19.XAq0c5H-AvRCHblZ-iQKRqxUsQUmDPFY4uk8xL8GumU';
 var tokenProvider = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzI2MDg2MDEsImV4cCI6MTU2NDE0NDYwMSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoieDk5eHhlZWQ2eW9WWUBtYWlsLmNvbSIsInJvbGVzIjpbIlBST1ZJREVSUyIsIlBST1ZJREVSUyJdfQ.xd1-8TNG-d-jzf1NbkYvd72hbNcychNJvOe0lLOL7TU';
+var tokenForConsumer = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzMwMzY3ODMsImV4cCI6MTU2NDU3Mjc4MywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkVtYWlsIjoiUFJPVklERVJAZ21haWwuY29tIiwicm9sZXMiOlsiUFJPVklERVIiLCJQUk9WSURFUiJdfQ.N-m8JCXuQ-hNICEzIY00DJhkl5tEUeOB6vXdaTcFpCg';
+var tokenForGuest = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzMwMzY3ODMsImV4cCI6MTU2NDU3Mjc4MywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkVtYWlsIjoiR1VFU1RAZ21haWwuY29tIiwicm9sZXMiOlsiR1VFU1QiLCJHVUVTVCJdfQ.k1ARtUUdlnIfQcRtiNViG-8FRin30XGZpHWGtiluYZo';
+var tokenForDIRECTORYUSER = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzMwMzY3ODMsImV4cCI6MTU2NDU3Mjc4MywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsImVtYWlsIjoiRElSRUNUT1JZX1VTRVJAZ21haWwuY29tIiwicm9sZXMiOlsiUFJPVklERVIiLCJESVJFQ1RPUllfVVNFUiJdfQ.yNL0eqxjJQm7-xwY-dmX7ZCm7RKYaQl80KpmZ76sb9I';
 /*---------------------------------Clinic---------------------------- */
 
 var ClinicID = "";
@@ -21,7 +84,8 @@ var ClinicIDForProviderForDiscount = "";
 var ClinicIDForProviderPatch = "";
 var unitNumberID = "";
 var unitNumberIDPatch ="";
-
+var unitNumberIDPatchForCenter = "";
+var unitNumberIDPatchForCenter2 = "";
 /*---------------------------------SubClinic---------------------------- */
 var SubClinicIDForProvider = "";
 var SubClinicForClinic = "";
@@ -452,5 +516,10 @@ unitNumberIDPatch,
    ClinicIDForSubClinicOther,
 ClinicIDForSubClinicDelete,
     unitNumberNamePatch,
-    unitNumberIDPatchForSub
+    unitNumberIDPatchForSub,
+    unitNumberIDPatchForCenter,
+    unitNumberIDPatchForCenter2,
+    tokenForConsumer,
+    tokenForGuest,
+    tokenForDIRECTORYUSER,
 };
