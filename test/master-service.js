@@ -10,8 +10,8 @@ var unitNumberID = global.unitNumberID;
 var Invalidtoken = global.Invalidtoken;
 var tokenConsumer = global.tokenConsumer;
 var tokenProvider = global.tokenProvider;
-
-
+var MasterServiceIDDelete = global.MasterServiceIDDelete;
+var MasterServiceIDNUll = global.MasterServiceIDNUll;
 
 describe('Master-service', function () {
 
@@ -36,6 +36,50 @@ describe('Master-service', function () {
                         done();
                     })
             });
+
+            it('Create new mastersevice/All fields/Successfull case+ get ID FOR DELETE ', function (done) {
+                api.post('/master-services')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        name : "masterService-32-" + centre.name ,
+                        tags: [
+                            "string"
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.exist;
+                        MasterServiceIDDelete = res.body.res._id;
+                        done();
+                    })
+            });
+
+            it('Create new mastersevice/All fields/Successfull case+ get ID FOR DELETE 2', function (done) {
+                api.post('/master-services')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        name : 'm'+ centre.name,
+                        tags: [
+                            "stringSSDFSDWE"
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(200);
+                        expect(res.body).to.exist;
+                        MasterServiceIDNUll = res.body.res._id;
+                        done();
+                    })
+            });
+
+            it('Delete master-service', function (done) {
+                api.del('/master-services/' + MasterServiceIDDelete)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .expect(200,done)
+            });
+
             it('Create new mastersevice/No tags field/Successfull case', function (done) {
                 api.post('/master-services')
                     .set('Accept', 'aplication/json')
@@ -275,11 +319,28 @@ describe('Master-service', function () {
             });
         });
         describe('HTTP responce code - 401', function () {
+            it('Insert CONSUMERs token into Authorization', function (done) {
+                api.post('/master-services')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenProvider)
+                    .send({
+                        name : "345uioiooeee1" + centre.name,
+                        tags: [
+                            "ertertr4"
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(401);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+
             it('Create new masterservice/ Unauthenticated', function (done) {
                 api.post('/master-services')
                     .set('Accept', 'aplication/json')
                     .send({
-                        name : "345uioiooeee1" + centre.name,
+                        name : "345uioiooeee21" + centre.name,
                         tags: [
                             "ertertr4"
                         ]
@@ -307,7 +368,24 @@ describe('Master-service', function () {
                     })
             });
         });
-        describe('HTTP responce code - 404', function () {  });
+        describe('HTTP responce code - 403', function () {
+            it('Insert correspondent role\'s token into Authorization', function (done) {
+            api.post('/master-services')
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + tokenConsumer)
+                .send({
+                    name : "345uioiooeee1" + centre.name,
+                    tags: [
+                        "ertertr4"
+                    ]
+                })
+                .end(function (err, res) {
+                    expect(res.statusCode).to.equal(403);
+                    expect(res.body).to.exist;
+                    done();
+                })
+        });
+        });
     });
 
 
@@ -328,7 +406,16 @@ describe('Master-service', function () {
             });
 
         });
-        describe('HTTP responce code - 400', function () {  });
+        describe('HTTP responce code - 404', function () {
+            it('Get masterservice object/not found', function (done) {
+                api.get('/master-services'+MasterServiceIDDelete)
+                    .set('Accept', 'aplication/json')
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(404);
+                        done();
+                    })
+            });
+        });
         describe('HTTP responce code - 401', function () {
             it('Get list of masterservices / Unauthenticated', function (done) {
                 api.get('/master-services')
@@ -411,8 +498,25 @@ describe('Master-service', function () {
                     })
             });
         });
-        describe('HTTP responce code - 404', function () {
-
+        describe('HTTP responce code - 403', function () {
+            it('Get list of masterservices/BOOKING_USER,GUEST role', function (done) {
+                api.get('/master-services/' + MasterServiceID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenConsumer)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(403);
+                        done();
+                    })
+            });
+            it('Get masterservice object/(CONSUMER role)', function (done) {
+                api.get('/master-services/' + MasterServiceID)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenConsumer)
+                    .end(function(err, res) {
+                        expect(res.statusCode).to.equal(403);
+                        done();
+                    })
+            });
         });
     });
 
@@ -551,6 +655,8 @@ describe('Master-service', function () {
                         done();
                     })
             });
+
+
             it('Patch master service/ Validation for name parameter type - null', function (done) {
                 api.patch('/master-services/' + MasterServiceIDPatch )
                     .set('Accept', 'aplication/json')
@@ -626,14 +732,14 @@ describe('Master-service', function () {
                         done();
                     })
             });
-            it('Patch master service/ empty tags field', function (done) {
-                api.patch('/master-services/' + MasterServiceIDPatch )
+            it('Patch master service/Input value into name field for already existed one', function (done) {
+                api.patch('/master-services/' + MasterServiceIDNUll )
                     .set('Accept', 'aplication/json')
                     .set('Authorization', 'Bearer ' + token)
                     .send({
-                        name : "",
+                        name : "masterServiceNUll"+ + centre.name,
                         tags: [
-                            ""
+                            "C"
                         ]
                     })
                     .end(function (err, res) {
@@ -660,10 +766,97 @@ describe('Master-service', function () {
                     })
             });
         });
-        describe('HTTP responce code - 404', function () {  });
+        describe('HTTP responce code - 403', function () {
+            it('Patch new masterservice/GUEST, BOOKING_USER, PROVIDER roles', function (done) {
+                api.patch('/master-services/' + MasterServiceIDPatch)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenConsumer)
+                    .send({
+                        name : "chssssange" + centre.name,
+                        tags: [
+                            "change"
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(403);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+        });
+        describe('HTTP responce code - 404', function () {
+            it('Patch master service/Not found', function (done) {
+                api.patch('/master-services/' + MasterServiceIDDelete)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .send({
+                        name : "chssssange" + centre.name,
+                        tags: [
+                            "change"
+                        ]
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(404);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+        });
     });
 
+    describe('Delete master-service', function () {
+        describe('HTTP responce code - 200', function () {
+            it('Delete master service object/SUPER_ADMIN role/successfull case', function (done) {
+                api.del('/master-services/' + MasterServiceID)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .expect(200,done)
+            });
+        });
+        describe('HTTP responce code - 400', function () {
+            it('Delete master service object/Invalid master service ID', function (done) {
+                api.del('/master-services/' + MasterServiceID+'sdf')
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .expect(400,done)
+            });
 
-
+        });
+        describe('HTTP responce code - 401', function () {
+            it('Delete master service object CONSUMER role', function (done) {
+                api.del('/master-services/' + MasterServiceID)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + tokenProvider)
+                    .expect(401,done)
+            });
+            it('Delete master service / Unauthenticated', function (done) {
+                api.del('/master-services/' + MasterServiceID)
+                    .set('Accept', 'application/json')
+                    .expect(401,done)
+            });
+        });
+        describe('HTTP responce code - 404', function () {
+            it('Delete master service object/SUPER_ADMIN role/successfull case', function (done) {
+                api.del('/master-services/' + MasterServiceIDDelete)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + token)
+                    .expect(404,done)
+            });
+        });
+        describe('HTTP responce code - 403', function () {
+            it('Delete master service object DIRECTORY_USER & PROVIDER role/successfull case', function (done) {
+                api.del('/master-services/' + MasterServiceID)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + tokenConsumer)
+                    .expect(403,done)
+            });
+            it('Delete master service object/GUEST, BOOKING_USER, PROVIDER roles', function (done) {
+                api.del('/master-services/' + MasterServiceID)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + tokenConsumer)
+                    .expect(403,done)
+            });
+        });
+    });
 
 });

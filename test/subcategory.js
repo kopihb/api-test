@@ -6,12 +6,49 @@ var supertest =global.supertest ;
 var api = global.api;
 var addContext =  global.addContext;
 var token = global.token;
+var emailForProvidersDiscountSub = global.emailForProvidersDiscountSub;
 var centre = global.centreSubCLinics;
 var ClinicIDForSubClinic = global.ClinicIDForSubClinic;
 var ClinicIDForSubClinicOther = global.ClinicIDForSubClinicOther;
 var ClinicIDForSubClinicDelete = global.ClinicIDForSubClinicDelete;
 var SubClinicForClinic = global.SubClinicForClinic;
-
+var consumerObjforSubcategory = global.consumerObjforSubcategory;
+var tokenOfmailCOnsumer  = '';
+var tokenOfmailProvider = '';
+var ConsumerIDForProvider= '';
+var jwt = require('jsonwebtoken');
+var mailProvider2= '';
+///////----------------Create Token For Consumer -----------------------------//////////////
+function createTokenForConsumer (email) {
+    var tokenforConsumerNew = jwt.sign({
+        "iss": "Online JWT Builder",
+        "iat": 1533050900,
+        "exp": 1564586900,
+        "aud": "www.example.com",
+        "sub": "jrocket@example.com",
+        "email": email,
+        "roles": [
+            "CONSUMER",
+            "CONSUMER"
+        ]
+    }, 'test_manul_key');
+    return tokenforConsumerNew ;
+};
+function createTokenForProvider (email) {
+    var tokenforConsumerNew = jwt.sign({
+        "iss": "Online JWT Builder",
+        "iat": 1533050900,
+        "exp": 1564586900,
+        "aud": "www.example.com",
+        "sub": "jrocket@example.com",
+        "email": email,
+        "roles": [
+            "PROVIDER",
+            "PROVIDER"
+        ]
+    }, 'test_manul_key');
+    return tokenforConsumerNew ;
+}
 describe('Version - 1.0.0 ' +
     ' centres ' +
     ' Auto create and get  ID for test ', function () {
@@ -34,6 +71,66 @@ describe('Version - 1.0.0 ' +
             });
         addContext(this, 'text' );
     });
+
+    it('Create new consumer/Successfull case + get ID for attachment to provider', function (done) {
+        api.post('/consumers')
+            .set('Accept', 'aplication/json')
+            .set('Authorization', 'Bearer ' + token)
+            .send({
+                "email": consumerObjforSubcategory.email,
+                "firstName": consumerObjforSubcategory.firstName,
+                "lastName": consumerObjforSubcategory.lastName,
+                "phone": "phone ",
+                "receiveNotification": true,
+                "dontSentAdv": true,
+                "signedUp": true,
+                "entityStart": "2016-03-03",
+                "entityEnd": "2021-04-04"
+            })
+            .end(function (err, res) {
+                ConsumerIDForProvider = res.body.res.id;
+                expect(res.statusCode).to.equal(200);
+                expect(res.body).to.exist;
+                var mailCOnsumer = res.body.res.email;
+                tokenOfmailCOnsumer = createTokenForConsumer(mailCOnsumer);
+                done();
+            })
+
+    });
+
+    it('Create new Provider/ Successful case', function (done) {
+        api.post('/providers')
+            .set('Accept', 'aplication/json')
+            .set('Authorization', 'Bearer ' + token)
+            .send({
+
+                "email": emailForProvidersDiscountSub+'sd',
+                "waitingSlots": 0,
+                "instantBooking": true,
+                "bookingConfirmation": true,
+                "sponsored": true,
+                "minScheduleStep": 7,
+                "defaultCentreId": ClinicIDForSubClinic,
+                "centreIds": [
+                    ClinicIDForSubClinic
+                ],
+                "instantBookingConsumerIds": [
+                    ConsumerIDForProvider
+                ],
+                "entityStart": "2018-01-01",
+                "entityEnd": "2018-01-02"
+
+            })
+            .end(function(err, res) {
+                expect(res.statusCode).to.equal(200);
+                mailProvider2 = res.body.res.email;
+                tokenOfmailProvider = createTokenForProvider(mailProvider2);
+
+                done();
+            });
+    });
+
+
     it('Create new centre/Successfull case  ID Other ', function (done) {
         api.post('/centres')
             .set('Accept', 'aplication/json')
@@ -307,13 +404,39 @@ describe('Subcategory', function () {
                         "name": "ЛорNew2"
                     })
                     .end(function (err, res) {
-                        console.log(ClinicIDForSubClinic);
                         expect(res.statusCode).to.equal(401);
                         expect(res.body).to.exist;
                         done();
                     })
             });
-
+            it('Create new Subcategory/GUEST, BOOKING_USER, PROVIDER roles', function (done) {
+                api.post('/centres/'+ ClinicIDForSubClinic+'/subcategories')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenOfmailProvider)
+                    .send({
+                        "name": "ЛорNew2"
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(403);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+            describe('HTTP responce code - 403', function () {
+            it('Create new Subcategory/CONSUMER roles', function (done) {
+                api.post('/centres/'+ ClinicIDForSubClinic+'/subcategories')
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenOfmailCOnsumer)
+                    .send({
+                        "name": "LOrsdf"
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(403);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+        });
         });
         describe('HTTP responce code - 404', function () {
             it('Create new subcategory/Not found centre id', function (done) {
@@ -438,6 +561,7 @@ describe('Subcategory', function () {
 
 
         describe('HTTP responce code - 401', function () {
+
             it('Patch subcategory/change `name` parameters', function (done) {
                 api.patch('/centres/'+ ClinicIDForSubClinic+'/subcategories/'+ SubClinicForClinic)
                     .set('Accept', 'aplication/json')
@@ -451,6 +575,38 @@ describe('Subcategory', function () {
                     })
             });
         });
+
+
+
+        describe('HTTP responce code - 403', function () {
+        it('Patch subcategory/CONSUMER roles', function (done) {
+            api.patch('/centres/'+ ClinicIDForSubClinic+'/subcategories/'+ SubClinicForClinic)
+                .set('Accept', 'aplication/json')
+                .set('Authorization', 'Bearer ' + tokenOfmailCOnsumer)
+                .send({
+                    "name": "originalName2"
+                })
+                .end(function (err, res) {
+                    expect(res.statusCode).to.equal(403);
+                    expect(res.body).to.exist;
+                    done();
+                })
+        });
+            it('Patch subcategory/GUEST roles', function (done) {
+                api.patch('/centres/'+ ClinicIDForSubClinic+'/subcategories/'+ SubClinicForClinic)
+                    .set('Accept', 'aplication/json')
+                    .set('Authorization', 'Bearer ' + tokenOfmailProvider)
+                    .send({
+                        "name": "originalNamsd"
+                    })
+                    .end(function (err, res) {
+                        expect(res.statusCode).to.equal(403);
+                        expect(res.body).to.exist;
+                        done();
+                    })
+            });
+        });
+
         describe('HTTP responce code - 404', function () {
             it('Patch subcategory/Not found', function (done) {
                 api.patch('/centres/'+ ClinicIDForSubClinic+'/subcategories/'+ '5b603a34f75e010000000000')
@@ -470,6 +626,29 @@ describe('Subcategory', function () {
     });
 
     describe('Delete centre ', function () {
+
+
+        describe('HTTP responce code - 401 ', function () {
+            it('Delete subcategory/CONSUMER roles', function (done) {
+                api.del('/centres/'+ ClinicIDForSubClinic+'/subcategories/'+ SubClinicForClinic)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + tokenOfmailCOnsumer)
+                    .expect(403,done)
+            });
+            it('Delete subcategory/GUEST roles', function (done) {
+                api.del('/centres/'+ ClinicIDForSubClinic+'/subcategories/'+ SubClinicForClinic)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + tokenOfmailProvider)
+                    .expect(403,done)
+            });
+            it('Delete subcategory/ PROVIDER and BOOKING_USER roles', function (done) {
+                api.del('/centres/'+ ClinicIDForSubClinic+'/subcategories/'+ SubClinicForClinic)
+                    .set('Accept', 'application/json')
+                    .set('Authorization', 'Bearer ' + tokenOfmailProvider)
+                    .expect(403,done)
+            });
+
+        });
 
         describe('HTTP responce code - 200 ', function () {
             it('Delete subcategory/successfull case', function (done) {

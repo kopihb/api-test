@@ -218,11 +218,7 @@ describe('Provider  promotion', function () {
                         {
                             "startTime": "2017-01-01T00:00:00.000Z",
                             "endTime": "2018-01-03T23:59:59.000Z",
-                            "weekDays": [
-                                2,
-                                4,
-                                6
-                            ]
+                            "weekDay": 3
                         }
                     ]
 
@@ -254,9 +250,7 @@ describe('Provider  promotion', function () {
                         {
                             "startTime": "2010-01-02T00:00:00.000Z",
                             "endTime": "2015-01-05T23:59:59.000Z",
-                            "weekDays": [
-                                2, 4, 5
-                            ]
+                            "weekDay": 2
                         }
                     ]
 
