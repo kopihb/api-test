@@ -22,7 +22,7 @@ var unitNumberIDPatchForCenter2 = global.unitNumberIDPatchForCenter2;
 var tokenOfmailProvider = '';
 var ClinicIDForClinic= '';
 var ConsumerIDForClinic='';
-///////----------------Create Token For Provider -----------------------------//////////////
+///////----------------Create Token For Provider     -----------------------------//////////////
 var jwt = require('jsonwebtoken');
 
 
